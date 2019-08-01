@@ -1,16 +1,21 @@
-
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import AuthService from './auth/auth-service';
 
-const Home = () => {
-  
+class Home extends Component {
+  constructor(props){
+    super(props);
+  }
+
+
+render(){
+
     return(
       <div>
-        <Link to='/'>
-          <button onClick={() => this.logoutUser()}>Logout</button>
-        </Link>
+        <p>oie</p>
       </div>
     )
-  
+    }
 }
 
-export default Login;
+export default Home;

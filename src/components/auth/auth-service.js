@@ -9,31 +9,24 @@ class AuthService {
     this.service = service;
   }
 
-  signup(username, password){
-    return this.service.post('/signup', {username, password})
+  signup(email, password, name, role){
+    return this.service.post('/signup', {email, password, name, role})
     .then(response => response.data)
   }
 
+login(email, password){
+  return this.service.post('/login', {email, password})
+  .then(response => response.data)
+}
   loggedin(){
     return this.service.get('/loggedin')
     .then(response => response.data)
   }
+
   logout(){
     return this.service.post('/logout', {})
     .then(response => response.data)
   }
 }
-
-// logoutUser = () =>{
-//   this.service.logout()
-//   .then(() => {
-//     this.setState({ loggedInUser: null });
-//     this.props.getUser(null);  
-//   })
-// }
-
-// <Link to='/'>
-// <button onClick={() => this.logoutUser()}>Logout</button>
-// </Link>
 
 export default AuthService;

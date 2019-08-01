@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import AuthService from './components/auth/auth-service';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import ProtectedRoute from './components/auth/protected-routes';
 
 //Components
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
+
+
 
 class App extends Component {
   constructor(props){
@@ -31,35 +36,40 @@ class App extends Component {
   }
 
   getTheUser(userObj){
+    console.log(userObj)
     this.setState({
       loggedInUser: userObj
     })
   }
 
-  logoutUser = () =>{
-    this.service.logout()
-    .then(() => {
-      this.setState({ loggedInUser: null });
-      this.props.getUser(null);  
-    })
-  }
 
+        //  <Route exact path="/home" render={() => <Home userInSession={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/> */}
+  
   render() {
     this.fetchUser()
-    console.log(this.state)
-    if(this.state.loggedInUser){
-      return <Redirect to={'/'}/>
-    } else {
+      if(this.state.loggedInUser){
+        return (
+          <div className="App">
+            <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)} />
+            <Switch>
+              <ProtectedRoute userInSession={this.state.loggedInUser}  path='/home' component={Home} />
+            </Switch>
+          </div>
+        );
+      } else {
       return (
         <div className="App">
+            <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)}/>
+
         <Switch>
-          <Route exact path="/signup" render={() => <Signup getUser={() => this.getTheUser()}/>} />
-          <Route exact path='/' render={() => <Login getUser={() => this.getTheUser()}/>} />
+          <Route exact path="/signup" render={() => <Signup getUser={(e) => this.getTheUser(e)}/>} />
+          <Route exact path='/login' render={() => <Login getUser={(e) => this.getTheUser(e)}/>} />
         </Switch>
       </div>
       )
-    }
+     }
   }
 }
+
 
 export default App;
