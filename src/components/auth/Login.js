@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '' };
+    this.state = { email: '', password: '', redirect: false };
     this.service = new AuthService();
   }
 
@@ -16,8 +16,8 @@ class Login extends Component {
     console.log(email, password)
     this.service.login(email, password)
       .then(response => {
-        this.setState({ email: "", password: "" });
         this.props.getUser(response)
+        this.setState({ email: "", password: "", redirect: true });
       })
       .catch(error => console.log(error))
   }
@@ -28,6 +28,9 @@ class Login extends Component {
   }
 
   render() {
+    if(this.state.redirect){
+      return <Redirect to={"/"}></Redirect>
+    }
     return (
       <div>
         <form onSubmit={(event) => this.handleFormSubmit(event)}>
@@ -37,9 +40,10 @@ class Login extends Component {
           <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
 
           <input type="submit" value="Login" />
+
         </form>
         <p>Don't have account?
-            <Link to={"/signup"}> Signup</Link>
+          <Link to={"/signup"}> Signup</Link>
         </p>
       </div>
     )

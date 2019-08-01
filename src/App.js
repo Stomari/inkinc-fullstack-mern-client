@@ -1,9 +1,8 @@
-
 import React, { Component } from 'react';
 import './App.css';
 import AuthService from './components/auth/auth-service';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import ProtectedRoute from './components/auth/protected-routes';
+import ProtectedRoute from './components/auth/protected-routes'
 
 //Components
 import Signup from './components/auth/Signup';
@@ -26,6 +25,7 @@ class App extends Component {
     if( this.state.loggedInUser === null ){
       this.service.loggedin()
       .then(response =>{
+        console.log(response)
         this.setState({
           loggedInUser:  response
         }) 
@@ -46,30 +46,30 @@ class App extends Component {
   }
 
 
-        //  <Route exact path="/home" render={() => <Home userInSession={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/> */}
   
   render() {
     this.fetchUser()
-      if(this.state.loggedInUser){
+    console.log('oiekkk',this.state.loggedInUser)
+    if(this.state.loggedInUser){
         return (
           <div className="App">
             <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)} />
-            <Switch>
-              <ProtectedRoute userInSession={this.state.loggedInUser}  path='/home' component={Home} />
-            </Switch>
+            <Route exact path="/home" render={() => <Home user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/> 
           </div>
         );
       } else {
+    console.log('poxae',this.state.loggedInUser)
+
       return (
         <div className="App">
             <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)}/>
 
-        <ByPlaceSearch />
-
-        <Switch>
+        {/* <ByPlaceSearch /> */}
+          <Switch>
           <Route exact path="/signup" render={() => <Signup getUser={(e) => this.getTheUser(e)}/>} />
           <Route exact path='/login' render={() => <Login getUser={(e) => this.getTheUser(e)}/>} />
-        </Switch>
+          {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
+          </Switch>
       </div>
       )
      }
