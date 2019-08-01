@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
@@ -7,21 +6,23 @@ class Signup extends Component {
   constructor(props){
     super(props);
 
-    this.state = { username: '', password: '' };
+    this.state = { email: '', password: '', name: '', role: '' };
     this.service = new AuthService();
   }
 
   handleFormSubmit(event){
     event.preventDefault();
-    const {username, password} = this.state;
+    const {email, password, name, role} = this.state;
   
-    this.service.signup(username, password)
+    this.service.signup(email, password, name, role)
     .then( response => {
         this.setState({
-            username: "", 
-            password: "",
+            email:'', 
+            password: '',
+            name: '',
+            role: '',
         });
-
+        console.log(response)
         this.props.getUser(response)
     })
     .catch( error => console.log(error) )
@@ -36,18 +37,24 @@ class Signup extends Component {
     return(
       <div>
 
-      <form onSubmit={() => this.handleFormSubmit()}>
-        <label>Username:</label>
-        <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+      <form onSubmit={(event) => this.handleFormSubmit(event)}>
+        <label>Email:</label>
+        <input type="text" name="email" value={this.state.email} onChange={ e => this.handleChange(e)}/>
         
         <label>Password:</label>
-        <textarea name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
+        <input type="password"  name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
+         
+        <label> Name:</label>
+        <input type="text"  name="name" value={this.state.name} onChange={ e => this.handleChange(e)} />
+        
+        <label> Role:</label>
+        <input type="text"  name="role" value={this.state.role} onChange={ e => this.handleChange(e)} />
         
         <input type="submit" value="Signup" />
       </form>
 
       <p>Already have account? 
-          <Link to={"/"}> Login </Link>
+          <Link to={"/login"}> Login </Link>
       </p>
 
     </div>
