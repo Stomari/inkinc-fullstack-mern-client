@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import './App.css';
 import AuthService from './components/auth/auth-service';
@@ -6,6 +7,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 //Components
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
+import ByPlaceSearch from './components/places/ByPlaceSearch';
 
 class App extends Component {
   constructor(props){
@@ -52,6 +54,7 @@ class App extends Component {
     } else {
       return (
         <div className="App">
+        <ByPlaceSearch />
         <Switch>
           <Route exact path="/signup" render={() => <Signup getUser={() => this.getTheUser()}/>} />
           <Route exact path='/' render={() => <Login getUser={() => this.getTheUser()}/>} />
