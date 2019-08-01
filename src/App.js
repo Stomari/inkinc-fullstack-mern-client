@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import './App.css';
 import AuthService from './components/auth/auth-service';
@@ -10,6 +11,8 @@ import Login from './components/auth/Login';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 
+//Victor
+import ByPlaceSearch from './components/places/ByPlaceSearch';
 
 
 class App extends Component {
@@ -60,6 +63,8 @@ class App extends Component {
       return (
         <div className="App">
             <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)}/>
+
+        <ByPlaceSearch />
 
         <Switch>
           <Route exact path="/signup" render={() => <Signup getUser={(e) => this.getTheUser(e)}/>} />
