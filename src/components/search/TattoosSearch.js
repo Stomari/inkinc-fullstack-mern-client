@@ -2,7 +2,7 @@ import React from 'react';
 
 const TattoosSearch = (props) => {
   return(
-    <p>Tattoos Results</p>
+    props.getResults()
   );
 }
 

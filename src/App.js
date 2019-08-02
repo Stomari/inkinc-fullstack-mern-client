@@ -13,6 +13,7 @@ import SearchPage from './components/search/SearchPage';
 import Profile from './components/user/Profile';
 
 
+require('dotenv').config();
 //Victor
 // import ByPlaceSearch from './components/places/ByPlaceSearch';
 // import ByAddressSearch from './components/places/ByAddressSearch';
@@ -68,6 +69,9 @@ class App extends Component {
           <Switch>
           <Route exact path='/signup' render={() => <Signup getUser={(e) => this.getTheUser(e)}/>} />
           <Route exact path='/login' render={() => <Login getUser={(e) => this.getTheUser(e)}/>} />
+          <Route exact path='/search' render={() => <SearchPage getUser={(e) => this.getTheUser(e)}/>} />
+          {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
+
           </Switch>
       </div>
       )

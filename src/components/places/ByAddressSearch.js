@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 //Import React Scrit Libraray to load Google object
 import Script from 'react-load-script';
 
-// import axios from 'axios';
-
 class ByPlaceSearch extends Component {
   // Define Constructor
   constructor(props) {
@@ -24,6 +22,7 @@ class ByPlaceSearch extends Component {
     this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
 
+
   }
 
   handleUpdate(event) {
@@ -31,6 +30,7 @@ class ByPlaceSearch extends Component {
     this.setState({
       [name]: value,
     })
+    console.log('place select')
   }
 
   handleScriptLoad() {
@@ -53,7 +53,6 @@ class ByPlaceSearch extends Component {
   }
   
   handlePlaceSelect() {
-
     // Extract City From Address Object
     let place = this.autocomplete.getPlace();
     // Check if address is valid
