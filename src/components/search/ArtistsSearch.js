@@ -1,8 +1,9 @@
 import React from 'react';
 
 const ArtistsSearch = (props) => {
+  console.log(props);
   return(
-    <p>Artists result</p>
+    props.getResults()
   );
 }
 
