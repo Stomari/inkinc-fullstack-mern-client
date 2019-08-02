@@ -56,11 +56,9 @@ class ByPlaceSearch extends Component {
     // Extract City From Address Object
     let place = this.autocomplete.getPlace();
     // let address = addressObject.address_components;
-    console.log(this.autocomplete);
     // Check if address is valid
     if (place) {
       // Set State
-      console.log(place);
       const newOutput = [...this.state.output];
       const value = {
         id: place.place_id,
@@ -77,15 +75,16 @@ class ByPlaceSearch extends Component {
         }
       );
     }
-    console.log(this.state);
   }
 
-  addPlace() {
-    console.log(this.state);
+  addPlace(e) {
+    e.preventDefault()
     this.setState({
       query: '',
       output: this.state.newOutput
     })
+    const value = this.state.newOutput
+    this.props.placeHandler(value)
   }
 
   render() {
@@ -102,7 +101,7 @@ class ByPlaceSearch extends Component {
           }}
         />
         <input type="hidden" name="workplace" value={this.state.output} />
-        <button onClick={() => this.addPlace()}>+</button>
+        <button onClick={(e) => this.addPlace(e)}>+</button>
         {this.state.output.map((el, idx) => <p key={idx}><strong>{el.name}</strong> - {el.address}</p>)}
       </div>
     );

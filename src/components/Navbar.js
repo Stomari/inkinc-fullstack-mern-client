@@ -29,8 +29,10 @@ class Navbar extends Component {
             <li>
               <Link to='/'>
                 <button onClick={() => this.logoutUser()}>Logout</button>
+                
               </Link>
             </li>
+            <li><Link to='/profile' style={{ textDecoration: 'none' }}>Profile</Link></li>
           </ul>
         </nav>
       )
@@ -40,7 +42,7 @@ class Navbar extends Component {
           <ul>
             <li><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
             <li><Link to='/signup' style={{ textDecoration: 'none' }}>Signup</Link></li>
-            <li><Link to='/search' style={{ textDecoration: 'none' }}>Search</Link></li>
+            {/* <li><Link to='/search' style={{ textDecoration: 'none' }}>Search</Link></li> */}
           </ul>
         </nav>
       )

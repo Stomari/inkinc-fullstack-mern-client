@@ -16,10 +16,12 @@ class Login extends Component {
     const password = this.state.password;
     this.service.login(email, password)
       .then(response => {
-        this.props.getUser(response)
         this.setState({ email: "", password: "", redirect: true });
+        this.props.getUser(response)
+
       })
       .catch(error => console.log(error))
+      
   }
 
   handleChange = (event) => {
@@ -29,7 +31,7 @@ class Login extends Component {
 
   render() {
     if(this.state.redirect){
-      return <Redirect to={"/"}></Redirect>
+      return <Redirect to="/home"></Redirect>
     }
     return (
       <div>

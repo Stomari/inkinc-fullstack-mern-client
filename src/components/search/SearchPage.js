@@ -108,7 +108,6 @@ class SearchPage extends Component {
   }
 
   render() {
-    {console.log(this.state)}
     return(
       <Fragment>
         <SearchBar state={this.state} searchHandler={(event) => this.searchHandler(event)} getResults={() => this.getResults()}/>
