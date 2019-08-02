@@ -30,6 +30,7 @@ class ByPlaceSearch extends Component {
     this.setState({
       [name]: value,
     })
+    console.log('update')
   }
 
   handleScriptLoad() {
@@ -52,7 +53,6 @@ class ByPlaceSearch extends Component {
   }
   
   handlePlaceSelect() {
-
     // Extract City From Address Object
     let place = this.autocomplete.getPlace();
     // let address = addressObject.address_components;

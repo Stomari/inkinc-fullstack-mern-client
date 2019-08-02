@@ -5,7 +5,6 @@ import Script from 'react-load-script';
 // import axios from 'axios';
 
 
-
 class ByPlaceSearch extends Component {
   // Define Constructor
   constructor(props) {
@@ -25,6 +24,7 @@ class ByPlaceSearch extends Component {
     this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
 
+
   }
 
   handleUpdate(event) {
@@ -32,6 +32,7 @@ class ByPlaceSearch extends Component {
     this.setState({
       [name]: value,
     })
+    console.log('place select')
   }
 
   handleScriptLoad() {
@@ -44,7 +45,7 @@ class ByPlaceSearch extends Component {
     // Initialize Google Autocomplete
     /*global google*/ // To disable any eslint 'google not defined' errors
     this.autocomplete = new google.maps.places.Autocomplete(
-      document.getElementById('autocomplete'),
+      document.getElementById('autocomplete-address'),
       options,
       );
 
@@ -54,7 +55,6 @@ class ByPlaceSearch extends Component {
   }
   
   handlePlaceSelect() {
-
     // Extract City From Address Object
     let place = this.autocomplete.getPlace();
     // Check if address is valid
@@ -103,7 +103,7 @@ class ByPlaceSearch extends Component {
             width: 800,
           }}
         />
-        <input id="autocomplete" placeholder="Workplace address..." name="query"  value={this.state.query} onChange={(event) => this.handleUpdate(event)}
+        <input id="autocomplete-address" placeholder="Workplace address..." name="query"  value={this.state.query} onChange={(event) => this.handleUpdate(event)}
           style={{
             margin: '0 auto',
             width: 800,
