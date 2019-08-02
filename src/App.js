@@ -9,9 +9,11 @@ import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
+import SearchPage from './components/search/SearchPage';
 
 //Victor
-import ByPlaceSearch from './components/places/ByPlaceSearch';
+// import ByPlaceSearch from './components/places/ByPlaceSearch';
+// import ByAddressSearch from './components/places/ByAddressSearch';
 
 
 class App extends Component {
@@ -58,9 +60,8 @@ class App extends Component {
 
       return (
         <div className="App">
-            <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)}/>
+          <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)}/>
 
-        {/* <ByPlaceSearch /> */}
           <Switch>
           <Route exact path="/signup" render={() => <Signup getUser={(e) => this.getTheUser(e)}/>} />
           <Route exact path='/login' render={() => <Login getUser={(e) => this.getTheUser(e)}/>} />
