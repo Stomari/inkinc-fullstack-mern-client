@@ -13,6 +13,8 @@ class ByPlaceSearch extends Component {
 
     // Declare State
     this.state = {
+      studioName: '',
+      complement: '', 
       query: '',
       output: [],
       newOutput: [],
@@ -36,7 +38,7 @@ class ByPlaceSearch extends Component {
     // Declare Options For Autocomplete
     var options = {
       componentRestrictions: {country: 'br'},
-      types: ['establishment']
+      types: ['address']
     };
     
     // Initialize Google Autocomplete
@@ -55,24 +57,22 @@ class ByPlaceSearch extends Component {
 
     // Extract City From Address Object
     let place = this.autocomplete.getPlace();
-    // let address = addressObject.address_components;
-    console.log(this.autocomplete);
     // Check if address is valid
     if (place) {
       // Set State
-      console.log(place);
+      const finalAddress = place.formatted_address + this.state.complement;
       const newOutput = [...this.state.output];
       const value = {
         id: place.place_id,
-        name: place.name,
-        address: place.formatted_address,
+        name: this.state.studioName,
+        address: finalAddress,
         lati: place.geometry.location.lat(),
         long: place.geometry.location.lng()
       }
       newOutput.push(value);
       this.setState(
         {
-          query: place.name + ' ' + place.formatted_address,
+          query: place.formatted_address,
           newOutput: newOutput
         }
       );
@@ -84,6 +84,8 @@ class ByPlaceSearch extends Component {
     console.log(this.state);
     this.setState({
       query: '',
+      complement: '',
+      studioName: '',
       output: this.state.newOutput
     })
   }
@@ -95,7 +97,19 @@ class ByPlaceSearch extends Component {
           url={`https://maps.googleapis.com/maps/api/js?key=AIzaSyC5lG_0f00dNMOelO1DPnp8ZwFMuPEnQTU&libraries=places`}
           onLoad={this.handleScriptLoad}
         />
-        <input id="autocomplete" placeholder="Find your workplace..." name="query"  value={this.state.query} onChange={(event) => this.handleUpdate(event)}
+        <input placeholder="Workplace name..." name="studioName"  value={this.state.studioName} onChange={(event) => this.handleUpdate(event)}
+          style={{
+            margin: '0 auto',
+            width: 800,
+          }}
+        />
+        <input id="autocomplete" placeholder="Workplace address..." name="query"  value={this.state.query} onChange={(event) => this.handleUpdate(event)}
+          style={{
+            margin: '0 auto',
+            width: 800,
+          }}
+        />
+        <input placeholder="Complement..." name="complement"  value={this.state.complement} onChange={(event) => this.handleUpdate(event)}
           style={{
             margin: '0 auto',
             width: 800,
