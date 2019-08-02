@@ -25,7 +25,6 @@ class App extends Component {
     if( this.state.loggedInUser === null ){
       this.service.loggedin()
       .then(response =>{
-        console.log(response)
         this.setState({
           loggedInUser:  response
         }) 
@@ -39,7 +38,6 @@ class App extends Component {
   }
 
   getTheUser(userObj){
-    console.log(userObj)
     this.setState({
       loggedInUser: userObj
     })
@@ -49,7 +47,6 @@ class App extends Component {
   
   render() {
     this.fetchUser()
-    console.log('oiekkk',this.state.loggedInUser)
     if(this.state.loggedInUser){
         return (
           <div className="App">
@@ -58,7 +55,6 @@ class App extends Component {
           </div>
         );
       } else {
-    console.log('poxae',this.state.loggedInUser)
 
       return (
         <div className="App">

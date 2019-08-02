@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link, Redirect } from 'react-router-dom';
+import './btn.css';
 
 class Login extends Component {
   constructor(props) {
@@ -13,7 +14,6 @@ class Login extends Component {
     event.preventDefault();
     const email = this.state.email;
     const password = this.state.password;
-    console.log(email, password)
     this.service.login(email, password)
       .then(response => {
         this.props.getUser(response)
@@ -36,9 +36,10 @@ class Login extends Component {
         <form onSubmit={(event) => this.handleFormSubmit(event)}>
           <label>email:</label>
           <input type="text" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
+          <br/>
           <label>Password:</label>
           <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-
+          <br/>
           <input type="submit" value="Login" />
 
         </form>
