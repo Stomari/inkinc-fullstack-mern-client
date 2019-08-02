@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 //Import React Scrit Libraray to load Google object
 import Script from 'react-load-script';
-// import axios from 'axios';
-
 
 class ByPlaceSearch extends Component {
   // Define Constructor
@@ -77,17 +75,18 @@ class ByPlaceSearch extends Component {
         }
       );
     }
-    console.log(this.state);
   }
 
-  addPlace() {
-    console.log(this.state);
+  addPlace(event) {
+    event.preventDefault()
     this.setState({
       query: '',
       complement: '',
       studioName: '',
       output: this.state.newOutput
     })
+    const value = this.state.newOutput
+    this.props.placeHandler(value)
   }
 
   render() {
@@ -115,7 +114,7 @@ class ByPlaceSearch extends Component {
             width: 800,
           }}
         />
-        <input type="hidden" name="workplace" value={this.state.output} />
+        <input type="hidden" name="workplace" value={this.state.output} onChange={event => this.props.submitPlace(event)} />
         <button onClick={() => this.addPlace()}>+</button>
         {this.state.output.map((el, idx) => <p key={idx}><strong>{el.name}</strong> - {el.address}</p>)}
       </div>

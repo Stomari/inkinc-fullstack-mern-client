@@ -3,13 +3,12 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 const protectedRoute  = ({component: Component, user, ...rest}) => {
-  console.log('olaa', user)
   return (
     <Route
     {...rest}
-    render={ (props ) => {
-            if(user){
-              return ( <Component {...props} loggedInUser={user}/> )
+    render={ props => {
+      if(user){
+              return <Component {...props} loggedInUser={user}/> 
             } else {
               return <Redirect to={{pathname: '/', state: {from: props.location}}} />
             }
