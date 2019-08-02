@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
 
+//Components
+import Role from './Role';
+import Form from './Form';
+
 class Signup extends Component {
   constructor(props){
     super(props);
-
-    this.state = { email: '', password: '', name: '', role: '' };
+    this.state = { email: '', password: '', name: '', role: '', class:"" };
     this.service = new AuthService();
   }
 
   handleFormSubmit(event){
     event.preventDefault();
     const {email, password, name, role} = this.state;
-  
     this.service.signup(email, password, name, role)
     .then( response => {
         this.setState({
@@ -21,8 +23,8 @@ class Signup extends Component {
             password: '',
             name: '',
             role: '',
+            shorForm: false
         });
-        console.log(response)
         this.props.getUser(response)
     })
     .catch( error => console.log(error) )
@@ -30,36 +32,25 @@ class Signup extends Component {
 
   handleChange(event){  
     const {name, value} = event.target;
-    this.setState({[name]: value});
+    this.setState({
+      [name]: value,
+      showForm: !this.state.showForm,
+      classe: 'displayBtn'
+    });
   }
 
   render(){
     return(
       <div>
+      <Role handleChange={e => this.handleChange(e)} state={this.state}/>
 
-      <form onSubmit={(event) => this.handleFormSubmit(event)}>
-        <label>Email:</label>
-        <input type="text" name="email" value={this.state.email} onChange={ e => this.handleChange(e)}/>
-        
-        <label>Password:</label>
-        <input type="password"  name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
-         
-        <label> Name:</label>
-        <input type="text"  name="name" value={this.state.name} onChange={ e => this.handleChange(e)} />
-        
-        <label> Role:</label>
-        <input type="text"  name="role" value={this.state.role} onChange={ e => this.handleChange(e)} />
-        
-        <input type="submit" value="Signup" />
-      </form>
-
-      <p>Already have account? 
-          <Link to={"/login"}> Login </Link>
-      </p>
-
+      {  this.state.showForm ? 
+        <Form handleChange={e => this.handleChange(e)} state={this.state} ></Form>
+        : null
+      }
     </div>
     )
-  }
+  
 }
-
+}
 export default Signup;

@@ -7,15 +7,13 @@ class Home extends Component {
     super(props);
   }
 
-
-render(){
-
-    return(
-      <div>
-        <p>oie</p>
-      </div>
-    )
-    }
+  render(){
+      return(
+        <div>
+          <p>oi11111e</p>
+        </div>
+      )
+  }
 }
 
 export default Home;

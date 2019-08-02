@@ -1,9 +1,8 @@
-
 import React, { Component } from 'react';
 import './App.css';
 import AuthService from './components/auth/auth-service';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import ProtectedRoute from './components/auth/protected-routes';
+import ProtectedRoute from './components/auth/protected-routes'
 
 //Components
 import Signup from './components/auth/Signup';
@@ -41,35 +40,32 @@ class App extends Component {
   }
 
   getTheUser(userObj){
-    console.log(userObj)
     this.setState({
       loggedInUser: userObj
     })
   }
 
 
-        //  <Route exact path="/home" render={() => <Home userInSession={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/> */}
   
   render() {
     this.fetchUser()
-      if(this.state.loggedInUser){
+    if(this.state.loggedInUser){
         return (
           <div className="App">
             <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)} />
-            <Switch>
-              <ProtectedRoute userInSession={this.state.loggedInUser}  path='/home' component={Home} />
-            </Switch>
+            <Route exact path="/home" render={() => <Home user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/> 
           </div>
         );
       } else {
+
       return (
         <div className="App">
           <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)}/>
 
           <Switch>
-            <Route exact path="/signup" render={() => <Signup getUser={(e) => this.getTheUser(e)}/>} />
-            <Route exact path='/login' render={() => <Login getUser={(e) => this.getTheUser(e)}/>} />
-            <Route exact path='/search' render={() => <SearchPage getUser={(e) => this.getTheUser(e)}/>} />
+          <Route exact path="/signup" render={() => <Signup getUser={(e) => this.getTheUser(e)}/>} />
+          <Route exact path='/login' render={() => <Login getUser={(e) => this.getTheUser(e)}/>} />
+          {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
           </Switch>
       </div>
       )
