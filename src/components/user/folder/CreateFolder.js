@@ -3,8 +3,8 @@ import axios from 'axios';
 
 
 class CreateFolder extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state={
       name: ''
     }
@@ -13,11 +13,13 @@ class CreateFolder extends Component {
   handleFormSubmit(event) {
     event.preventDefault();
     const name = this.state.name;
-    axios.post('http://localhost:8000/api/create-folder', { name }, {withCredentials: true})
+    axios.post('http://localhost:8000/api/create-folder', { name }, { withCredentials: true })
       .then(() => {
+        this.props.foldersInfo();
         this.setState({name: ''});
       })
       .catch(err => console.log(err));
+
     }
 
   handleChange(event){  

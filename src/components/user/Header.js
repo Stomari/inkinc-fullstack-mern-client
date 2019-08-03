@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-
-//Components
 
 class Header extends Component {
   constructor(props){
@@ -17,7 +14,7 @@ class Header extends Component {
       <div>
         <h3>{this.props.user.name}</h3>
         <picture>
-          <img src={this.props.user.profileImg}/>
+          <img src={this.props.user.profileImg} alt=''/>
         </picture>
         <p> change profile picture</p>
       </div>
