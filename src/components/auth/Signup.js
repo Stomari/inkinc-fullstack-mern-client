@@ -28,7 +28,6 @@ class Signup extends Component {
     event.preventDefault();
     
     const {email, password, name, role, workplace} = this.state;
-    console.log('ENTREEEEEEEEEEEEEEEEEEEEEEEEEEI', workplace)
     this.service.signup(email, password, name, role, workplace)
     .then( response => {
         this.setState({
