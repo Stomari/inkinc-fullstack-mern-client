@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import SearchBar from './SearchBar';
 import Categories from '../Categories';
+import ArtistsTattoosToggle from './ArtistsTattoosToggle';
 import ArtistsSearch from './ArtistsSearch';
 import TattoosSearch from './TattoosSearch';
 import Footer from '../Footer';
@@ -13,13 +14,14 @@ class SearchPage extends Component {
       categories: [],
       chosenCategories: [],
       searchQuery: '',
-      results: [],
+      resultsTattoos: [],
+      resultsArtists: [],
       filteredResults: [],
       clicked: false,
       searchByTatto: false,
+      artistsSearch: false,
     }
   }
-
 
   componentDidMount() {
     axios.get('http://localhost:8000/api/categories')
@@ -31,72 +33,99 @@ class SearchPage extends Component {
       })
       .catch(err => console.log(err));
 
+      let responseTattoos = '';
+      let responseArtists = '';
       axios.get('http://localhost:8000/api/tattoo')
       .then(response => {
-        const results = response.data;
+        responseTattoos = response.data;
         this.setState({
-          results,
-          filteredResults: results,
+          resultsTattoos: responseTattoos,
         })
+
+        axios.get('http://localhost:8000/api/artists')
+        .then(response => {
+          responseArtists = response.data;
+          this.setState({
+            resultsArtists: responseArtists,
+          })
+
+          const filtered = this.state.artistsSearch ? responseArtists : responseTattoos;
+          this.setState({
+            filteredResults: filtered,
+          })
+
+        })
+        .catch(err => console.log(err));
+
       })
       .catch(err => console.log(err));
-  }
+      
 
-  submitHandler(value) {
-    this.filterHandler(value);
+      this.getResults();
   }
 
   searchHandler(event) {
     let { name, value } = event.target;
-    this.submitHandler(value);
     this.setState({
       [name]: value
     });
+    this.filterHandler(value);
   }
 
   filterHandler(value) {
-    const results = this.state.results;
-    const filterResults = results.filter(el => {
-      const tagsStr = el.tag.filter(el => {
-        return el.toLowerCase().includes(value.toLowerCase());
+    let filtered = this.state.filteredResults;
+    // split user's input query
+    const inputTags = value.split(' ').filter(el => el !== '');
+    const chosenCategories = this.state.chosenCategories;
+
+    // define results as Artists or Tattoos and search
+    if (!this.state.artistsSearch) {
+      const results = this.state.resultsTattoos;
+      // filter results
+      filtered = results.filter(result => {
+        return (
+          // compare tags and input query
+          inputTags.every(tag => {
+            return result.tag.some(rt => rt.includes(tag));
+          })
+          &&
+          // compare categories
+          chosenCategories.every(cc => {
+            return result.category.some(rc => rc === cc);
+          })
+        )
+      })
+    } else {
+      const results = this.state.resultsArtists;
+      // filter results
+      filtered = results.filter(result => {
+        return (
+          inputTags.every(tag => {
+            return result.name.toLowerCase().includes(tag.toLowerCase());
+          })
+          &&
+          chosenCategories.every(cc => {
+            return result.category.some(rc => rc === cc);
+          })
+        )
       });
-      console.log('--> ', el);
-      return (
-        tagsStr.join().includes(value)
-        // this.state.chosenCategories.forEach(category => el.categories.includes(category))
-      )
-    });
+    }
     this.setState({
-      filteredResults: filterResults,
-      clicked: false,
+      filteredResults: filtered,
     });
   }
 
   getResults() {
-    let show = '';
-    // if (this.state.filteredResults.length <= 5 && this.state.searchQuery.length > 0) {
-      const showResults = this.state.filteredResults;
-      console.log('FILTERED RESULTS: ', this.state.filteredResults);
-      show = showResults.map((el, idx) => {
+    const showResults = this.state.filteredResults;
+    
+    return showResults.map((el, idx) => {
+      if (!this.state.artistsSearch) {
         return <div key={idx} className="search-autocomplete-item">{el.tag}</div>
-      });
-    // }
-
-    if (this.state.filteredResults[0] === this.state.searchQuery && this.state.clicked) {
-      show = '';
-    }
-    return show;
+      } else {
+        return <div key={idx} className="search-autocomplete-item">{el.name}</div>
+      }
+    });
   }
-
-  // selectSuggestion(el) {
-  //   this.setState({
-  //     searchQuery: el,
-  //   });
-  //   this.submitHandler(el);
-  //   this.setState({
-  //     clicked: true,
-  //   });
-  // }
 
   chooseCategories(event) {
     const {checked, id} = event.target;
@@ -105,19 +134,42 @@ class SearchPage extends Component {
     } else {
       this.state.chosenCategories.splice(this.state.chosenCategories.indexOf(id), 1);
     }
+    this.filterHandler(this.state.searchQuery);
+  }
+
+  toggleHandler() {
+    const changedArtistsSearch = !this.state.artistsSearch;
+    const filtered = changedArtistsSearch ? this.state.resultsArtists : this.state.resultsTattoos;
+    this.setState({
+      artistsSearch: changedArtistsSearch,
+      filteredResults: filtered,
+      searchQuery: '',
+    });
+    this.getResults();
   }
 
   render() {
     return(
       <Fragment>
-        <SearchBar state={this.state} searchHandler={(event) => this.searchHandler(event)} getResults={() => this.getResults()}/>
+        <ArtistsTattoosToggle artistsSearch={this.state.artistsSearch} toggleHandler={() => this.toggleHandler()} />
+        <SearchBar state={this.state} searchHandler={(event) => this.searchHandler(event)} getResults={() => this.getResults()} />
         <Categories categories={this.state.categories} chooseCategories={(e) => this.chooseCategories(e)} />
-        <TattoosSearch filteredResults={this.state.filteredResults}/>
-        <ArtistsSearch />
+
+        {
+          this.state.artistsSearch && 
+          <ArtistsSearch filteredResults={this.state.filteredResults} getResults={() => this.getResults()} />
+        }
+        {
+          !this.state.artistsSearch &&
+          <TattoosSearch filteredResults={this.state.filteredResults} getResults={() => this.getResults()} />
+        }
+
         <Footer />
       </Fragment>
     );
   }
 }
+
+// searchHandler={(event) => this.searchHandler(event)}
 
 export default SearchPage;

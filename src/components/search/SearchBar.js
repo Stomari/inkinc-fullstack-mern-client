@@ -10,7 +10,6 @@ class Search extends Component {
     return(
       <div className="search-bar">
         <input name="searchQuery" value={this.props.state.searchQuery} onChange={(event) => this.props.searchHandler(event)} />
-        <div className="search-autocomplete-search">{this.props.getResults()}</div>
       </div>
     )
   }
