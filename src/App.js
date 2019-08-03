@@ -11,6 +11,7 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import SearchPage from './components/search/SearchPage';
 import Profile from './components/user/Profile';
+import ArtistPage from './components/artist/ArtistPage';
 
 
 require('dotenv').config();
@@ -57,6 +58,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/home" render={() => <Home user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/> 
               <Route exact path="/profile" render={() => <Profile user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/>
+              <Route exact path="/artist" render={() => <ArtistPage user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/>
               <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> 
             </Switch>
           </div>
@@ -70,6 +72,7 @@ class App extends Component {
           <Route exact path='/signup' render={() => <Signup getUser={(e) => this.getTheUser(e)}/>} />
           <Route exact path='/login' render={() => <Login getUser={(e) => this.getTheUser(e)}/>} />
           <Route exact path='/search' render={() => <SearchPage getUser={(e) => this.getTheUser(e)}/>} />
+          <Route exact path='/artist/:id' render={() => <ArtistPage getUser={(e) => this.getTheUser(e)}/>} />
           {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
 
           </Switch>
