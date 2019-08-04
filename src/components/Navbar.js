@@ -37,6 +37,12 @@ class Navbar extends Component {
           </ul>
         </nav>
       )
+    } else if(this.state.loggedInUser === null){
+     return( 
+        <nav className="nav-style">
+        
+        </nav>
+     )
     } else {
       return ( 
         <nav className="nav-style">
@@ -50,6 +56,8 @@ class Navbar extends Component {
       )
     }
   }
+
+ 
 }
 
 export default Navbar;

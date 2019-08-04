@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
-import { Link } from 'react-router-dom';
 
 //Components
 import Role from './Role';
@@ -61,7 +60,6 @@ class Signup extends Component {
   }
 
   handleWorkplace(event){
-    const {name, value} = event.target;
     this.setState({
       showWorkplace: !this.state.showWorkplace
     });

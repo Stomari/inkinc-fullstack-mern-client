@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import AuthService from './components/auth/auth-service';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './components/auth/protected-routes'
 
 //Components
@@ -11,6 +11,7 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import SearchPage from './components/search/SearchPage';
 import Profile from './components/user/Profile';
+import FolderDetail from './components/user/folder/FolderDetail';
 import ArtistPage from './components/artist/ArtistPage';
 
 
@@ -56,10 +57,16 @@ class App extends Component {
           <div className="App">
             <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)} />
             <Switch>
+
               <Route exact path="/home" render={() => <Home user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/> 
               <Route exact path="/profile" render={() => <Profile user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/>
               <Route exact path="/artist" render={() => <ArtistPage user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/>
+
               <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> 
+              {/* Profile Pages */}
+              <ProtectedRoute exact path='/profile' user={this.state.loggedInUser}  getUser={() => this.getTheUser()} component={Profile} /> 
+              <ProtectedRoute exact path='/profile/folder/:id' user={this.state.loggedInUser}  getUser={() => this.getTheUser()} component={FolderDetail} /> 
+            
             </Switch>
           </div>
         );
