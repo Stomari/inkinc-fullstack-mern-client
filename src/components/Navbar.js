@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from './auth/auth-service';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class Navbar extends Component {
   constructor(props){
     super(props);
-    this.state = { loggedInUser: null };
+
+    this.state = { 
+      loggedInUser: null,
+      collapsed: true
+    };
+
     this.service = new AuthService();
+    this.toggleNavbar = this.toggleNavbar.bind(this);
+  }
+    toggleNavbar(){
+      this.setState({
+      collapsed: !this.state.collapsed
+      });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -22,19 +34,33 @@ class Navbar extends Component {
   }
 
   render(){
+    const collapsed = this.state.collapsed;
+    const classOne = collapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
+    const classTwo = collapsed ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
+
     if(this.state.loggedInUser){
       return(
-        <nav className="nav-style">
-          <ul>
-            <li>
-              <Link to='/'>
-                <button onClick={() => this.logoutUser()}>Logout</button>
-                
-              </Link>
+        <nav className="navbar navbar-expand-lg navbar-dark nav-custom">
+       <Link className="navbar-brand" to='/'>
+          {/* <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/> */}
+          Ink.inc
+        </Link>
+        <button onClick={this.toggleNavbar} className={`${classTwo}`} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className={`${classOne} justify-content-center`}  id="navbarSupportedContent">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+            <Link to='/profile' className="nav-link text-uppercase ">Profile</Link>
             </li>
-            <li><Link to='/profile' style={{ textDecoration: 'none' }}>Profile</Link></li>
+            <li className="nav-item">
+            <Link to='/' className="nav-link text-uppercase" onClick={() => this.logoutUser()}> Logout </Link>
+            </li>
           </ul>
-        </nav>
+        </div>
+      </nav>
+       
       )
     } else if(this.state.loggedInUser === null){
      return( 
@@ -44,13 +70,27 @@ class Navbar extends Component {
      )
     } else {
       return ( 
-        <nav className="nav-style">
-          <ul>
-            <li><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
-            <li><Link to='/signup' style={{ textDecoration: 'none' }}>Signup</Link></li>
-            {/* <li><Link to='/search' style={{ textDecoration: 'none' }}>Search</Link></li> */}
+
+      <nav class="navbar navbar-expand-lg navbar-dark nav-custom">
+      <Link className="navbar-brand" to='/'>
+          {/* <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/> */}
+          Ink.inc
+        </Link>
+        <button onClick={this.toggleNavbar} className={`${classTwo}`} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className={`${classOne} justify-content-end`}  id="navbarSupportedContent">
+          <ul className="navbar-nav">
+            <li className="nav-item pr-3">
+            <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
+            </li>
+            <li className="nav-item">
+            <Link to='/login' className="nav-link text-uppercase">Log In</Link>
+            </li>
           </ul>
-        </nav>
+        </div>
+      </nav>
       )
     }
   }

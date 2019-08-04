@@ -1,0 +1,27 @@
+.profile-custom{
+  color: white;
+}
+
+.img-custom{
+ width: 50%;
+}
+
+.folder-header{
+  background-color: #292929;
+}
+
+.list-custom li{
+  background-color: #292929 !important;
+  border: 0;
+}
+
+.link-custom,
+.link-custom:hover {
+  text-decoration: none;
+  color: white;
+
+}
+.card-custom{
+  background-color: #292929 !important;
+  padding: 5px;
+}

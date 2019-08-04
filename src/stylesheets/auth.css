@@ -1,0 +1,12 @@
+.auth-custom{
+  color: white;
+  padding: 5%;
+  background-color: #202020
+}
+
+.btn-custom{
+  color: white !important;
+  border: 1px crimson solid !important;
+  margin-top: 5%;
+  margin-bottom: 3%;
+}
