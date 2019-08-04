@@ -1,0 +1,22 @@
+@font-face {
+  font-family: inkinc;
+  src: url(ink.otf);
+}
+
+.main-custom{
+  background-image: url('/images/tattoo-main.jpg');
+  background-size: cover;
+  color:white;
+  height: 90vh;
+  margin-bottom: 0 !important;
+}
+
+.main-custom h1{
+  font-family: inkinc;
+  color: crimson;
+  font-size: 8rem;
+}
+.about-custom{
+  background-color:#212121;
+  height: 80vh;
+}
