@@ -5,6 +5,7 @@ import ArtistsTattoosToggle from './ArtistsTattoosToggle';
 import ArtistsSearch from './ArtistsSearch';
 import TattoosSearch from './TattoosSearch';
 import Footer from '../Footer';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class SearchPage extends Component {
@@ -120,9 +121,9 @@ class SearchPage extends Component {
     
     return showResults.map((el, idx) => {
       if (!this.state.artistsSearch) {
-        return <div key={idx} className="search-autocomplete-item">{el.tag}</div>
+        return <Link to={`/tatoos/${el._id}`} key={idx} className="search-autocomplete-item">{el.tag}</Link>
       } else {
-        return <div key={idx} className="search-autocomplete-item">{el.name}</div>
+        return <Link to={`/artist/${el._id}`} key={idx} className="search-autocomplete-item">{el.name}</Link>
       }
     });
   }

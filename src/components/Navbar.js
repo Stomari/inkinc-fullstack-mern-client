@@ -57,6 +57,9 @@ class Navbar extends Component {
             <li className="nav-item">
             <Link to='/' className="nav-link text-uppercase" onClick={() => this.logoutUser()}> Logout </Link>
             </li>
+            <li>
+              <Link to='/artist' className="nav-link text-uppercase"> Artist </Link>
+            </li>
           </ul>
         </div>
       </nav>
@@ -87,6 +90,12 @@ class Navbar extends Component {
             </li>
             <li className="nav-item">
             <Link to='/login' className="nav-link text-uppercase">Log In</Link>
+            </li>
+            <li className="nav-item">
+            <Link to='/search' className="nav-link text-uppercase">Search</Link>
+            </li>
+            <li className="nav-item">
+            <Link to={`/artist`} className="nav-link text-uppercase">Artist</Link>
             </li>
           </ul>
         </div>

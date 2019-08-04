@@ -18,6 +18,7 @@ import Navbar from './components/Navbar';
 import SearchPage from './components/search/SearchPage';
 import Profile from './components/user/Profile';
 import FolderDetail from './components/user/folder/FolderDetail';
+import ArtistPage from './components/artist/ArtistPage';
 
 
 require('dotenv').config();
@@ -62,7 +63,10 @@ class App extends Component {
           <div className="App">
             <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)} />
             <Switch>
-            <Route exact path='/' render={() => <Home getUser={(e) => this.getTheUser(e)}/>} />
+              <Route exact path='/' render={() => <Home getUser={(e) => this.getTheUser(e)}/>} />
+              <Route exact path="/home" render={() => <Home user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/> 
+              <Route exact path="/artist" render={() => <ArtistPage user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/>
+
               {/* Profile Pages */}
               <ProtectedRoute exact path='/profile' user={this.state.loggedInUser}  getUser={() => this.getTheUser()} component={Profile} /> 
               <ProtectedRoute exact path='/profile/folder/:id' user={this.state.loggedInUser}  getUser={() => this.getTheUser()} component={FolderDetail} /> 
@@ -80,6 +84,7 @@ class App extends Component {
           <Route exact path='/login' render={() => <Login getUser={(e) => this.getTheUser(e)}/>} />
           <Route exact path='/' render={() => <Home/>} />
           <Route exact path='/search' render={() => <SearchPage getUser={(e) => this.getTheUser(e)}/>} />
+          <Route exact path='/artist/:id' render={() => <ArtistPage getUser={(e) => this.getTheUser(e)}/>} />
           {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
 
           </Switch>
