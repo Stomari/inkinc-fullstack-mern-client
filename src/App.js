@@ -14,6 +14,8 @@ import Profile from './components/user/Profile';
 import FolderDetail from './components/user/folder/FolderDetail';
 import ArtistPage from './components/artist/ArtistPage';
 
+import Chat from './components/chat/Chat';
+
 
 require('dotenv').config();
 //Victor
@@ -22,72 +24,74 @@ require('dotenv').config();
 
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = { loggedInUser: null };
     this.service = new AuthService();
   }
 
-  fetchUser(){
-    if( this.state.loggedInUser === null ){
+  fetchUser() {
+    if (this.state.loggedInUser === null) {
       this.service.loggedin()
-      .then(response =>{
-        this.setState({
-          loggedInUser:  response
-        }) 
-      })
-      .catch( err =>{
-        this.setState({
-          loggedInUser:  false
-        }) 
-      })
+        .then(response => {
+          this.setState({
+            loggedInUser: response
+          })
+        })
+        .catch(err => {
+          this.setState({
+            loggedInUser: false
+          })
+        })
     }
   }
 
-  getTheUser(userObj){
+  getTheUser(userObj) {
     this.setState({
       loggedInUser: userObj
     })
   }
-
+  
   render() {
     this.fetchUser()
-    if(this.state.loggedInUser){
-        return (
-          <div className="App">
-            <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)} />
-            <Switch>
-
-              <Route exact path="/home" render={() => <Home user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/> 
-              <Route exact path="/profile" render={() => <Profile user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/>
-              <Route exact path="/artist" render={() => <ArtistPage user={this.state.loggedInUser} getUser={() => this.getTheUser()}/>}/>
-
-              <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> 
-              {/* Profile Pages */}
-              <ProtectedRoute exact path='/profile' user={this.state.loggedInUser}  getUser={() => this.getTheUser()} component={Profile} /> 
-              <ProtectedRoute exact path='/profile/folder/:id' user={this.state.loggedInUser}  getUser={() => this.getTheUser()} component={FolderDetail} /> 
-            
-            </Switch>
-          </div>
-        );
-      } else {
+    if (this.state.loggedInUser) {
       return (
         <div className="App">
-          <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)}/>
+          <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)} />
+          <Chat user={this.state.loggedInUser} />
 
           <Switch>
-          <Route exact path='/signup' render={() => <Signup getUser={(e) => this.getTheUser(e)}/>} />
-          <Route exact path='/login' render={() => <Login getUser={(e) => this.getTheUser(e)}/>} />
-          <Route exact path='/search' render={() => <SearchPage getUser={(e) => this.getTheUser(e)}/>} />
-          <Route exact path='/artist/:id' render={() => <ArtistPage getUser={(e) => this.getTheUser(e)}/>} />
-          {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
+
+            <Route exact path="/home" render={() => <Home user={this.state.loggedInUser} getUser={() => this.getTheUser()} />} />
+            <Route exact path="/profile" render={() => <Profile user={this.state.loggedInUser} getUser={() => this.getTheUser()} />} />
+            <Route exact path="/artist" render={() => <ArtistPage user={this.state.loggedInUser} getUser={() => this.getTheUser()} />} />
+
+            <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} />
+            {/* Profile Pages */}
+            <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} getUser={() => this.getTheUser()} component={Profile} />
+            <ProtectedRoute exact path='/profile/folder/:id' user={this.state.loggedInUser} getUser={() => this.getTheUser()} component={FolderDetail} />
 
           </Switch>
-      </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="App">
+          <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)} />
+          <Chat userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)} />
+          <Switch>
+            <Route exact path='/signup' render={() => <Signup getUser={(e) => this.getTheUser(e)} />} />
+            <Route exact path='/login' render={() => <Login getUser={(e) => this.getTheUser(e)} />} />
+            <Route exact path='/search' render={() => <SearchPage getUser={(e) => this.getTheUser(e)} />} />
+            <Route exact path='/artist/:id' render={() => <ArtistPage getUser={(e) => this.getTheUser(e)} />} />
+            {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
+
+          </Switch>
+        </div>
       )
-     }
+    }
   }
- }
+}
 
 
 export default App;
