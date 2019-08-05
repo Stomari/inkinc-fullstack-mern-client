@@ -18,6 +18,8 @@ import Profile from './components/user/Profile';
 import FolderDetail from './components/user/folder/FolderDetail';
 import ArtistPage from './components/artist/ArtistPage';
 
+import Chat from './components/chat/Chat';
+
 
 require('dotenv').config();
 //Victor
@@ -26,7 +28,7 @@ require('dotenv').config();
 
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = { loggedInUser: null };
     this.service = new AuthService();
@@ -34,20 +36,19 @@ class App extends Component {
     
   }
 
-
   fetchUser(){
     if( this.state.loggedInUser === null ){
       this.service.loggedin()
-      .then(response =>{
-        this.setState({
-          loggedInUser:  response
-        }) 
-      })
-      .catch( err =>{
-        this.setState({
-          loggedInUser:  false
-        }) 
-      })
+        .then(response => {
+          this.setState({
+            loggedInUser: response
+          })
+        })
+        .catch(err => {
+          this.setState({
+            loggedInUser: false
+          })
+        })
     }
   }
 
@@ -56,7 +57,7 @@ class App extends Component {
       loggedInUser: userObj
     })
   }
-
+  
   render() {
     this.fetchUser()
     console.log(this.state.loggedInUser);
@@ -89,11 +90,11 @@ class App extends Component {
           <Route path='/artists/:id' render={(props) => <ArtistPage getUser={(e) => this.getTheUser(e)} {...props} />} />
             {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
           </Switch>
-      </div>
+        </div>
       )
-     }
+    }
   }
- }
+}
 
 
 export default App;
