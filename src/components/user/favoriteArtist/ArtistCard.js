@@ -2,15 +2,16 @@ import React from 'react';
 
 const ArtistCard = (props) => {
   return(
-    <div>
-      <p>oie</p>
-      <picture>
-        <img src={props.state.image} alt=''/>
-      </picture>
-      <p>
-      {props.state.name}
-      </p>
-    </div>
+
+    <li class="media">
+      <img src={props.state.image} class="mr-3" alt="..."/>
+      <div class="media-body">
+        <h5 class="mt-0 mb-1"> {props.state.name}</h5>
+        <button onClick={props.deleteArtist(this.props.state._id)}> Del </button>
+      </div>
+    </li>
+    
+
   )
 }
 

@@ -25,7 +25,6 @@ class Signup extends Component {
 
   handleFormSubmit(event){
     event.preventDefault();
-    
     const {email, password, name, role, workplace} = this.state;
     this.service.signup(email, password, name, role, workplace)
     .then( response => {

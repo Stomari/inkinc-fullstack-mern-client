@@ -27,8 +27,8 @@ class FolderDetail extends Component {
     })
     .catch(err => console.log(err));
   }
-
   
+
   render(){
        if(this.state.folder.image === undefined){
         return(

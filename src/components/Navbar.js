@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from './auth/auth-service';
 import 'bootstrap/dist/css/bootstrap.css';
+import axios from 'axios';
 
 class Navbar extends Component {
   constructor(props){
@@ -41,28 +42,30 @@ class Navbar extends Component {
     if(this.state.loggedInUser){
       return(
         <nav className="navbar navbar-expand-lg navbar-dark nav-custom">
-       <Link className="navbar-brand" to='/'>
+          <Link className="navbar-brand" to='/'>
           {/* <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/> */}
           Ink.inc
-        </Link>
+          </Link>
         <button onClick={this.toggleNavbar} className={`${classTwo}`} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
 
         <div className={`${classOne} justify-content-center`}  id="navbarSupportedContent">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-            <Link to='/profile' className="nav-link text-uppercase ">Profile</Link>
-            </li>
-            <li className="nav-item">
-            <Link to='/' className="nav-link text-uppercase" onClick={() => this.logoutUser()}> Logout </Link>
-            </li>
-            <li>
-              <Link to='/artist' className="nav-link text-uppercase"> Artist </Link>
+          <ul className="navbar-nav col-lg-10">
+            <li className="nav-item nav-item-custom">
+              <Link to={`/artists/${this.state.loggedInUser._id}`} className="nav-link text-uppercase"> Artist </Link>
             </li>
           </ul>
+          <div className="navbar-nav">
+            <button className="btn-logout">
+              <Link to='/profile' className="nav-link text-uppercase">Profile</Link>
+            </button>
+          <div>
+            <Link to='/' className="nav-link text-uppercase" onClick={() => this.logoutUser()}> Logout </Link>
+          </div>
         </div>
-      </nav>
+          </div>
+        </nav>
        
       )
     } else if(this.state.loggedInUser === null){
@@ -70,36 +73,36 @@ class Navbar extends Component {
         <nav className="nav-style">
         
         </nav>
-     )
-    } else {
+     )} else {
       return ( 
-
-      <nav class="navbar navbar-expand-lg navbar-dark nav-custom">
-      <Link className="navbar-brand" to='/'>
+        <nav className="navbar navbar-expand-lg navbar-dark nav-custom p-3">
+          <Link className="navbar-brand" to='/'>
           {/* <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/> */}
           Ink.inc
-        </Link>
-        <button onClick={this.toggleNavbar} className={`${classTwo}`} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          </Link>
+          <button onClick={this.toggleNavbar} className={`${classTwo}`} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
-        </button>
+          </button>
 
-        <div className={`${classOne} justify-content-end`}  id="navbarSupportedContent">
-          <ul className="navbar-nav">
-            <li className="nav-item pr-3">
-            <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
-            </li>
-            <li className="nav-item">
-            <Link to='/login' className="nav-link text-uppercase">Log In</Link>
-            </li>
-            <li className="nav-item">
-            <Link to='/search' className="nav-link text-uppercase">Search</Link>
-            </li>
-            <li className="nav-item">
-            <Link to={`/artist`} className="nav-link text-uppercase">Artist</Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+          <div className={`${classOne} justify-content-center`}  id="navbarSupportedContent">
+            <ul className="navbar-nav col-lg-10">
+              <li className="nav-item nav-item-custom">
+                <Link to='/artist' className="nav-link text-uppercase"> Artist </Link>
+              </li>
+              <li className="nav-item nav-item-custom">
+                <Link to='/search' className="nav-link text-uppercase" >Search</Link>         
+              </li>
+            </ul>
+            <div className="navbar-nav">
+            <button className="btn-log mr-3">
+                <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
+              </button>
+              <button className="btn-log">
+                <Link to='/login' className="nav-link text-uppercase">Log In</Link>
+              </button>
+            </div>
+          </div>
+        </nav>
       )
     }
   }
