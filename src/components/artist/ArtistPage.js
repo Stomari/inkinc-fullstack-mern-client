@@ -5,6 +5,7 @@ import axios from 'axios';
 import Map from './Map';
 import Flashes from './Flashes';
 import ArtistGallery from './ArtistGallery';
+import AuthService from '../auth/auth-service';
 
 class ArtistPage extends Component {
   constructor(props) {
@@ -16,9 +17,10 @@ class ArtistPage extends Component {
       showCreateTattooForm: false,
       showCreateFlashForm: false,
     };
+    this.service = new AuthService();
   }
 
-  componentDidMount() {
+  getArtist() {
     axios.get(`http://localhost:8000/api/artists/${this.props.match.params.id}`)
       .then(response => {
         this.setState({
@@ -37,6 +39,10 @@ class ArtistPage extends Component {
       .catch(err => console.log(err));
   }
 
+  componentDidMount() {
+    this.getArtist();
+  }
+
   componentWillReceiveProps(newProps) {
     axios.get(`http://localhost:8000/api/artists/${newProps.match.params.id}`)
       .then(response => {
@@ -48,16 +54,33 @@ class ArtistPage extends Component {
   }
 
   handleShowCreateTattoo() {
-    console.log('clicou');
     this.setState({
       showCreateTattooForm: !this.state.showCreateTattooForm,
     })
   }
+  
   handleShowCreateFlash() {
-    console.log('clicou flash');
     this.setState({
       showCreateFlashForm: !this.state.showCreateFlashForm,
     })
+  }
+
+  handleDeleteFlash(event, id) {
+    event.preventDefault();
+    axios.put(`http://localhost:8000/api/remove-flash/${id}`, {}, {withCredentials: true})
+      .then(() => {
+        this.getArtist();
+      })
+      .catch(err => console.log(err));
+  }
+
+  handleDeleteTattoo(event, id) {
+    event.preventDefault();
+    axios.put(`http://localhost:8000/api/remove-tattoo/${id}`, {}, {withCredentials: true})
+      .then(() => {
+        this.getArtist();
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -67,8 +90,24 @@ class ArtistPage extends Component {
         {/* <Header user={this.props.user} artist={this.state.artist} /> */}
         <Categories user={this.props.user} categories={this.state.categories} artist={this.state.artist} />
         <Map user={this.props.user} artist={this.state.artist} />
-        <Flashes user={this.props.user} artist={this.state.artist} showForm={this.state.showCreateFlashForm} handlerShowForm={() => this.handleShowCreateFlash()} />
-        <ArtistGallery user={this.props.user} artist={this.state.artist} showForm={this.state.showCreateTattooForm} handlerShowForm={() => this.handleShowCreateTattoo()}  />
+        <Flashes
+          user={this.props.user}
+          artist={this.state.artist}
+          categories={this.state.categories}
+          showForm={this.state.showCreateFlashForm}
+          handlerShowForm={() => this.handleShowCreateFlash()}
+          handleDeleteFlash={(e, id) => this.handleDeleteFlash(e, id)}
+          getArtist={() => this.getArtist()}
+        />
+        <ArtistGallery
+          user={this.props.user}
+          artist={this.state.artist}
+          categories={this.state.categories}
+          showForm={this.state.showCreateTattooForm}
+          handlerShowForm={() => this.handleShowCreateTattoo()}
+          handleDeleteTattoo={(e, id) => this.handleDeleteTattoo(e, id)}
+          getArtist={() => this.getArtist()}
+        />
       </div>
       : null
     )

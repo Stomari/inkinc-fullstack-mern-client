@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Categories = (props) => {
-
   return(
     props.categories.map((el, idx) => {
       if (props.artist.category.includes(el)) {

@@ -52,8 +52,9 @@ class App extends Component {
 
   render() {
     this.fetchUser()
+    console.log(this.state.loggedInUser);
     if(this.state.loggedInUser){
-        return (
+      return (
           <div className="App">
             <Navbar userInSession={this.state.loggedInUser} getUser={(e) => this.getTheUser(e)} />
             <Switch>
