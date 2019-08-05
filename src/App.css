@@ -1,0 +1,95 @@
+html{
+  margin: 0;
+  padding: 0;
+  color:white;
+  background-color: #212121;
+}
+.App{
+  background-color: #212121;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+}
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, .8);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.form-modal {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  min-height:65vh;
+  background: #e1e1e1;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: left;
+  z-index: 2;
+}
+
+.close-modal-btn {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  z-index: 2;
+}
+.close-modal-btn:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.close-modal-btn:before, .close-modal-btn:after {
+  position: absolute;
+  left: 15px;
+  content: '';
+  height: 33px;
+  width: 2px;
+  background-color: #fff;
+}
+.close-modal-btn:before {
+  transform: rotate(45deg);
+}
+.close-modal-btn:after {
+  transform: rotate(-45deg);
+}

@@ -8,8 +8,6 @@ import AuthService from './components/auth/auth-service';
 import { Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './components/auth/protected-routes'
 import 'bootstrap/dist/css/bootstrap.css';
-  
-
 //Components
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
@@ -36,6 +34,7 @@ class App extends Component {
     
   }
 
+
   fetchUser(){
     if( this.state.loggedInUser === null ){
       this.service.loggedin()
@@ -60,14 +59,15 @@ class App extends Component {
 
   render() {
     this.fetchUser()
+    console.log(this.state.loggedInUser);
     if(this.state.loggedInUser){
-        return (
+      return (
           <div className="App">
             <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
             <Switch>
               <Route exact path='/' render={() => <Home/>} />
               <Route exact path="/home" render={() => <Home user={this.state.loggedInUser}/>}/> 
-              <Route exact path="/artist" render={() => <ArtistPage user={this.state.loggedInUser}/>}/>
+              <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={() => this.getTheUser()}/>} />
 
               {/* Profile Pages */}
               <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} component={Profile} /> 
@@ -86,9 +86,8 @@ class App extends Component {
           <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>} />
           <Route exact path='/' render={() => <Home/>} />
           <Route exact path='/search' render={() => <SearchPage/>} />
-          <Route exact path='/artist/:id' render={() => <ArtistPage/>} />
-          {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
-
+          <Route path='/artists/:id' render={(props) => <ArtistPage getUser={(e) => this.getTheUser(e)} {...props} />} />
+            {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
           </Switch>
       </div>
       )

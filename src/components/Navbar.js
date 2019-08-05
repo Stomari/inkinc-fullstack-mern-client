@@ -53,9 +53,8 @@ class Navbar extends Component {
         <div className={`${classOne} justify-content-center`}  id="navbarSupportedContent">
           <ul className="navbar-nav col-lg-10">
             <li className="nav-item nav-item-custom">
-              <Link to='/artist' className="nav-link text-uppercase"> Artist </Link>
+              <Link to={`/artists/${this.state.loggedInUser._id}`} className="nav-link text-uppercase"> Artist </Link>
             </li>
-            
           </ul>
           <div className="navbar-nav">
             <button className="btn-logout">
@@ -90,7 +89,9 @@ class Navbar extends Component {
               <li className="nav-item nav-item-custom">
                 <Link to='/artist' className="nav-link text-uppercase"> Artist </Link>
               </li>
-              
+              <li className="nav-item nav-item-custom">
+                <Link to='/search' className="nav-link text-uppercase" >Search</Link>         
+              </li>
             </ul>
             <div className="navbar-nav">
             <button className="btn-log mr-3">
