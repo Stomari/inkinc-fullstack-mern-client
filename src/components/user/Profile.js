@@ -36,16 +36,16 @@ class Profile extends Component {
   render(){
     return(
       <Fragment>
-        <div className="container-fluid profile-custom p-5">
-          <div className="row p-3">
-            <div className="col-lg-4 text-center">
+        <div className="container-fluid profile-custom ">
+          <div className="row m-5">
+            <div className="col-lg-3 text-center profile-side-header">
               <Header user={this.props.user}/>
               <FavoriteArtists id="artists" artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists}/>
             </div>
-            <div className="col-lg-8">
-              <div className="folder-header mt-4">
-                <p className="p-2 text-uppercase">
-                  Folders
+            <div className="col-lg-8 p-0 profile-side-main">
+              <div className="folder-header d-flex justify-content-center">
+                <p className="row text-uppercase">
+                 <h4>Folders</h4>
                   <CreateFolder foldersInfo={() => this.getInfo()}/>
                 </p>
               </div>

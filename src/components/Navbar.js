@@ -41,7 +41,7 @@ class Navbar extends Component {
 
     if(this.state.loggedInUser){
       return(
-        <nav className="navbar navbar-expand-lg navbar-dark nav-custom">
+        <nav className="navbar navbar-expand-lg navbar-dark nav-custom p-3">
           <Link className="navbar-brand" to='/'>
           {/* <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/> */}
           Ink.inc
@@ -57,7 +57,7 @@ class Navbar extends Component {
             </li>
           </ul>
           <div className="navbar-nav">
-            <button className="btn-logout">
+            <button className="btn-log">
               <Link to='/profile' className="nav-link text-uppercase">Profile</Link>
             </button>
           <div>
@@ -86,9 +86,6 @@ class Navbar extends Component {
 
           <div className={`${classOne} justify-content-center`}  id="navbarSupportedContent">
             <ul className="navbar-nav col-lg-10">
-              <li className="nav-item nav-item-custom">
-                <Link to='/artist' className="nav-link text-uppercase"> Artist </Link>
-              </li>
               <li className="nav-item nav-item-custom">
                 <Link to='/search' className="nav-link text-uppercase" >Search</Link>         
               </li>
