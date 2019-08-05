@@ -10,7 +10,7 @@ class FavoriteArtists extends Component {
     super(props);
   }
 
-  deleteProject(artist){
+  deleteArtist(artist){
     axios.delete(`http://localhost:8000/api/favorite-artist-remove/${artist}`, { withCredentials: true })
       .then(() => {
         this.props.artistInfo()
@@ -21,18 +21,18 @@ class FavoriteArtists extends Component {
   }
 
   render(){
-    console.log(this.props.artists)
     return(
-      <div>
+      <div className="fav-custom">
+        <p className="text-uppercase pt-3">Artists you liked</p>
         {
           this.props.artists.map((artist, index) => {
             let artistId = artist._id;
             return  <div>
-                      <Link to={`/profile/artist/${artist._id}`}>
-                        <ArtistCard key={index} state={artist}/>
-                      </Link>
-                      <button key={index} onClick={(artist) => this.deleteProject(artistId)}> Del </button>
-
+                      <ul class="list-unstyled">
+                        <Link to={`/profile/artist/${artist._id}`}>
+                          <ArtistCard key={index} state={artist} deleteArtist={(artist) => this.deleteArtist(artistId)}/>
+                        </Link>
+                      </ul>
                     </div>
           })
         }

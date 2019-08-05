@@ -25,7 +25,6 @@ class Signup extends Component {
 
   handleFormSubmit(event){
     event.preventDefault();
-    
     const {email, password, name, role, workplace} = this.state;
     this.service.signup(email, password, name, role, workplace)
     .then( response => {
@@ -74,14 +73,14 @@ class Signup extends Component {
 
   render(){
     return(
-      <div>
-      <Role handleForm={e => this.handleForm(e)} state={this.state}/>
+      <div className="container d-flex justify-content-center auth-custom">
+        <Role handleForm={e => this.handleForm(e)} state={this.state}/>
 
-      {  this.state.showForm ? 
-        <Form placeHandler={(value) => this.placeHandler(value)} handleChange={e => this.handleChange(e)} handleWorkplace={e => this.handleWorkplace(e)} handleFormSubmit={e => this.handleFormSubmit(e)} state={this.state} />
-        : null
-      }
-    </div>
+        {  this.state.showForm ? 
+          <Form placeHandler={(value) => this.placeHandler(value)} handleChange={e => this.handleChange(e)} handleWorkplace={e => this.handleWorkplace(e)} handleFormSubmit={e => this.handleFormSubmit(e)} state={this.state} />
+          : null
+        }
+      </div>
     )
   
 }

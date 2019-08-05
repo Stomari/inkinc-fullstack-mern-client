@@ -31,7 +31,7 @@ class CreateFolder extends Component {
     return(
       <div>
         <input type='text' name='name' value={this.state.name} onChange={ event => this.handleChange(event)}/>
-        <button onClick={event => this.handleFormSubmit(event)}>Create</button>
+        <p onClick={event => this.handleFormSubmit(event)} ><img className="add-ico" src="/images/add-64.png"/></p>
       </div>
     )
   }

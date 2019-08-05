@@ -1,0 +1,44 @@
+@font-face {
+  font-family: inkinc;
+  src: url(ink.otf);
+}
+
+.main-custom{
+  background-image: url('/images/tattoo-arm.jpeg');
+  background-size: cover;
+  color:white;
+  height: 90vh;
+  margin-bottom: 0 !important;
+}
+
+.main-custom h1{
+  font-family: inkinc;
+  font-size: 10rem;
+}
+.about-custom{
+  background-color:#212121;
+}
+
+.home-custom{
+  width: 60% !important;
+  color: white;
+  
+}
+.home-img{
+  width: 80% !important;
+}
+
+.card-height{
+  height: 80%;
+}
+
+.card-custom{
+  background-color: #272729 !important;
+  padding: 5px;
+}
+
+.footer{
+  background-color: black;
+  color: grey;
+  height: 8vh;
+}

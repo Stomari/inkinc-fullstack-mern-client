@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 
 //Components
@@ -35,12 +35,35 @@ class Profile extends Component {
  
   render(){
     return(
-      <div>
-        <Header user={this.props.user}/>
-        <Folder foldersInfo={() => this.getInfo()} folders={this.state.folders}/>
-        <CreateFolder foldersInfo={() => this.getInfo()}/>
-        <FavoriteArtists artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists}/>
-      </div>
+      <Fragment>
+        <div className="container-fluid profile-custom p-5">
+          <div className="row p-3">
+            <div className="col-lg-4 text-center">
+              <Header user={this.props.user}/>
+              <FavoriteArtists id="artists" artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists}/>
+            </div>
+            <div className="col-lg-8">
+              <div className="folder-header mt-4">
+                <p className="p-2 text-uppercase">
+                  Folders
+                  <CreateFolder foldersInfo={() => this.getInfo()}/>
+                </p>
+              </div>
+              <Folder id="folder" foldersInfo={() => this.getInfo()} folders={this.state.folders}/>
+            </div>
+
+          </div>
+        {/* <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a data-toggle="tab" class="nav-link active">Folders</a>
+                </li>
+                <li class="nav-item">
+                    <a data-target="#artists" data-toggle="tab" class="nav-link">Artists</a>
+                </li>
+                
+            </ul> */}
+        </div>
+      </Fragment>
     )
   }
 

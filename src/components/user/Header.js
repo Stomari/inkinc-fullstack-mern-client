@@ -11,12 +11,16 @@ class Header extends Component {
 
   render(){
     return(
-      <div>
-        <h3>{this.props.user.name}</h3>
-        <picture>
-          <img src={this.props.user.profileImg} alt=''/>
-        </picture>
-        <p> change profile picture</p>
+      <div className="d-flex flex-column align-items-center">
+        <div className="container-custom">
+          <img src={this.props.user.profileImg} className="img-thumbnail rounded img-custom" alt="profile"/>
+          <div className="overlay">
+            <p className="text text-uppercase">
+              upload new image
+            </p>
+          </div>
+        </div>
+          <h2 className="pt-4 pb-4 text-uppercase">{this.props.user.name}</h2>
       </div>
     )
   }

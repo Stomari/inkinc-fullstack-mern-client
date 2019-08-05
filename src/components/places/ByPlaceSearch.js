@@ -94,14 +94,11 @@ class ByPlaceSearch extends Component {
           url={`https://maps.googleapis.com/maps/api/js?key=AIzaSyC5lG_0f00dNMOelO1DPnp8ZwFMuPEnQTU&libraries=places`}
           onLoad={this.handleScriptLoad}
         />
-        <input id="autocomplete" placeholder="Find your workplace..." name="query"  value={this.state.query} onChange={(event) => this.handleUpdate(event)}
-          style={{
-            margin: '0 auto',
-            width: 800,
-          }}
-        />
+        <div className="form-group"> 
+          <input id="autocomplete" className="form-control" placeholder="Find your workplace" name="query"  value={this.state.query} onChange={(event) => this.handleUpdate(event)}/>
+        </div>
         <input type="hidden" name="workplace" value={this.state.output} />
-        <button onClick={(e) => this.addPlace(e)}>+</button>
+        <button className="btn btn-custom mt-0"onClick={(e) => this.addPlace(e)}>+</button>
         {this.state.output.map((el, idx) => <p key={idx}><strong>{el.name}</strong> - {el.address}</p>)}
       </div>
     );
