@@ -1,19 +1,43 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const FolderCard = (props) => {
+class FolderCard extends Component {
 
+  deleteFolder(folder){
+    axios.delete(`http://localhost:8000/api/delete-folder/${folder}`, { withCredentials: true })
+      .then(() => {
+        this.props.getInfo()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  render(){
     return(
-      <div className="card mr-4 card-custom" style={{"width": "20rem"}}>
+      <div className="card card-prof-custom " style={{"width": "20rem"}}>
         <picture>
           {/* grid image */}
           <img src="/images/teste-folder.jpeg" className="card-img-top"  style={{"height": "15rem"}} alt="..."/>
         </picture>
         <div className="card-body">
           <p className="card-text">
-            {props.state.name}
+            <Link className="link-custom text-uppercase" to={`/profile/folder/${this.props.state._id}`}>
+              {this.props.state.name}
+            </Link>
           </p>
+          <div className="overlay2">
+            <p className="text2 text-uppercase">
+              <p onClick={(folder) => this.deleteFolder(this.props.state._id)}> 
+              <img src="/images/trash-2-64.png" className="trash-ico"/>
+              </p>
+            </p>
+          </div>
         </div>
       </div>
     )
+  }
 }
+
 export default FolderCard;

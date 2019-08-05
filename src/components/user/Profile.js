@@ -36,12 +36,24 @@ class Profile extends Component {
   render(){
     return(
       <Fragment>
-      <div className="container profile-custom mt-5">
-          <Header user={this.props.user}/>
-          <CreateFolder foldersInfo={() => this.getInfo()}/>
-        </div>
-        <div className="container profile-custom mt-4">
-        <ul class="nav nav-tabs">
+        <div className="container-fluid profile-custom p-5">
+          <div className="row p-3">
+            <div className="col-lg-4 text-center">
+              <Header user={this.props.user}/>
+              <FavoriteArtists id="artists" artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists}/>
+            </div>
+            <div className="col-lg-8">
+              <div className="folder-header mt-4">
+                <p className="p-2 text-uppercase">
+                  Folders
+                  <CreateFolder foldersInfo={() => this.getInfo()}/>
+                </p>
+              </div>
+              <Folder id="folder" foldersInfo={() => this.getInfo()} folders={this.state.folders}/>
+            </div>
+
+          </div>
+        {/* <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a data-toggle="tab" class="nav-link active">Folders</a>
                 </li>
@@ -49,9 +61,7 @@ class Profile extends Component {
                     <a data-target="#artists" data-toggle="tab" class="nav-link">Artists</a>
                 </li>
                 
-            </ul>
-          <Folder id="folder" foldersInfo={() => this.getInfo()} folders={this.state.folders}/>
-          <FavoriteArtists id="artists" artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists}/>
+            </ul> */}
         </div>
       </Fragment>
     )

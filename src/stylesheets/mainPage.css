@@ -4,7 +4,7 @@
 }
 
 .main-custom{
-  background-image: url('/images/tattoo-main.jpg');
+  background-image: url('/images/tattoo-arm.jpeg');
   background-size: cover;
   color:white;
   height: 90vh;
@@ -13,10 +13,32 @@
 
 .main-custom h1{
   font-family: inkinc;
-  color: crimson;
-  font-size: 8rem;
+  font-size: 10rem;
 }
 .about-custom{
   background-color:#212121;
-  height: 80vh;
+}
+
+.home-custom{
+  width: 60% !important;
+  color: white;
+  
+}
+.home-img{
+  width: 80% !important;
+}
+
+.card-height{
+  height: 80%;
+}
+
+.card-custom{
+  background-color: #272729 !important;
+  padding: 5px;
+}
+
+.footer{
+  background-color: black;
+  color: grey;
+  height: 8vh;
 }

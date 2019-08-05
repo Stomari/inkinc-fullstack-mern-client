@@ -1,13 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Role = (props) =>{
   return(
     <div>
-    <h5 className={`${props.state.classe}`}> Are you an Artist or an Client?</h5>
-    <div className="d-flex justify-content-center">
-      <button  className={`btn btn-custom mr-5 p-3 text-uppercase ${props.state.classe}`} name='role' value='User' onClick={(event) => props.handleForm(event) }> Client </button>
-      <button  className={`btn btn-custom p-3 text-uppercase ${props.state.classe}`} name='role' value='Artist' onClick={(event) => props.handleForm(event)}> Artist</button>
-    </div>
+      {/* <h5 className={`${props.state.classe}`}> Are you an Artist or an Client?</h5> */}
+      <div className="d-flex flex-wrap justify-content-center text-center role-custom">
+        <div className={`hover-client ${props.state.classe} ml-3 mr-3 mb-3`}> 
+          <div className="overlay-client d-flex justify-content-center">
+           
+            <button className={`p-3 text-uppercase info`} name='role' value='User' onClick={(event) => props.handleForm(event) }> Client </button >
+          </div>
+        </div>
+
+        <div className={`hover-artist ${props.state.classe} ml-3 mr-3 mb-3`}> 
+          <div className="overlay-artist d-flex justify-content-center">
+        <button  className={`p-3 text-uppercase info`} name='role' value='Artist' onClick={(event) => props.handleForm(event) }> Artist </button>
+          </div>
+        </div>
+        {/* <p  className={`p-3 text-uppercase mr-3 ml-3 ${props.state.classe} btn-image-client`} name='role' value='User' onClick={(event) => props.handleForm(event) }> Client </p> */}
+        {/* <p  className={`p-3 text-uppercase mr-3 ml-3 ${props.state.classe} btn-image-artist`} name='role' value='Artist' onClick={(event) => props.handleForm(event)}> Artist</p> */}
+      </div>
     </div>
   )
 }
