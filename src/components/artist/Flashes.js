@@ -1,24 +1,28 @@
 import React from 'react';
+import CreateFlashForm from './CreateFlashForm';
 import axios from 'axios';
 
 const Flashes = (props) => {
 
-  const createFlash = () => {
-    console.log('abre');
-  }
-
-  return(
-    <div>
-      {props.user.flash.map((el, idx) => {
+  
+  const showFlashes = () => {
+    return (
+      props.artist.flash.map((el, idx) => {
         return (
-        <div key={idx}>
-          <img src={el.image} alt={el.name}/>
-          <p>{el.name}</p>
-        </div>
+          <div key={idx}>
+            <img src={el.image} alt={el.name}/>
+            <p>{el.name}</p>
+          </div>
         )
-      })}
-      {console.log(props.user)}
-      {(props.user) && (props.user.role === 'Artist') && <button onClick={() => createFlash()}>Create Flash</button>}
+      })
+      )
+    }
+
+    return(
+      <div>
+      {props.artist.flash.length > 0 ? showFlashes() : null}
+      {props.user && (props.user._id === props.artist._id) &&  <button onClick={() => props.handlerShowForm()}>New Flash</button>}
+      {props.showForm && <CreateFlashForm {...props} />}
     </div>
     
   )

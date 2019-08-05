@@ -1,15 +1,11 @@
 import React from 'react';
+import CreateTattooForm from './CreateTattooForm';
 import axios from 'axios';
 
-const ArtistGallery = (props) => {
-
-  const createFlash = () => {
-    console.log('abre');
-  }
-
+const ArtistGallery = (props) => {  
   return(
     <div>
-      {props.user.artistTattoo.map((el, idx) => {
+      {props.artist.artistTattoo.map((el, idx) => {
         return (
         <div key={idx}>
           <img src={el.image} alt="TESTE"/>
@@ -17,7 +13,8 @@ const ArtistGallery = (props) => {
         </div>
         )
       })}
-      <button onClick={() => createFlash()}>New Tattoo</button>
+      {props.user && (props.user._id === props.artist._id) && <button onClick={() => props.handlerShowForm()}>New Tattoo</button>}
+      {props.showForm && <CreateTattooForm {...props} />}
     </div>
     
   )

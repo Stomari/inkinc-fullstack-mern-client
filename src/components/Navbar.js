@@ -33,7 +33,7 @@ class Navbar extends Component {
               </Link>
             </li>
             <li><Link to='/profile' style={{ textDecoration: 'none' }}>Profile</Link></li>
-            <li><Link to='/artist' style={{ textDecoration: 'none' }}>Artist</Link></li>
+            <li><Link to={`/artists/${this.state.loggedInUser._id}`} style={{ textDecoration: 'none' }}>Artist</Link></li>
           </ul>
         </nav>
       )
@@ -44,7 +44,6 @@ class Navbar extends Component {
             <li><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
             <li><Link to='/signup' style={{ textDecoration: 'none' }}>Signup</Link></li>
             <li><Link to='/search' style={{ textDecoration: 'none' }}>Search</Link></li>
-            <li><Link to={`/artist`} style={{ textDecoration: 'none' }}>Artist</Link></li>
           </ul>
         </nav>
       )
