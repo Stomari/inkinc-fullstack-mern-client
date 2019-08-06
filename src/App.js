@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import './stylesheets/App.css';
 import './stylesheets/mainPage.css';
 import './stylesheets/navbar.css';
@@ -7,7 +8,6 @@ import './stylesheets/profile.css';
 import AuthService from './components/auth/auth-service';
 import { Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './components/auth/protected-routes'
-import 'bootstrap/dist/css/bootstrap.css';
 //Components
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
@@ -18,6 +18,8 @@ import Profile from './components/user/Profile';
 import FolderDetail from './components/user/folder/FolderDetail';
 import ArtistPage from './components/artist/ArtistPage';
 
+import Chat from './components/chat/Chat';
+
 
 require('dotenv').config();
 //Victor
@@ -26,7 +28,7 @@ require('dotenv').config();
 
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = { loggedInUser: null };
     this.service = new AuthService();
@@ -34,20 +36,19 @@ class App extends Component {
     
   }
 
-
   fetchUser(){
     if( this.state.loggedInUser === null ){
       this.service.loggedin()
-      .then(response =>{
-        this.setState({
-          loggedInUser:  response
-        }) 
-      })
-      .catch( err =>{
-        this.setState({
-          loggedInUser:  false
-        }) 
-      })
+        .then(response => {
+          this.setState({
+            loggedInUser: response
+          })
+        })
+        .catch(err => {
+          this.setState({
+            loggedInUser: false
+          })
+        })
     }
   }
 
@@ -56,7 +57,7 @@ class App extends Component {
       loggedInUser: userObj
     })
   }
-
+  
   render() {
     this.fetchUser()
     console.log(this.state.loggedInUser);
@@ -68,6 +69,7 @@ class App extends Component {
               <Route exact path='/' render={() => <Home/>} />
               <Route exact path="/home" render={() => <Home user={this.state.loggedInUser}/>}/> 
               <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={() => this.getTheUser()}/>} />
+              <Route exact path='/search' render={() => <SearchPage user={this.state.loggedInUser}/>} />
 
               {/* Profile Pages */}
               <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} component={Profile} /> 
@@ -89,11 +91,11 @@ class App extends Component {
           <Route path='/artists/:id' render={(props) => <ArtistPage getUser={(e) => this.getTheUser(e)} {...props} />} />
             {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
           </Switch>
-      </div>
+        </div>
       )
-     }
+    }
   }
- }
+}
 
 
 export default App;

@@ -55,7 +55,7 @@ class Map extends Component {
             url={`https://maps.googleapis.com/maps/api/js?key=AIzaSyC5lG_0f00dNMOelO1DPnp8ZwFMuPEnQTU`}
             onLoad={(user) => this.handleScriptLoad(this.props.artist)}
             />
-        <div style={{ width: 800, height: 500 }} id="map" />
+        <div style={{ width: '50%', height: 500 }} id="map" />
         <br />
         {
         this.props.artist.workplace.map((el, idx) => {
