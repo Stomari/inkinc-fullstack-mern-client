@@ -3,6 +3,8 @@
 }
 
 .folder-header{
+  width: 40%;
+  border-bottom: 1px solid white;
 }
 
 .card-prof-custom{
@@ -74,7 +76,6 @@ color: white
 }
 
 .profile-side-header{
-  height: 90vh;
   padding: 0 !important;
 }
 

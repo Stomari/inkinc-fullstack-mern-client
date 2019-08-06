@@ -25,6 +25,32 @@
 .nav-item-custom a:hover:after {
   width: 100%;
 }
+.dropdown-custom{
+  background-color: black !important;
+}
+
+.dropdown-custom a:hover{
+  background-color: red !important;
+}
+
+.btn-prof{
+  border-bottom: 1px solid red !important;
+  color: white !important;
+}
+.btn-prof a{
+  color: white !important;
+  text-decoration: none;
+}
+
+.btn-prof:hover{
+  color: white !important;
+  background-color: red;
+}
+
+.btn-prof a:hover{
+  color: white !important;
+  text-decoration: none;
+}
 
 .btn-log{
   border: 1px solid red;
@@ -34,8 +60,27 @@
 
 .btn-log a{
   color: white !important;
+  text-decoration: none;
 }
+
+.btn-log a:hover{
+  color: white !important;
+  text-decoration: none;
+}
+
 .btn-log:hover{
   color: white !important;
   background-color: red;
+}
+.nav-responsive-log{
+  display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .nav-responsive button {
+    display: none;
+  }
+  .nav-responsive-log{
+   display: contents;
+  }
 }

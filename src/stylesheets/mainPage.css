@@ -15,30 +15,53 @@
   font-family: inkinc;
   font-size: 10rem;
 }
-.about-custom{
-  background-color:#212121;
-}
+
 
 .home-custom{
-  width: 60% !important;
+  width: 80% !important;
   color: white;
-  
 }
+
 .home-img{
   width: 80% !important;
 }
 
+.about-custom{
+  background-color:#212121;
+  padding: 5%;
+}
+
 .card-height{
-  height: 80%;
+  height: 100%;
 }
 
 .card-custom{
-  background-color: #272729 !important;
-  padding: 5px;
+  background-color: #212121 !important;
+  padding: 3%;
+  border: 0px !important;
 }
 
 .footer{
-  background-color: black;
+  background-color: white;
   color: grey;
-  height: 8vh;
+  width: 100%;
+  padding: 15px;
+}
+
+.footer-content{
+  padding-left:5%;
+  padding-right:5%;
+
+}
+.icons img{
+  width:55px;
+  padding-left: 30px;
+}
+
+.text-footer{
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 1024px) {
+
 }
