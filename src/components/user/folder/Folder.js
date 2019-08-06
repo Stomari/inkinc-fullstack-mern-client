@@ -10,15 +10,15 @@ class Folder extends Component {
 
   render(){
     return(
-        <div className="card-deck group-custom d-flex align-items-center justify-content-center">
+        <div className="card-deck group-custom d-flex align-items-center justify-content-center ml-5">
         {
           this.props.folders.map((folder, index) => {
             let folderId = folder._id;
-            return  <div key={index}>
-                      <div key={index} className="container-custom2 mb-3">
-                        <FolderCard getInfo={this.props.foldersInfo} key={index} deleteFolder={(folder) => this.deleteFolder(folderId)} state={folder}/>
+              return  <div key={index}>
+                        <div key={index} className="container-custom2 mb-3">
+                          <FolderCard getInfo={this.props.foldersInfo} key={index} deleteFolder={(folder) => this.deleteFolder(folderId)} state={folder}/>
+                        </div>
                       </div>
-                    </div>
           })
         }
         </div>

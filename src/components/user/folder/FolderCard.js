@@ -16,11 +16,13 @@ class FolderCard extends Component {
 
   render(){
     return(
-      <div className="card card-prof-custom " style={{"width": "20rem"}}>
+      <div className="card card-prof-custom" style={{"width": "20rem"}}>
+
         <picture>
           {/* grid image */}
           <img src="/images/teste-folder.jpeg" className="card-img-top"  style={{"height": "15rem"}} alt="..."/>
         </picture>
+
         <div className="card-body">
           <p className="card-text">
             <Link className="link-custom text-uppercase" to={`/profile/folder/${this.props.state._id}`}>
@@ -35,6 +37,7 @@ class FolderCard extends Component {
             </p>
           </div>
         </div>
+        
       </div>
     )
   }

@@ -2,7 +2,6 @@ import React from 'react';
 
 const ArtistCard = (props) => {
   return(
-
     <li class="media">
       <img src={props.state.image} class="mr-3" alt="..."/>
       <div class="media-body">

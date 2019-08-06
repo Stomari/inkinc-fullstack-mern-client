@@ -13,7 +13,8 @@ class Signup extends Component {
       password: '', 
       name: '', 
       role: '', 
-      class: '', 
+      classeCli: '', 
+      classeArt: '', 
       workplace: [], 
       showForm: false, 
       showWorkplace: false,
@@ -52,8 +53,17 @@ class Signup extends Component {
   handleForm(event){
     const {name, value} = event.target;
     this.setState({
-      showForm: !this.state.showForm,
-      classe: 'displayBtn',
+      showForm:true,
+      classeCli: 'displayBtn',
+      [name]: value,
+    });
+  }
+
+  handleClass(event){
+    const {name, value} = event.target;
+    this.setState({
+      showForm: true,
+      classeArt: 'displayBtn',
       [name]: value,
     });
   }
@@ -72,9 +82,11 @@ class Signup extends Component {
 
 
   render(){
+    console.log(this.props)
     return(
-      <div className="container d-flex justify-content-center auth-custom">
-        <Role handleForm={e => this.handleForm(e)} state={this.state}/>
+      <div className="container d-flex justify-content-center auth-custom flex-wrap">
+     
+        <Role handleForm={e => this.handleForm(e)} handleClass={e => this.handleClass(e)} state={this.state}/>
 
         {  this.state.showForm ? 
           <Form placeHandler={(value) => this.placeHandler(value)} handleChange={e => this.handleChange(e)} handleWorkplace={e => this.handleWorkplace(e)} handleFormSubmit={e => this.handleFormSubmit(e)} state={this.state} />
