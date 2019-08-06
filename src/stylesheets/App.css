@@ -1,10 +1,277 @@
+* {
+  outline: 0;
+}
+
 html{
   margin: 0;
   padding: 0;
   color:white;
   background-color: #212121;
 }
+
 .App{
   background-color: #212121;
 }
 
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+}
+
+.modal-bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, .8);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.form-modal {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  min-height:65vh;
+  background: #e1e1e1;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: left;
+  z-index: 2;
+}
+
+.close-modal-btn {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  z-index: 2;
+}
+.close-modal-btn:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.close-modal-btn:before, .close-modal-btn:after {
+  position: absolute;
+  left: 15px;
+  content: '';
+  height: 33px;
+  width: 2px;
+  background-color: #fff;
+}
+
+.close-modal-btn:before {
+  transform: rotate(45deg);
+}
+
+.close-modal-btn:after {
+  transform: rotate(-45deg);
+}
+
+.container {
+  padding-top: 3rem;
+  color: white
+}
+
+.search-grid-image-wrapper {
+  /* padding: 5px; */
+  background: #e1e1e1;
+  transition: .2s ease;
+  cursor: pointer;
+}
+
+.search-grid-image-wrapper:hover {
+  transform: scale(1.05);
+  transition: .2s ease;
+}
+
+.search-tattoos-grid-container:hover img {
+  filter: grayscale(100%);
+  transition: .15s ease;
+}
+
+.search-grid-image-wrapper:hover {
+  transform: scale(1.05);
+  transition: .3s ease;
+}
+
+.search-grid-image-wrapper:hover img {
+  filter: grayscale(0%) !important;
+}
+
+.search-grid-image-wrapper:hover .search-grid-overlay {
+  display: flex;
+}
+
+.search-grid-overlay {
+  position: absolute;
+  padding: .5rem;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  background: #A61415;
+  border-radius: 50%;
+  color: #fff;
+  top: 0;
+  right: 0;
+  margin: .5rem;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+  
+.search-grid-overlay:hover {
+  background: #FF4D4E;
+}
+
+.categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.category-container {
+  display: inline-block;
+  /* width: 10%; */
+  margin: .5rem .5rem;
+}
+
+.category-container label {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  font-size: .8rem;
+  border: 1px solid #A61415;
+  border-radius: .3rem;
+  padding: .5rem 1.5rem;
+  cursor: pointer;
+  margin-top: -1rem;
+  transition: .2s ease;
+}
+
+.category-container input {
+  display: none;
+}
+
+.category-container input:checked + label, .category-container:hover label {
+  background: #FF4D4E;
+  border: 1px solid white;
+  transition: .2s ease;
+  transform: scale(1.1);
+}
+
+.search-bar input {
+  width: 100%;
+  padding: .5rem 1.5rem;
+  border-radius: .5rem;
+  border: none;
+}
+
+.search-toggle {
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.search-toggle input {
+  display: none;
+}
+
+.search-toggle input:checked + label {
+  background: #A61415
+}
+
+.search-toggle label {
+  padding: .5rem 2rem;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.search-toggle label:first-of-type {
+  border-radius: 1rem 0 0 1rem ;
+}
+
+.search-toggle label:last-of-type {
+  border-radius: 0 1rem 1rem 0 ;
+}
+
+.search-toggle label:hover {
+  background:#FF4D4E;
+}
+
+footer {
+  height: 10rem;
+  background: #1d1d1d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 5rem;
+  color: #e1e1e1
+}
+
+.artist-search-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.artist-search-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #fff;
+  border-radius: .2rem;
+  width: 45%;
+  padding: 1rem; 
+  margin: 1rem 0;
+}
+
+.artist-search-tattoo-preview {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: .5rem .5rem;
+}
+
+.artist-search-info {
+  display: flex;
+  flex-direction: row;
+}

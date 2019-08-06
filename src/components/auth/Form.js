@@ -9,10 +9,10 @@ const Form = (props) => {
   
     return(
         <div className="col-lg-6">
-          <form onSubmit={(event) => this.handleFormSubmit(event)}>
+          <form onSubmit={(event) => props.handleFormSubmit(event)}>
             <div className="form-group">
               <label for="email">Email:</label>
-                <input type="email" className="form-control" name="email" placeholder="Enter email" value={props.state.password} onChange={ e => props.handleChange(e)}/>
+                <input type="email" className="form-control" name="email" placeholder="Enter email" value={props.state.email} onChange={ e => props.handleChange(e)}/>
             </div>
             <div className="form-group"> 
               <label for="password">Password:</label>

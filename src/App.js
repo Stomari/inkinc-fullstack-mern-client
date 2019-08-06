@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import './stylesheets/App.css';
 import './stylesheets/mainPage.css';
 import './stylesheets/navbar.css';
@@ -7,7 +8,6 @@ import './stylesheets/profile.css';
 import AuthService from './components/auth/auth-service';
 import { Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './components/auth/protected-routes'
-import 'bootstrap/dist/css/bootstrap.css';
 //Components
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
@@ -68,6 +68,7 @@ class App extends Component {
               <Route exact path='/' render={() => <Home/>} />
               <Route exact path="/home" render={() => <Home user={this.state.loggedInUser}/>}/> 
               <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={() => this.getTheUser()}/>} />
+              <Route exact path='/search' render={() => <SearchPage user={this.state.loggedInUser}/>} />
 
               {/* Profile Pages */}
               <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} component={Profile} /> 

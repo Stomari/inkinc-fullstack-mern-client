@@ -38,14 +38,14 @@ class Login extends Component {
         <div className="col-lg-6">
           <form onSubmit={(event) => this.handleFormSubmit(event)}>
             <div className="form-group">
-              <label for="email">Email:</label>
+              <label htmlFor="email">Email:</label>
                 <input type="email" className="form-control" name="email" placeholder="Enter email" value={this.state.email} onChange={e => this.handleChange(e)} />
             </div>
             <div className="form-group"> 
               <label for="password">Password:</label>
-              <input type="password"  class="form-control" name="password" placeholder="Password" value={this.state.password} onChange={e => this.handleChange(e)} />
+              <input type="password"  className="form-control" name="password" placeholder="Password" value={this.state.password} onChange={e => this.handleChange(e)} />
             </div>
-              <input class="btn btn-custom" type="submit" value="Login" />
+              <input className="btn btn-custom" type="submit" value="Login" />
           </form>
           <small className="form-text text-muted">
             Don't have account?

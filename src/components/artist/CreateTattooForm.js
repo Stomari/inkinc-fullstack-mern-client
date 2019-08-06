@@ -30,6 +30,9 @@ class CreateTattooForm extends Component {
 
   // upload file
   handleFileUpload(e) {
+    this.setState({
+      image: 'https://media.tenor.com/images/80cb16bb74ed9027ea1b25d077ce6d97/tenor.gif'
+    });
     const uploadData = new FormData();
     // imageUrl => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new thing in '/api/things/create' POST route
@@ -44,18 +47,18 @@ class CreateTattooForm extends Component {
 
   // this method submits the form
   handleFormSubmit(e) {
-      e.preventDefault();
-      if (this.state.image !== '') {
-        axios.post('http://localhost:8000/api/add-tattoo', this.state, {withCredentials: true})
-        .then(() => {
-          console.log('XABLAU')
-          this.setState({tag: '', image: '', category: []});
-          this.fileInput.value = '';
-          this.props.handlerShowForm();
-        })
-        .catch(err => {
-        });
-      }
+    e.preventDefault();
+    if (this.state.image !== '') {
+      axios.post('http://localhost:8000/api/add-tattoo', this.state, {withCredentials: true})
+      .then(() => {
+        console.log('XABLAU')
+        this.setState({tag: '', image: '', category: []});
+        this.fileInput.value = '';
+        this.props.handlerShowForm();
+      })
+      .catch(err => {
+      });
+    }
   }
 
   saveTattoo(newThing) {
@@ -76,17 +79,17 @@ class CreateTattooForm extends Component {
           <input type="text" name="tag" value={this.state.tag} placeholder="Separate tags by comma (ex.: skull, fish, triangle)" onChange={ (event) => this.handleChange(event)}/>
           <label>Category:</label>
           {this.props.categories.map((el, idx) => {
-            const check = (this.state.category.includes(el._id)) ? true : false
+            // const check = (this.state.category.includes(el._id)) ? true : false
             return  (
               <div key={idx}>
-                <input type="checkbox" id={"tattoo-" + el.tag} name="category" value={el._id} onChange={ (event) => this.handleChangeCheckbox(event)} checked={check}/>
+                <input type="checkbox" id={"tattoo-" + el.tag} name="category" value={el._id} onChange={ (event) => this.handleChangeCheckbox(event)} />
                 <label htmlFor={"tattoo-" + el.tag}>{el.tag}</label>
               </div>
             )
           })}
           <label>Image:</label>        
-          <input type="file" name="image" onChange={(e) => this.handleFileUpload(e)} ref={ref=> this.fileInput = ref} /> 
-          
+          <input type="file" name="image" onChange={(e) => this.handleFileUpload(e)} ref={ref=> this.fileInput = ref} />
+          {this.state.image !== '' && <img src={this.state.image} alt='upload' width="200" />}
           <input type="submit" value="Submit" />
 
         </form>
