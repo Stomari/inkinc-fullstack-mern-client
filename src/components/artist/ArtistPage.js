@@ -7,6 +7,7 @@ import Flashes from './Flashes';
 import ArtistGallery from './ArtistGallery';
 import About from './About';
 import CategoriesDisplay from './CategoriesDisplay';
+import EditArtist from './EditArtist';
 import AuthService from '../auth/auth-service';
 import CreateTattooForm from './CreateTattooForm';
 import CreateFlashForm from './CreateFlashForm';
@@ -27,6 +28,10 @@ class ArtistPage extends Component {
       flag: false,
       showCreateTattooForm: false,
       showCreateFlashForm: false,
+      showEditArtistForm: false,
+      artistCategories: [],
+      about: '',
+      name: '',
     };
     this.service = new AuthService();
   }
@@ -77,6 +82,13 @@ class ArtistPage extends Component {
     })
   }
 
+  handleShowEditProfile() {
+    // event.preventDefault();
+    this.setState({
+      showEditArtistForm: !this.state.showEditArtistForm,
+    })
+  }
+
   handleDeleteFlash(event, id) {
     event.preventDefault();
     axios.put(`http://localhost:8000/api/remove-flash/${id}`, {}, {withCredentials: true})
@@ -108,8 +120,10 @@ class ArtistPage extends Component {
       .catch(err => console.log(err));
   }
   render() {
+    console.log('USER: ',this.props.user);
     return(
       this.state.flag ?
+
       <div className="container-fluid profile-custom">
         <div className="row m-5">
             
@@ -122,26 +136,35 @@ class ArtistPage extends Component {
 
                   {this.props.user && (this.props.user._id === this.state.artist._id) &&  <button onClick={() => this.handleShowCreateFlash()}>New Flash</button>}
                   {this.state.showCreateFlashForm && <CreateFlashForm getArtist={() => this.getArtist()} handlerShowForm={() => this.handleShowCreateFlash()} categories={this.state.categories}/>}
-                    
-                  {/* <Flashes
-                    user={this.props.user}
-                    artist={this.state.artist}
-                    categories={this.state.categories}
-                    showForm={this.state.showCreateFlashForm}
-                    handlerShowForm={() => this.handleShowCreateFlash()}
-                    handleDeleteFlash={(e, id) => this.handleDeleteFlash(e, id)}
-                    getArtist={() => this.getArtist()}
-                  /> */}
-                  {/*                 
-                    <ArtistGallery
-                    user={this.props.user}
-                    artist={this.state.artist}
-                    categories={this.state.categories}
-                    showForm={this.state.showCreateTattooForm}
-                    handlerShowForm={() => this.handleShowCreateTattoo()}
-                    handleDeleteTattoo={(e, id) => this.handleDeleteTattoo(e, id)}
-                    getArtist={() => this.getArtist()}
-                  /> */}
+
+                 <Flashes
+                  user={this.props.user}
+                  artist={this.state.artist}
+                  categories={this.state.categories}
+                  showForm={this.state.showCreateFlashForm}
+                  handlerShowForm={() => this.handleShowCreateFlash()}
+                  handleDeleteFlash={(e, id) => this.handleDeleteFlash(e, id)}
+                  getArtist={() => this.getArtist()}
+                />
+                <ArtistGallery
+                  user={this.props.user}
+                  artist={this.state.artist}
+                  categories={this.state.categories}
+                  showForm={this.state.showCreateTattooForm}
+                  handlerShowForm={() => this.handleShowCreateTattoo()}
+                  handleDeleteTattoo={(e, id) => this.handleDeleteTattoo(e, id)}
+                  getArtist={() => this.getArtist()}
+                />
+                <EditArtist
+                handleShowEditProfile={() => this.handleShowEditProfile()}
+                showEditProfileForm={this.state.showEditArtistForm}
+                getArtist={() => this.getArtist()}
+                state={this.state}
+                categories={this.state.categories}
+                showAllCategories={true}
+                user={this.props.user}
+                artist={this.state.artist}
+              />
               </div>
               <div className="row">
               <button onClick={(id) => this.favArtist(this.state.artist._id)}>Fav</button>
@@ -156,19 +179,21 @@ class ArtistPage extends Component {
 
               <div className="map-info">
               <p className="text-uppercase"> Where to find me:</p>
-              <Map user={this.props.user} artist={this.state.artist} />
+              {
+                this.state.artist.workplace &&
+                <Map user={this.props.user} artist={this.state.artist} />
+              }
               </div>
 
             </div>
 
-          
-              
             </div>
-
             
        
-         
-        {/* <Categories user={this.props.user} categories={this.state.categories} artist={this.state.artist} /> */}
+             {
+          this.state.artist.category &&
+          <Categories showAllCategories={false} user={this.props.user} categories={this.state.categories} artist={this.state.artist} />
+        }
 
         <button onClick={this.showChat}>CHAT</button>
         {/* <Chat1 user={this.props.user} artistId={this.props.match.params.id}/> */}
