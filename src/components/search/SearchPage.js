@@ -196,7 +196,6 @@ class SearchPage extends Component {
         {
           this.state.imageToSaveId !== '' &&
           <div className="modal-wrapper">
-            <img src={this.state.filteredResults[]} />
             <span className="close-modal-btn" onClick={() => this.handleCloseModal()}></span>
             <form className="form-modal">
               <label>Tags:</label>
