@@ -1,6 +1,6 @@
 import React from "react";
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:8000");
+const socket = io.connect(process.env.REACT_APP_API_URL);
 
 class Chat extends React.Component {
   constructor(props) {

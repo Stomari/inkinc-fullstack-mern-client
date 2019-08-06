@@ -5,7 +5,7 @@ import axios from 'axios';
 class FolderCard extends Component {
 
   deleteFolder(folder){
-    axios.delete(`http://localhost:8000/api/delete-folder/${folder}`, { withCredentials: true })
+    axios.delete(`${process.env.REACT_APP_API_URL}/api/delete-folder/${folder}`, { withCredentials: true })
       .then(() => {
         this.props.getInfo()
       })

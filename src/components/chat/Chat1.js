@@ -1,6 +1,6 @@
 import React from "react";
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:8000");
+const socket = io.connect(process.env.REACT_APP_API_URL);
 
 class Chat1 extends React.Component {
   constructor(props) {
@@ -58,7 +58,7 @@ class Chat1 extends React.Component {
                 <div className="messages">
                   {this.state.messages.map((message, i) => {
                     return (
-                      <div key={i}>{message.author}: {message.message}</div>
+                      <div style={{color: "black"}} key={i}>{message.author}: {message.message}</div>
                     )
                   })}
                 </div>

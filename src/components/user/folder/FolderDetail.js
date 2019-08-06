@@ -14,7 +14,7 @@ class FolderDetail extends Component {
   }
 
   componentWillMount(){
-    axios.get('http://localhost:8000/api/user', {withCredentials: true})
+    axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
     .then((response) => {
       let folderData = response.data.folder;
 

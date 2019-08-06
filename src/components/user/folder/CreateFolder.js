@@ -13,7 +13,7 @@ class CreateFolder extends Component {
   handleFormSubmit(event) {
     event.preventDefault();
     const name = this.state.name;
-    axios.post('http://localhost:8000/api/create-folder', { name }, { withCredentials: true })
+    axios.post(`${process.env.REACT_APP_API_URL}/api/create-folder`, { name }, { withCredentials: true })
       .then(() => {
         this.props.foldersInfo();
         this.setState({name: ''});

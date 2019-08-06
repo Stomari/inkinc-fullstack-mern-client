@@ -37,7 +37,7 @@ class CreateTattooForm extends Component {
     // imageUrl => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new thing in '/api/things/create' POST route
     uploadData.append("image", e.target.files[0]);
-    axios.post('http://localhost:8000/api/upload', uploadData, {withCredentials: true})
+    axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData, {withCredentials: true})
       .then(response => {
         console.log('UPLOAD');
           this.setState({ image: response.data.secure_url });
@@ -49,7 +49,7 @@ class CreateTattooForm extends Component {
   handleFormSubmit(e) {
     e.preventDefault();
     if (this.state.image !== '') {
-      axios.post('http://localhost:8000/api/add-tattoo', this.state, {withCredentials: true})
+      axios.post(`${process.env.REACT_APP_API_URL}/api/add-tattoo`, this.state, {withCredentials: true})
       .then(() => {
         console.log('XABLAU')
         this.setState({tag: '', image: '', category: []});

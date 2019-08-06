@@ -26,7 +26,7 @@ class SearchPage extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8000/api/categories')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/categories`)
       .then(response => {
         const categories = response.data;
         this.setState({
@@ -37,14 +37,14 @@ class SearchPage extends Component {
 
       let responseTattoos = '';
       let responseArtists = '';
-      axios.get('http://localhost:8000/api/tattoo')
+      axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo`)
       .then(response => {
         responseTattoos = response.data;
         this.setState({
           resultsTattoos: responseTattoos,
         })
 
-        axios.get('http://localhost:8000/api/artists')
+        axios.get(`${process.env.REACT_APP_API_URL}/api/artists`)
         .then(response => {
           responseArtists = response.data;
           this.setState({
