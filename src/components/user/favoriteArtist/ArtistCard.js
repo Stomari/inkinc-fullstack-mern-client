@@ -7,7 +7,7 @@ const ArtistCard = (props) => {
       <img src={props.state.image} class="mr-3" alt="..."/>
       <div class="media-body">
         <h5 class="mt-0 mb-1"> {props.state.name}</h5>
-        <button onClick={props.deleteArtist(this.props.state._id)}> Del </button>
+        <button onClick={props.deleteArtist(props.state._id)}> Del </button>
       </div>
     </li>
     

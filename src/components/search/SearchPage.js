@@ -5,7 +5,6 @@ import ArtistsTattoosToggle from './ArtistsTattoosToggle';
 import ArtistsSearch from './ArtistsSearch';
 import TattoosSearch from './TattoosSearch';
 import Footer from '../Footer';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class SearchPage extends Component {
@@ -21,6 +20,8 @@ class SearchPage extends Component {
       clicked: false,
       searchByTatto: false,
       artistsSearch: false,
+      openedImageSave: false,
+      imageToSaveId: '',
     }
   }
 
@@ -62,7 +63,7 @@ class SearchPage extends Component {
       .catch(err => console.log(err));
       
 
-      this.getResults();
+      // this.getResults();
   }
 
   searchHandler(event) {
@@ -87,7 +88,7 @@ class SearchPage extends Component {
         return (
           // compare tags and input query
           inputTags.every(tag => {
-            return result.tag.some(rt => rt.includes(tag));
+            return result.tag.some(rt => rt.toLowerCase().includes(tag.toLowerCase()));
           })
           &&
           // compare categories
@@ -116,16 +117,25 @@ class SearchPage extends Component {
     });
   }
 
-  getResults() {
-    const showResults = this.state.filteredResults;
+  // getResults() {
+  //   const showResults = this.state.filteredResults;
     
-    return showResults.map((el, idx) => {
-      if (!this.state.artistsSearch) {
-        return <Link to={`/tatoos/${el._id}`} key={idx} className="search-autocomplete-item">{el.tag}</Link>
-      } else {
-        return <Link to={`/artist/${el._id}`} key={idx} className="search-autocomplete-item">{el.name}</Link>
-      }
-    });
+  //   return showResults.map((el, idx) => {
+  //     if (!this.state.artistsSearch) {
+  //       return <Link to={`/tattoos/${el._id}`} key={idx} className="search-autocomplete-item"><img src={el.image} alt={el.tag} /></Link>
+  //     } else {
+  //       return <Link to={`/artists/${el._id}`} key={idx} className="search-autocomplete-item">{el.name}</Link>
+  //     }
+  //   });
+  // }
+
+  openedImageSaveHandler(event, i) {
+    event.preventDefault();
+    const idx = !this.state.openedImageSave ? i : '';
+    this.setState({
+      openedImageSave: !this.state.openedImageSave,
+      imageToSaveId: idx,
+    })
   }
 
   chooseCategories(event) {
@@ -146,25 +156,61 @@ class SearchPage extends Component {
       filteredResults: filtered,
       searchQuery: '',
     });
-    this.getResults();
+    // this.getResults();
+  }
+
+  handleCloseModal() {
+    this.setState({
+      openedImageSave: false,
+      imageToSaveId: ''
+    })
   }
 
   render() {
     return(
       <Fragment>
-        <ArtistsTattoosToggle artistsSearch={this.state.artistsSearch} toggleHandler={() => this.toggleHandler()} />
-        <SearchBar state={this.state} searchHandler={(event) => this.searchHandler(event)} getResults={() => this.getResults()} />
-        <Categories categories={this.state.categories} chooseCategories={(e) => this.chooseCategories(e)} />
-
+        <div className="container">
+          <ArtistsTattoosToggle artistsSearch={this.state.artistsSearch} toggleHandler={() => this.toggleHandler()} />
+          <SearchBar state={this.state} searchHandler={(event) => this.searchHandler(event)} />
+          <Categories categories={this.state.categories} chooseCategories={(e) => this.chooseCategories(e)} />
+  
+          {
+            this.state.artistsSearch && 
+            <ArtistsSearch filteredResults={this.state.filteredResults} />
+          }
+          {
+            !this.state.artistsSearch &&
+            <TattoosSearch
+              openedImageSaveHandler={(e, i) => this.openedImageSaveHandler(e, i)}
+              openedImageSave={this.state.openedImageSave}
+              filterHandler={() => this.filterHandler(this.state.searchQuery)}
+              categories={this.state.categories}
+              filteredResults={this.state.filteredResults}
+              tattoos={this.state.resultsTattoos}
+              user={this.props.user}
+            />
+          }
+  
+        </div>
+        {/* save to folder modal */}
         {
-          this.state.artistsSearch && 
-          <ArtistsSearch filteredResults={this.state.filteredResults} getResults={() => this.getResults()} />
-        }
-        {
-          !this.state.artistsSearch &&
-          <TattoosSearch filteredResults={this.state.filteredResults} getResults={() => this.getResults()} />
-        }
+          this.state.imageToSaveId !== '' &&
+          <div className="modal-wrapper">
+            <img src={this.state.filteredResults[]} />
+            <span className="close-modal-btn" onClick={() => this.handleCloseModal()}></span>
+            <form className="form-modal">
+              <label>Tags:</label>
+              <input type="text" name="tag" value={this.state.tag} placeholder="Separate tags by comma (ex.: skull, fish, triangle)" onChange={ (event) => this.handleChange(event)}/>
+              <label>Category:</label>
+              <label>Image:</label>        
+              <input type="file" name="image" onChange={(e) => this.handleFileUpload(e)} ref={ref=> this.fileInput = ref} />
+              {this.state.image !== '' && <img src={this.state.image} alt='upload' width="200" />}
+              <input type="submit" value="Submit" />
 
+            </form>
+            <div className="modal-bg" onClick={() => this.handleCloseModal()}></div>
+          </div>
+        }
         <Footer />
       </Fragment>
     );

@@ -86,7 +86,7 @@ class ArtistPage extends Component {
   render() {
     return(
       this.state.flag ?
-      <div>
+      <div className="container">
         {/* <Header user={this.props.user} artist={this.state.artist} /> */}
         <Categories user={this.props.user} categories={this.state.categories} artist={this.state.artist} />
         <Map user={this.props.user} artist={this.state.artist} />

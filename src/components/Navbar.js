@@ -57,8 +57,11 @@ class Navbar extends Component {
             </li>
           </ul>
           <div className="navbar-nav">
-            <button className="btn-logout">
+            <button className="btn-log">
               <Link to='/profile' className="nav-link text-uppercase">Profile</Link>
+            </button>
+            <button className="btn-log">
+              <Link to='/search' className="nav-link text-uppercase">Search</Link>
             </button>
           <div>
             <Link to='/' className="nav-link text-uppercase" onClick={() => this.logoutUser()}> Logout </Link>

@@ -9,7 +9,7 @@ class Search extends Component {
   render() {
     return(
       <div className="search-bar">
-        <input name="searchQuery" value={this.props.state.searchQuery} onChange={(event) => this.props.searchHandler(event)} />
+        <input name="searchQuery" value={this.props.state.searchQuery} placeholder="Search..." onChange={(event) => this.props.searchHandler(event)} />
       </div>
     )
   }

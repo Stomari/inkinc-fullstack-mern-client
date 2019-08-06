@@ -31,13 +31,15 @@ class CreateFlashForm extends Component {
 
   // this method handles just the file upload
   handleFileUpload(e) {
+    this.setState({
+      image: 'https://media.tenor.com/images/80cb16bb74ed9027ea1b25d077ce6d97/tenor.gif'
+    });
     const uploadData = new FormData();
     // imageUrl => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new thing in '/api/things/create' POST route
     uploadData.append("image", e.target.files[0]);
     axios.post('http://localhost:8000/api/upload', uploadData, {withCredentials: true})
       .then(response => {
-        console.log('UPLOAD', response);
           this.setState({ image: response.data.secure_url });
         })
       .catch(err => console.log(err));
@@ -82,7 +84,8 @@ class CreateFlashForm extends Component {
             )
           })}
           <label>Image:</label>        
-          <input type="file" name="image" onChange={(e) => this.handleFileUpload(e)} ref={ref=> this.fileInput = ref} /> 
+          <input type="file" name="image" onChange={(e) => this.handleFileUpload(e)} ref={ref=> this.fileInput = ref} />
+          {this.state.image !== '' && <img src={this.state.image} alt='upload' width="200" />}
           <label>Price:</label>
           <input type="text" name="price" value={this.state.price} placeholder="Ex.: 300.00" onChange={ (event) => this.handleChange(event)}/>
           
