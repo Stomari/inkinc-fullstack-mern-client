@@ -5,6 +5,7 @@ import axios from 'axios';
 import Map from './Map';
 import Flashes from './Flashes';
 import ArtistGallery from './ArtistGallery';
+import EditArtist from './EditArtist';
 import AuthService from '../auth/auth-service';
 
 import Chat from '../chat/Chat';
@@ -23,6 +24,10 @@ class ArtistPage extends Component {
       flag: false,
       showCreateTattooForm: false,
       showCreateFlashForm: false,
+      showEditArtistForm: false,
+      artistCategories: [],
+      about: '',
+      name: '',
     };
     this.service = new AuthService();
   }
@@ -72,6 +77,13 @@ class ArtistPage extends Component {
     })
   }
 
+  handleShowEditProfile() {
+    // event.preventDefault();
+    this.setState({
+      showEditArtistForm: !this.state.showEditArtistForm,
+    })
+  }
+
   handleDeleteFlash(event, id) {
     event.preventDefault();
     axios.put(`http://localhost:8000/api/remove-flash/${id}`, {}, {withCredentials: true})
@@ -99,12 +111,28 @@ class ArtistPage extends Component {
   // }
 
   render() {
+    console.log('USER: ',this.props.user);
     return(
       this.state.flag ?
       <div className="container">
-        {/* <Header user={this.props.user} artist={this.state.artist} /> */}
-        <Categories user={this.props.user} categories={this.state.categories} artist={this.state.artist} />
-        <Map user={this.props.user} artist={this.state.artist} />
+        <EditArtist
+          handleShowEditProfile={() => this.handleShowEditProfile()}
+          showEditProfileForm={this.state.showEditArtistForm}
+          getArtist={() => this.getArtist()}
+          state={this.state}
+          categories={this.state.categories}
+          showAllCategories={true}
+          user={this.props.user}
+          artist={this.state.artist}
+        />
+        {
+          this.state.artist.category &&
+          <Categories showAllCategories={false} user={this.props.user} categories={this.state.categories} artist={this.state.artist} />
+        }
+        {
+          this.state.artist.workplace &&
+          <Map user={this.props.user} artist={this.state.artist} />
+        }
         <Flashes
           user={this.props.user}
           artist={this.state.artist}
