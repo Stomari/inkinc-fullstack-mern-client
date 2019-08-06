@@ -4,9 +4,7 @@ import axios from 'axios';
 const ArtistsSearch = (props) => {
 
   const favArtist = (artistId) => {
-    console.log('favoritou?')
     axios.put(`http://localhost:8000/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
-      .then(() => console.log('entrou na promise'))
       .catch(err => console.log(err))
 ;  }
 
