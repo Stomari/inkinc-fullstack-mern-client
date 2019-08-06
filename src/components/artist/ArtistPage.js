@@ -7,6 +7,13 @@ import Flashes from './Flashes';
 import ArtistGallery from './ArtistGallery';
 import AuthService from '../auth/auth-service';
 
+import Chat from '../chat/Chat';
+import Chat1 from '../chat/Chat1';
+import io from "socket.io-client";
+
+const socket = io.connect("http://localhost:8000");
+
+
 class ArtistPage extends Component {
   constructor(props) {
     super(props);
@@ -83,6 +90,14 @@ class ArtistPage extends Component {
       .catch(err => console.log(err));
   }
 
+  // showChat = (event) => {
+  //   event.preventDefault()
+  //   socket.emit('SUBSCRIBE', {
+  //     user: this.props.user._id,
+  //     artist: this.props.match.params.id,
+  //   })
+  // }
+
   render() {
     return(
       this.state.flag ?
@@ -108,6 +123,10 @@ class ArtistPage extends Component {
           handleDeleteTattoo={(e, id) => this.handleDeleteTattoo(e, id)}
           getArtist={() => this.getArtist()}
         />
+
+        <button onClick={this.showChat}>CHAT</button>
+        <Chat1 user={this.props.user} artistId={this.props.match.params.id}/>
+
       </div>
       : null
     )

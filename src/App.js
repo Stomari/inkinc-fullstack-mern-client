@@ -18,7 +18,6 @@ import Profile from './components/user/Profile';
 import FolderDetail from './components/user/folder/FolderDetail';
 import ArtistPage from './components/artist/ArtistPage';
 
-import Chat from './components/chat/Chat';
 
 
 require('dotenv').config();
