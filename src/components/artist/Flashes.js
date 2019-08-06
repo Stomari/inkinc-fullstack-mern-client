@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import CreateFlashForm from './CreateFlashForm';
 
 class Flashes extends Component {
   
@@ -27,9 +26,9 @@ class Flashes extends Component {
     return(
       <div>
         {this.props.artist.flash.length > 0 ? this.showFlashes() : null}
-        {this.props.user && (this.props.user._id === this.props.artist._id) &&  <button onClick={() => this.props.handlerShowForm()}>New Flash</button>}
-        {this.props.showForm && <CreateFlashForm {...this.props} />}
+        
       </div>   
+
     )
   }
 }

@@ -5,8 +5,9 @@ const ArtistsSearch = (props) => {
 
   const favArtist = (artistId) => {
     axios.put(`http://localhost:8000/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
-      .catch(err => console.log(err))
-;  }
+      .then(() => console.log('entrou na promise'))
+      .catch(err => console.log(err));
+  }
 
   return(
     <div className="artist-search-container">
