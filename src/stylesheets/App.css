@@ -235,7 +235,7 @@ html{
 .search-toggle label:hover {
   background:#FF4D4E;
 }
-
+/* 
 footer {
   height: 10rem;
   background: #1d1d1d;
@@ -245,7 +245,7 @@ footer {
   width: 100%;
   margin-top: 5rem;
   color: #e1e1e1
-}
+} */
 
 .artist-search-container {
   display: flex;
