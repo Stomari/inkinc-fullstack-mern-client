@@ -14,6 +14,7 @@ class Chat extends React.Component {
       chat: null,
     };
     this.getChatFlag = true;
+    console.log(this.props.artistId)
   }
 
   componentDidMount() {
@@ -27,13 +28,13 @@ class Chat extends React.Component {
   }
 
   // START OF CHAT HANDLERS
-  getChat() {
-    socket.emit('GET_CHAT', {
-      user: this.state.userLogged,
-      artist: '5d45fe4de1f9f00ea1cfdd20',
-    })
-    this.getChatFlag = false
-  }
+  // getChat() {
+  //   socket.emit('GET_CHAT', {
+  //     user: this.state.userLogged,
+  //     artist: this.props.artistId,
+  //   })
+  //   this.getChatFlag = false
+  // }
 
   setChat(data) {
     console.log(data)
@@ -72,9 +73,9 @@ class Chat extends React.Component {
   // END OF MESSAGE HANDLERS
 
   render() {
-    if (this.state.userLogged && this.getChatFlag === true) {
-      this.getChat();
-    } 
+    // if (this.state.userLogged && this.getChatFlag === true) {
+    //   this.getChat();
+    // } 
 
     return (
       <div className="container">
@@ -92,8 +93,6 @@ class Chat extends React.Component {
                   })}
                 </div>
                 <div className="footer">
-                  <input type="text" placeholder="Username" value={this.state.username} onChange={ev => this.setState({ username: ev.target.value })} className="form-control" />
-                  <br />
                   <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} />
                   <br />
                   <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
