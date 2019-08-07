@@ -7,9 +7,9 @@ class Map extends Component {
     super(props);
   }
 
-  componentWillReceiveProps(user) {
-    this.handleScriptLoad(user.artist);
-  }
+  // componentWillReceiveProps(user) {
+  //   this.handleScriptLoad(user.artist);
+  // }
 
   handleScriptLoad(user) {
     this.bounds = new google.maps.LatLngBounds();
