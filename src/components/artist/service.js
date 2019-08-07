@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const service = axios.create({
-  baseURL: 'http://localhost:8000/api',
+  baseURL: `${process.env.REACT_APP_API_URL}/api`,
   withCredentials: true // => you might need this when having the users in the app 
 });
 
