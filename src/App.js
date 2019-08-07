@@ -15,6 +15,7 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import SearchPage from './components/search/SearchPage';
 import Profile from './components/user/Profile';
+import ProfilePage from './components/profile/ProfilePage';
 import FolderDetail from './components/user/folder/FolderDetail';
 import ArtistPage from './components/artist/ArtistPage';
 
@@ -67,11 +68,17 @@ class App extends Component {
             <Switch>
               <Route exact path='/' render={() => <Home/>} />
               <Route exact path="/home" render={() => <Home user={this.state.loggedInUser}/>}/> 
-              <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={() => this.getTheUser()}/>} />
               <Route exact path='/search' render={() => <SearchPage user={this.state.loggedInUser}/>} />
 
               {/* Profile Pages */}
-              <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} component={Profile} /> 
+              {
+                this.state.loggedInUser.role === 'User' ?
+                <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} component={Profile} />
+                : 
+              <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={() => this.getTheUser()}/>} />
+              }
+
+
               <ProtectedRoute exact path='/profile/folder/:id' user={this.state.loggedInUser} component={FolderDetail} /> 
             
             </Switch>
