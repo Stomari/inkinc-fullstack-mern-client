@@ -1,13 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ArtistCard = (props) => {
   return(
-    <li class="media">
-      <img src={props.state.profileImg} width={50} class="mr-3" alt="..."/>
+    <li class="media fav-art-card pl-3">
+      <img src={props.state.profileImg} class="mr-3 rounded-circle " alt="..."/>
       <div class="media-body">
-        <h5 class="mt-0 mb-1"> {props.state.name}</h5>
-        <button onClick={props.deleteArtist(props.state._id)}> Del </button>
+        <div className="row">
+          <h5 class="mt-0 ml-3"> {props.state.name}</h5>
+        </div>
       </div>
+      <hr/>
     </li>
     
 

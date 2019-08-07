@@ -17,7 +17,7 @@ class Profile extends Component {
   }
 
   getInfo(){
-    axios.get('http://localhost:8000/api/user', {withCredentials: true})
+    axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
     .then((response) => {
       let data = response.data;
       this.setState({

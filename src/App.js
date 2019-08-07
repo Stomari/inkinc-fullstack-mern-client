@@ -20,7 +20,6 @@ import ArtistPage from './components/artist/ArtistPage';
 
 
 
-require('dotenv').config();
 //Victor
 // import ByPlaceSearch from './components/places/ByPlaceSearch';
 // import ByAddressSearch from './components/places/ByAddressSearch';
@@ -31,8 +30,6 @@ class App extends Component {
     super(props)
     this.state = { loggedInUser: null };
     this.service = new AuthService();
-
-    
   }
 
   fetchUser(){
@@ -59,7 +56,6 @@ class App extends Component {
   
   render() {
     this.fetchUser()
-    console.log(this.state.loggedInUser);
     if(this.state.loggedInUser){
       return (
           <div className="App">

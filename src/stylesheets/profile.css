@@ -202,21 +202,17 @@ color: white
 
 }
 
-.blog .carousel-indicators {
-	left: 0;
-	top: auto;
-    bottom: -40px;
-
+a.card-art:hover{
+  text-decoration:none;
+}
+.fav-art-card img{
+  width: 18%;
 }
 
-/* The colour of the indicators */
-.blog .carousel-indicators li {
-    background: #a3a3a3;
-    border-radius: 50%;
-    width: 8px;
-    height: 8px;
+.fav-art-card{
+  color: white;
 }
 
-.blog .carousel-indicators .active {
-background: #707070;
+.modal-color{
+  color: black;
 }

@@ -1,3 +1,4 @@
+import Header from '../user/Header';
 import React, {Component} from 'react';
 import HeaderArt from './HeaderArt';
 import Categories from './Categories';
@@ -16,7 +17,7 @@ import Chat from '../chat/Chat';
 import Chat1 from '../chat/Chat1';
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:8000");
+const socket = io.connect(process.env.REACT_APP_API_URL);
 
 
 class ArtistPage extends Component {
@@ -37,12 +38,12 @@ class ArtistPage extends Component {
   }
 
   getArtist() {
-    axios.get(`http://localhost:8000/api/artists/${this.props.match.params.id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/artists/${this.props.match.params.id}`)
       .then(response => {
         this.setState({
           artist: response.data,
         })
-        axios.get('http://localhost:8000/api/categories')
+        axios.get(`${process.env.REACT_APP_API_URL}/api/categories`)
           .then(response => {
             const categories = response.data;
             this.setState({
@@ -60,7 +61,7 @@ class ArtistPage extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    axios.get(`http://localhost:8000/api/artists/${newProps.match.params.id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/artists/${newProps.match.params.id}`)
       .then(response => {
         this.setState({
           artist: response.data,
@@ -74,7 +75,7 @@ class ArtistPage extends Component {
       showCreateTattooForm: !this.state.showCreateTattooForm,
     })
   }
-  
+
   handleShowCreateFlash() {
     this.setState({
       showCreateFlashForm: !this.state.showCreateFlashForm,
@@ -90,7 +91,7 @@ class ArtistPage extends Component {
 
   handleDeleteFlash(event, id) {
     event.preventDefault();
-    axios.put(`http://localhost:8000/api/remove-flash/${id}`, {}, {withCredentials: true})
+    axios.put(`${process.env.REACT_APP_API_URL}/api/remove-flash/${id}`, {}, { withCredentials: true })
       .then(() => {
         this.getArtist();
       })
@@ -99,7 +100,7 @@ class ArtistPage extends Component {
 
   handleDeleteTattoo(event, id) {
     event.preventDefault();
-    axios.put(`http://localhost:8000/api/remove-tattoo/${id}`, {}, {withCredentials: true})
+    axios.put(`${process.env.REACT_APP_API_URL}/api/remove-tattoo/${id}`, {}, { withCredentials: true })
       .then(() => {
         this.getArtist();
       })
@@ -113,12 +114,30 @@ class ArtistPage extends Component {
   //     artist: this.props.match.params.id,
   //   })
   // }
-  favArtist(artistId){
-    axios.put(`http://localhost:8000/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
-  }
+
+  //VER QUANDO CRIAR PAGINA PRA ESCOLHER PROFILES
+favArtist(artistId){
+  if(this.props.user === null){
+    return null
+  }else{
+      if(this.props.user.favoriteArtist.length > 0){
+        this.props.user.favoriteArtist.forEach(e => {
+          if(e._id === artistId){
+          }else{
+            return axios.put(`http://localhost:8000/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
+                  .then(() => this.getArtist())
+                  .catch(err => console.log(err));
+          }
+          })
+      }else if (this.props.user.favoriteArtist.length === 0){
+        axios.put(`http://localhost:8000/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
+          .then(() => this.getArtist())
+          .catch(err => console.log(err));
+      }
+    }
+}
 
   render() {
-    console.log(this.state.categories);
     return(
       this.state.flag ?
 
@@ -197,10 +216,10 @@ class ArtistPage extends Component {
         }
 
         <button onClick={this.showChat}>CHAT</button>
-        {/* <Chat1 user={this.props.user} artistId={this.props.match.params.id}/> */}
+        {/* <Chat1 user={this.props.user} artistId={this.props.match.params.id} /> */}
 
-      </div>
-      : null
+        </div>
+        : null
     )
   }
 }
