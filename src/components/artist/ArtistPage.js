@@ -172,16 +172,19 @@ favArtist(artistId){
                   handleDeleteTattoo={(e, id) => this.handleDeleteTattoo(e, id)}
                   getArtist={() => this.getArtist()}
                 />
-                <EditArtist
-                handleShowEditProfile={() => this.handleShowEditProfile()}
-                showEditProfileForm={this.state.showEditArtistForm}
-                getArtist={() => this.getArtist()}
-                state={this.state}
-                categories={this.state.categories}
-                showAllCategories={true}
-                user={this.props.user}
-                artist={this.state.artist}
-              />
+                {
+                  this.props.user && (this.props.user._id === this.state.artist._id) &&
+                  <EditArtist
+                    handleShowEditProfile={() => this.handleShowEditProfile()}
+                    showEditProfileForm={this.state.showEditArtistForm}
+                    getArtist={() => this.getArtist()}
+                    state={this.state}
+                    categories={this.state.categories}
+                    showAllCategories={true}
+                    user={this.props.user}
+                    artist={this.state.artist}
+                  />
+                }
               </div>
               <div className="row">
               <button onClick={(id) => this.favArtist(this.state.artist._id)}>Fav</button>
@@ -191,7 +194,7 @@ favArtist(artistId){
               </div>
 
               <div className="style-info">
-                <CategoriesDisplay state={this.state.artist}/>
+                <CategoriesDisplay category={this.state.artist.category}/>
               </div>
 
               <div className="map-info">

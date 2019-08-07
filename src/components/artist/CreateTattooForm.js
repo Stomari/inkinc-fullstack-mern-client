@@ -23,8 +23,12 @@ class CreateTattooForm extends Component {
 
   handleChangeCheckbox(event) {
     const {value} = event.target;
-    const newCategory = [...this.state.category];
-    newCategory.push(value);
+    let newCategory = [...this.state.category];
+    if (newCategory.includes(value)) {
+      newCategory = newCategory.filter(el => el !== value)
+    } else {
+      newCategory.push(value);
+    }
     this.setState({category: newCategory});
   }
 
