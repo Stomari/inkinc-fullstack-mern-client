@@ -76,7 +76,6 @@ class ArtistPage extends Component {
   }
   
   handleShowCreateFlash() {
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAA', this.state.showCreateFlashForm)
     this.setState({
       showCreateFlashForm: !this.state.showCreateFlashForm,
     })
@@ -114,13 +113,29 @@ class ArtistPage extends Component {
   //     artist: this.props.match.params.id,
   //   })
   // }
-  favArtist(artistId){
-    axios.put(`http://localhost:8000/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
-      .then(() => console.log('entrou na promise'))
-      .catch(err => console.log(err));
-  }
+
+  //VER QUANDO CRIAR PAGINA PRA ESCOLHER PROFILES
+favArtist(artistId){
+  if(this.props.user === null){
+    return null
+  }else{
+      if(this.props.user.favoriteArtist.length > 0){
+        this.props.user.favoriteArtist.forEach(e => {
+          if(e._id === artistId){
+          }else{
+            return axios.put(`http://localhost:8000/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
+                  .then(() => this.getArtist())
+                  .catch(err => console.log(err));
+          }
+          })
+      }else if (this.props.user.favoriteArtist.length === 0){
+        axios.put(`http://localhost:8000/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
+          .then(() => this.getArtist())
+          .catch(err => console.log(err));
+      }
+    }
+}
   render() {
-    console.log('USER: ',this.props.user);
     return(
       this.state.flag ?
 

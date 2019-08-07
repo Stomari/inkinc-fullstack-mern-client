@@ -14,7 +14,7 @@ class Header extends Component {
       <div className="d-flex flex-column align-items-center ">
         <div className="container-custom d-flex justify-content-center">
           <figure class="snip1566">
-            {/* <img src={this.props.user.profileImg} alt="sq-sample14" /> */}
+            <img src={this.props.user.profileImg} alt="sq-sample14" />
             <figcaption><span>UPLOAD</span></figcaption>
             <a href="#"></a>
           </figure>
