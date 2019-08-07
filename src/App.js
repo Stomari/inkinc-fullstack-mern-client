@@ -30,8 +30,6 @@ class App extends Component {
     super(props)
     this.state = { loggedInUser: null };
     this.service = new AuthService();
-
-    console.log(process.env.REACT_APP_API_URL)
   }
 
   fetchUser(){
@@ -58,7 +56,6 @@ class App extends Component {
   
   render() {
     this.fetchUser()
-    console.log(this.state.loggedInUser);
     if(this.state.loggedInUser){
       return (
           <div className="App">

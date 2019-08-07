@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from '../user/Header';
 import Categories from './Categories';
 import axios from 'axios';
@@ -65,7 +65,7 @@ class ArtistPage extends Component {
       showCreateTattooForm: !this.state.showCreateTattooForm,
     })
   }
-  
+
   handleShowCreateFlash() {
     this.setState({
       showCreateFlashForm: !this.state.showCreateFlashForm,
@@ -74,7 +74,7 @@ class ArtistPage extends Component {
 
   handleDeleteFlash(event, id) {
     event.preventDefault();
-    axios.put(`${process.env.REACT_APP_API_URL}/api/remove-flash/${id}`, {}, {withCredentials: true})
+    axios.put(`${process.env.REACT_APP_API_URL}/api/remove-flash/${id}`, {}, { withCredentials: true })
       .then(() => {
         this.getArtist();
       })
@@ -83,52 +83,43 @@ class ArtistPage extends Component {
 
   handleDeleteTattoo(event, id) {
     event.preventDefault();
-    axios.put(`${process.env.REACT_APP_API_URL}/api/remove-tattoo/${id}`, {}, {withCredentials: true})
+    axios.put(`${process.env.REACT_APP_API_URL}/api/remove-tattoo/${id}`, {}, { withCredentials: true })
       .then(() => {
         this.getArtist();
       })
       .catch(err => console.log(err));
   }
 
-  // showChat = (event) => {
-  //   event.preventDefault()
-  //   socket.emit('SUBSCRIBE', {
-  //     user: this.props.user._id,
-  //     artist: this.props.match.params.id,
-  //   })
-  // }
-
   render() {
-    return(
+    return (
       this.state.flag ?
-      <div className="container">
-        {/* <Header user={this.props.user} artist={this.state.artist} /> */}
-        <Categories user={this.props.user} categories={this.state.categories} artist={this.state.artist} />
-        <Map user={this.props.user} artist={this.state.artist} />
-        <Flashes
-          user={this.props.user}
-          artist={this.state.artist}
-          categories={this.state.categories}
-          showForm={this.state.showCreateFlashForm}
-          handlerShowForm={() => this.handleShowCreateFlash()}
-          handleDeleteFlash={(e, id) => this.handleDeleteFlash(e, id)}
-          getArtist={() => this.getArtist()}
-        />
-        <ArtistGallery
-          user={this.props.user}
-          artist={this.state.artist}
-          categories={this.state.categories}
-          showForm={this.state.showCreateTattooForm}
-          handlerShowForm={() => this.handleShowCreateTattoo()}
-          handleDeleteTattoo={(e, id) => this.handleDeleteTattoo(e, id)}
-          getArtist={() => this.getArtist()}
-        />
+        <div className="container">
+          {/* <Header user={this.props.user} artist={this.state.artist} /> */}
+          <Categories user={this.props.user} categories={this.state.categories} artist={this.state.artist} />
+          <Map user={this.props.user} artist={this.state.artist} />
+          <Flashes
+            user={this.props.user}
+            artist={this.state.artist}
+            categories={this.state.categories}
+            showForm={this.state.showCreateFlashForm}
+            handlerShowForm={() => this.handleShowCreateFlash()}
+            handleDeleteFlash={(e, id) => this.handleDeleteFlash(e, id)}
+            getArtist={() => this.getArtist()}
+          />
+          <ArtistGallery
+            user={this.props.user}
+            artist={this.state.artist}
+            categories={this.state.categories}
+            showForm={this.state.showCreateTattooForm}
+            handlerShowForm={() => this.handleShowCreateTattoo()}
+            handleDeleteTattoo={(e, id) => this.handleDeleteTattoo(e, id)}
+            getArtist={() => this.getArtist()}
+          />
 
-        <button onClick={this.showChat}>CHAT</button>
-        <Chat1 user={this.props.user} artistId={this.props.match.params.id}/>
+          <Chat1 user={this.props.user} artistId={this.props.match.params.id} />
 
-      </div>
-      : null
+        </div>
+        : null
     )
   }
 }
