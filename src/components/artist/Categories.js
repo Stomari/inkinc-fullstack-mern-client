@@ -10,7 +10,8 @@ const Categories = (props) => {
             <label htmlFor={el.tag}>{el.tag}</label>
           </div>
         )
-      } else if (props.user._id === props.artist._id && !props.artist.category.includes(el)){
+      }
+      if (props.showAllCategories && props.user._id === props.artist._id && !props.artist.category.includes(el)){
         return (
           <div key={idx}>
             <input type="checkbox" id={el.tag} />

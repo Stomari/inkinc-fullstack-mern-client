@@ -51,7 +51,6 @@ class CreateTattooForm extends Component {
     if (this.state.image !== '') {
       axios.post(`${process.env.REACT_APP_API_URL}/api/add-tattoo`, this.state, {withCredentials: true})
       .then(() => {
-        console.log('XABLAU')
         this.setState({tag: '', image: '', category: []});
         this.fileInput.value = '';
         this.props.handlerShowForm();

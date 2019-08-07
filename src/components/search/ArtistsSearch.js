@@ -4,11 +4,10 @@ import axios from 'axios';
 const ArtistsSearch = (props) => {
 
   const favArtist = (artistId) => {
-    console.log('favoritou?')
     axios.put(`${process.env.REACT_APP_API_URL}/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
       .then(() => console.log('entrou na promise'))
-      .catch(err => console.log(err))
-;  }
+      .catch(err => console.log(err));
+  }
 
   return(
     <div className="artist-search-container">

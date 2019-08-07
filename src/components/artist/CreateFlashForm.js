@@ -66,8 +66,9 @@ class CreateFlashForm extends Component {
   }
     
   render() {
-    console.log(this.state);
+    console.log('DJSOIDHSAIUDSHDALKJ',this.state);
     return(
+      
       <div className="modal-wrapper">
         <span className="close-modal-btn" onClick={() => this.handleCloseModal()}></span>
         <form onSubmit={(event) => this.handleFormSubmit(event)} className="form-modal">

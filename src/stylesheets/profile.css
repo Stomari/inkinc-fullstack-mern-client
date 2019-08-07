@@ -178,3 +178,45 @@ color: white
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
+
+/* artist page */
+.about{
+  height: 20vh;
+}
+
+.about p{
+  width: 100%
+}
+
+.artist-info{
+  background-color: #666;
+}
+
+.style-info{
+  height: 20vh;
+  background-color: #666;
+}
+
+.map-info{
+  background-color: #666;
+
+}
+
+.blog .carousel-indicators {
+	left: 0;
+	top: auto;
+    bottom: -40px;
+
+}
+
+/* The colour of the indicators */
+.blog .carousel-indicators li {
+    background: #a3a3a3;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+}
+
+.blog .carousel-indicators .active {
+background: #707070;
+}

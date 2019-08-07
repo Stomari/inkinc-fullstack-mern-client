@@ -40,6 +40,7 @@ class Profile extends Component {
             
             <div className="col-lg-3 text-center profile-side-header mb-5">
               <Header user={this.props.user}/>
+              {console.log('REQ USER', this.props.user)}
               <FavoriteArtists id="artists" artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists}/>
             </div>
 
@@ -47,7 +48,7 @@ class Profile extends Component {
               <div className="d-flex justify-content-center">
                 <p className="row text-uppercase folder-header d-flex justify-content-center mb-5">
                  <h4>Tattoos you liked</h4>
-                  {/* <CreateFolder foldersInfo={() => this.getInfo()}/> */}
+                  <CreateFolder foldersInfo={() => this.getInfo()}/>
                 </p>
               </div>
               <Folder id="folder" foldersInfo={() => this.getInfo()} folders={this.state.folders}/>

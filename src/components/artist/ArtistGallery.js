@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import CreateTattooForm from './CreateTattooForm';
 
 class ArtistGallery extends Component {
   
@@ -23,11 +22,13 @@ class ArtistGallery extends Component {
     }
 
   render() {
+    console.log('user', this.props.user);
+    console.log('artist', this.props.artist);
+    
     return(
       <div>
         {this.props.artist.artistTattoo.length > 0 ? this.showTattoos() : null}
-        {this.props.user && (this.props.user._id === this.props.artist._id) &&  <button onClick={() => this.props.handlerShowForm()}>New Tattoo</button>}
-        {this.props.showForm && <CreateTattooForm {...this.props} />}
+        
       </div>   
     )
   }
