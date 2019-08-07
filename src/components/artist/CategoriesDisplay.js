@@ -1,14 +1,14 @@
 import React from 'react';
 
 const CategoriesDisplay = (props) => {
+  console.log(props);
   return(
-
     <div>
       <p className="text-uppercase"> Styles </p>
         {
-          props.state.category.map(e => {
+          props.category.map(e => {
             return(
-              <p> e.tag</p>
+              <p>{e}</p>
             )
           })
         }

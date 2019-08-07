@@ -29,7 +29,7 @@ class FavoriteArtists extends Component {
             let artistId = artist._id;
             return  <div>
                       <ul class="list-unstyled">
-                        <Link to={`/profile/artist/${artist._id}`}>
+                        <Link to={`/artists/${artist._id}`}>
                           <ArtistCard key={index} state={artist} deleteArtist={(artist) => this.deleteArtist(artistId)}/>
                         </Link>
                       </ul>

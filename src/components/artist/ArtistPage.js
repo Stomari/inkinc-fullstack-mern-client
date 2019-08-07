@@ -76,7 +76,6 @@ class ArtistPage extends Component {
   }
   
   handleShowCreateFlash() {
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAA', this.state.showCreateFlashForm)
     this.setState({
       showCreateFlashForm: !this.state.showCreateFlashForm,
     })
@@ -116,11 +115,10 @@ class ArtistPage extends Component {
   // }
   favArtist(artistId){
     axios.put(`http://localhost:8000/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
-      .then(() => console.log('entrou na promise'))
-      .catch(err => console.log(err));
   }
+
   render() {
-    console.log('USER: ',this.props.user);
+    console.log(this.state.categories);
     return(
       this.state.flag ?
 
@@ -155,16 +153,19 @@ class ArtistPage extends Component {
                   handleDeleteTattoo={(e, id) => this.handleDeleteTattoo(e, id)}
                   getArtist={() => this.getArtist()}
                 />
-                <EditArtist
-                handleShowEditProfile={() => this.handleShowEditProfile()}
-                showEditProfileForm={this.state.showEditArtistForm}
-                getArtist={() => this.getArtist()}
-                state={this.state}
-                categories={this.state.categories}
-                showAllCategories={true}
-                user={this.props.user}
-                artist={this.state.artist}
-              />
+                {
+                  this.props.user && (this.props.user._id === this.state.artist._id) &&
+                  <EditArtist
+                    handleShowEditProfile={() => this.handleShowEditProfile()}
+                    showEditProfileForm={this.state.showEditArtistForm}
+                    getArtist={() => this.getArtist()}
+                    state={this.state}
+                    categories={this.state.categories}
+                    showAllCategories={true}
+                    user={this.props.user}
+                    artist={this.state.artist}
+                  />
+                }
               </div>
               <div className="row">
               <button onClick={(id) => this.favArtist(this.state.artist._id)}>Fav</button>
@@ -174,7 +175,7 @@ class ArtistPage extends Component {
               </div>
 
               <div className="style-info">
-                <CategoriesDisplay state={this.state.artist}/>
+                <CategoriesDisplay category={this.state.artist.category}/>
               </div>
 
               <div className="map-info">
