@@ -12,10 +12,21 @@ class EditArtist extends Component {
   }
 
   handleChange(event) {
-    const {name, value} = event.target;
+    let {name, value} = event.target;
     this.setState({
       [name]: value,
     })
+  }
+
+  handleChangeCheckbox(event) {
+    const {value} = event.target;
+    let newCategory = [...this.state.category];
+    if (newCategory.some(cat => cat === value)) {
+      newCategory = newCategory.filter(el => el !== value)
+    } else {
+      newCategory.push(value);
+    }
+    this.setState({category: newCategory});
   }
 
   handleCloseModal() {
@@ -39,6 +50,7 @@ class EditArtist extends Component {
   }
 
   render() {
+    console.log('>>> ', this.state.category);
     return(
       <div>
         <button onClick={() => this.props.handleShowEditProfile()}>Edit Profile</button>
@@ -52,6 +64,18 @@ class EditArtist extends Component {
             <label>About:</label>
             <input type="text" name="about" value={this.state.about} onChange={ (event) => this.handleChange(event)}/>
             <label>Category:</label>
+            {
+              this.props.categories.map((el, idx) => {
+                let check = false;
+                if (this.state.category.some(cat => cat === el.tag)) check = true;
+                return (
+                  <div key={idx}>
+                    <input id={el.tag} type="checkbox" name="category" value={el.tag} checked={check} onChange={ (event) => this.handleChangeCheckbox(event)} />
+                    <label htmlFor={el.tag}>{el.tag}</label>
+                  </div>
+                )
+            })
+            }
             <input type="submit" value="Submit" />
   
           </form>

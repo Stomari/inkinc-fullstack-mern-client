@@ -11,7 +11,7 @@ class FavoriteArtists extends Component {
   }
 
   deleteArtist(artist){
-    axios.put(`http://localhost:8000/api/favorite-artist-remove/${artist}`, {}, { withCredentials: true })
+    axios.put(`${process.env.REACT_APP_API_URL}/api/favorite-artist-remove/${artist}`, {}, { withCredentials: true })
       .then(() => {
         this.props.artistInfo()
       })

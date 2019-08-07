@@ -24,8 +24,12 @@ class CreateFlashForm extends Component {
 
   handleChangeCheckbox(event) {
     const {value} = event.target;
-    const newCategory = [...this.state.category];
-    newCategory.push(value);
+    let newCategory = [...this.state.category];
+    if (newCategory.includes(value)) {
+      newCategory = newCategory.filter(el => el !== value)
+    } else {
+      newCategory.push(value);
+    }
     this.setState({category: newCategory});
   }
 
@@ -38,7 +42,7 @@ class CreateFlashForm extends Component {
     // imageUrl => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new thing in '/api/things/create' POST route
     uploadData.append("image", e.target.files[0]);
-    axios.post('http://localhost:8000/api/upload', uploadData, {withCredentials: true})
+    axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData, {withCredentials: true})
       .then(response => {
           this.setState({ image: response.data.secure_url });
         })
@@ -49,7 +53,7 @@ class CreateFlashForm extends Component {
   handleFormSubmit(e) {
       e.preventDefault();
       if (this.state.image !== '') {
-        axios.post('http://localhost:8000/api/add-flash', this.state, {withCredentials: true})
+        axios.post(`${process.env.REACT_APP_API_URL}/api/add-flash`, this.state, {withCredentials: true})
         .then(() => {
           this.setState({tag: '', image: '', category: [], price: ''});
           this.fileInput.value = '';
