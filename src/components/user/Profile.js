@@ -40,7 +40,6 @@ class Profile extends Component {
             
             <div className="col-lg-3 text-center profile-side-header mb-5">
               <Header user={this.props.user}/>
-              {console.log('REQ USER', this.props.user)}
               <FavoriteArtists id="artists" artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists}/>
             </div>
 
