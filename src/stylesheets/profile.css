@@ -178,3 +178,41 @@ color: white
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
+
+/* artist page */
+.about{
+  height: 20vh;
+}
+
+.about p{
+  width: 100%
+}
+
+.artist-info{
+  background-color: #666;
+}
+
+.style-info{
+  height: 20vh;
+  background-color: #666;
+}
+
+.map-info{
+  background-color: #666;
+
+}
+
+a.card-art:hover{
+  text-decoration:none;
+}
+.fav-art-card img{
+  width: 18%;
+}
+
+.fav-art-card{
+  color: white;
+}
+
+.modal-color{
+  color: black;
+}

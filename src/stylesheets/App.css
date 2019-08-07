@@ -44,6 +44,7 @@ html{
   justify-content: center;
   align-items: center;
   top: 0;
+  left: 0;
   height: 100vh;
   width: 100vw;
   z-index: 2;
@@ -235,7 +236,7 @@ html{
 .search-toggle label:hover {
   background:#FF4D4E;
 }
-
+/* 
 footer {
   height: 10rem;
   background: #1d1d1d;
@@ -245,7 +246,7 @@ footer {
   width: 100%;
   margin-top: 5rem;
   color: #e1e1e1
-}
+} */
 
 .artist-search-container {
   display: flex;

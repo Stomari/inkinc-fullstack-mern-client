@@ -24,8 +24,12 @@ class CreateFlashForm extends Component {
 
   handleChangeCheckbox(event) {
     const {value} = event.target;
-    const newCategory = [...this.state.category];
-    newCategory.push(value);
+    let newCategory = [...this.state.category];
+    if (newCategory.includes(value)) {
+      newCategory = newCategory.filter(el => el !== value)
+    } else {
+      newCategory.push(value);
+    }
     this.setState({category: newCategory});
   }
 
@@ -66,8 +70,9 @@ class CreateFlashForm extends Component {
   }
     
   render() {
-    console.log(this.state);
+    console.log('DJSOIDHSAIUDSHDALKJ',this.state);
     return(
+      
       <div className="modal-wrapper">
         <span className="close-modal-btn" onClick={() => this.handleCloseModal()}></span>
         <form onSubmit={(event) => this.handleFormSubmit(event)} className="form-modal">

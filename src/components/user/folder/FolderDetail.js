@@ -17,10 +17,9 @@ class FolderDetail extends Component {
     axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
     .then((response) => {
       let folderData = response.data.folder;
-
       let filter = folderData.filter((elem) => {
         return elem._id.includes(this.props.match.params.id)
-       })[0]
+       })[0];
       this.setState({
         folder: filter
       })
@@ -32,15 +31,15 @@ class FolderDetail extends Component {
   render(){
        if(this.state.folder.image === undefined){
         return(
-         <p> </p>
+         <p>TESTE</p>
         )
        } else {
          return (
           <div>
            <p> {this.state.folder.name}</p>
           { 
-            this.state.folder.image.map((image, index) => {
-            return <FolderImage key={index} image={image}/>
+            this.state.folder.image.map((img, index) => {
+            return <FolderImage key={index} image={img}/>
             })
           }
          </div>

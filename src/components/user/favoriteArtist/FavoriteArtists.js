@@ -11,7 +11,7 @@ class FavoriteArtists extends Component {
   }
 
   deleteArtist(artist){
-    axios.delete(`${process.env.REACT_APP_API_URL}/api/favorite-artist-remove/${artist}`, { withCredentials: true })
+    axios.put(`${process.env.REACT_APP_API_URL}/api/favorite-artist-remove/${artist}`, {}, { withCredentials: true })
       .then(() => {
         this.props.artistInfo()
       })
@@ -28,10 +28,13 @@ class FavoriteArtists extends Component {
           this.props.artists.map((artist, index) => {
             let artistId = artist._id;
             return  <div>
-                      <ul class="list-unstyled">
-                        <Link to={`/profile/artist/${artist._id}`}>
-                          <ArtistCard key={index} state={artist} deleteArtist={(artist) => this.deleteArtist(artistId)}/>
-                        </Link>
+                      <ul className="list-unstyled">
+                        <div className="row">
+                          <Link className="card-art col-lg-10" to={`/profile/artist/${artist._id}`}>
+                            <ArtistCard key={index} state={artist} deleteArtist={(artist) => this.deleteArtist(artistId)}/>
+                          </Link>
+                          <button className="col-lg-1" onClick={(artist) => this.deleteArtist(artistId)}> Del </button>
+                        </div>
                       </ul>
                     </div>
           })

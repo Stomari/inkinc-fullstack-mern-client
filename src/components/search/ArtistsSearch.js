@@ -4,11 +4,10 @@ import axios from 'axios';
 const ArtistsSearch = (props) => {
 
   const favArtist = (artistId) => {
-    console.log('favoritou?')
     axios.put(`${process.env.REACT_APP_API_URL}/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
       .then(() => console.log('entrou na promise'))
-      .catch(err => console.log(err))
-;  }
+      .catch(err => console.log(err));
+  }
 
   return(
     <div className="artist-search-container">
@@ -18,7 +17,7 @@ const ArtistsSearch = (props) => {
             <div key={idx} className="artist-search-card">
               <div className="artist-search-info">
                 <div className="artist-search-profile">
-                  <img className="artist-search-profile-picture" src={el.image} alt={el.name + ' photo'}/>
+                  <img className="artist-search-profile-picture" src={el.profileImg} width={60} alt={el.name + ' photo'}/>
                   <h4>{el.name}</h4>
                 </div>
                 {el.category.map((cat, idx) => <p key={idx}>{cat.tag}</p>)}

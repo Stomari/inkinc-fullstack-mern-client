@@ -22,11 +22,13 @@ class SearchPage extends Component {
       artistsSearch: false,
       openedImageSave: false,
       imageToSaveId: '',
+      shownTattoo: '',
     }
   }
 
   componentDidMount() {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/categories`)
+
+    axios.get(`${process.env.REACT_APP_API_URL}/api/categories`, {withCredentials: true})
       .then(response => {
         const categories = response.data;
         this.setState({
@@ -37,14 +39,16 @@ class SearchPage extends Component {
 
       let responseTattoos = '';
       let responseArtists = '';
-      axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo`)
+
+      axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo`, {withCredentials: true})
       .then(response => {
         responseTattoos = response.data;
         this.setState({
           resultsTattoos: responseTattoos,
         })
 
-        axios.get(`${process.env.REACT_APP_API_URL}/api/artists`)
+
+        axios.get(`${process.env.REACT_APP_API_URL}/api/artists`, {withCredentials: true})
         .then(response => {
           responseArtists = response.data;
           this.setState({
@@ -131,11 +135,7 @@ class SearchPage extends Component {
 
   openedImageSaveHandler(event, i) {
     event.preventDefault();
-    const idx = !this.state.openedImageSave ? i : '';
-    this.setState({
-      openedImageSave: !this.state.openedImageSave,
-      imageToSaveId: idx,
-    })
+    this.getSingleTattoo(i);
   }
 
   chooseCategories(event) {
@@ -162,8 +162,33 @@ class SearchPage extends Component {
   handleCloseModal() {
     this.setState({
       openedImageSave: false,
-      imageToSaveId: ''
+      imageToSaveId: '',
+      shownTattoo: '',
     })
+  }
+
+  getSingleTattoo(id) {
+    axios.get(`http://localhost:8000/api/tattoo/${id}`, {withCredentials: true})
+      .then(response => {
+        const tattoo = response.data;
+        const idx = !this.state.openedImageSave ? id : ''
+        this.setState({
+          openedImageSave: !this.state.openedImageSave,
+          imageToSaveId: idx,
+          shownTattoo: tattoo
+        })
+      })
+      .catch(err => console.log(err));
+  }
+
+  addToFolder(id) {
+    const tattooId = this.state.shownTattoo;
+    const folderId = id;
+    axios.post('http://localhost:8000/api/add-tattoo-folder', { tattooId, folderId }, {withCredentials: true})
+      .then(() =>  {
+        this.handleCloseModal();
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -196,17 +221,12 @@ class SearchPage extends Component {
         {
           this.state.imageToSaveId !== '' &&
           <div className="modal-wrapper">
+            {console.log('USER', this.props.user)}
             <span className="close-modal-btn" onClick={() => this.handleCloseModal()}></span>
-            <form className="form-modal">
-              <label>Tags:</label>
-              <input type="text" name="tag" value={this.state.tag} placeholder="Separate tags by comma (ex.: skull, fish, triangle)" onChange={ (event) => this.handleChange(event)}/>
-              <label>Category:</label>
-              <label>Image:</label>        
-              <input type="file" name="image" onChange={(e) => this.handleFileUpload(e)} ref={ref=> this.fileInput = ref} />
-              {this.state.image !== '' && <img src={this.state.image} alt='upload' width="200" />}
-              <input type="submit" value="Submit" />
-
-            </form>
+            <div className="form-modal">
+              {this.state.shownTattoo !== '' && <img src={this.state.shownTattoo.image} width="300" alt={this.state.shownTattoo.tag.join(', ')} />}
+              {this.props.user && this.props.user.folder && this.props.user.folder.map((el, idx) => <button key={idx} onClick={(id) => this.addToFolder(el._id)} >{el.name}</button>)}
+            </div>
             <div className="modal-bg" onClick={() => this.handleCloseModal()}></div>
           </div>
         }
