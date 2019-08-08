@@ -136,7 +136,6 @@ class SearchPage extends Component {
   // }
 
   openedImageSaveHandler(event, id, modal) {
-    console.log(modal)
     event.preventDefault();
     axios.get(`http://localhost:8000/api/tattoo/${id}`, {withCredentials: true})
     .then(response => {
@@ -194,16 +193,24 @@ class SearchPage extends Component {
   addToFolder(id) {
     const tattooId = this.state.shownTattoo;
     const folderId = id;
-    axios.post('http://localhost:8000/api/add-tattoo-folder', { tattooId, folderId }, {withCredentials: true})
-      .then(() =>  {
-        this.handleCloseModal();
-      })
-      .catch(err => console.log(err));
+    console.log('ID', tattooId._id);
+    const folder = this.props.user.folder.find(el => el._id === id);
+    console.log(folder);
+    console.log('FOLDER IMAGES?', folder.image);
+    console.log('TATTOID', tattooId._id);
+    console.log('INCRUI? ', folder.image.includes(tattooId._id))
+    if (!folder.image.includes(tattooId._id)) {
+      axios.post('http://localhost:8000/api/add-tattoo-folder', { tattooId, folderId }, {withCredentials: true})
+        .then(() =>  {
+          this.handleCloseModal();
+        })
+        .catch(err => console.log(err));
+    }
   }
 
  
   render() {
-    console.log('AS', this.state)
+    console.log('AS', this.props)
     return(
       <Fragment>
         <div className="container">
