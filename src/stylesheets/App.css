@@ -223,10 +223,17 @@ html{
 }
 
 .search-bar input {
-  width: 100%;
+  width: 80vh;
   padding: .5rem 1.5rem;
-  border-radius: .5rem;
-  border: none;
+  border-top: 0px;
+  border-left: 0px;
+
+}
+
+.search-space{
+  background-color: white;
+  border-bottom: 2px solid red;
+
 }
 
 .search-toggle {
