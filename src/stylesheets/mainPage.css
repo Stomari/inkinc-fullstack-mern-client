@@ -4,10 +4,10 @@
 }
 
 .main-custom{
-  background-image: url('/images/tattoo-arm.jpeg');
+  background-image: url('/images/art-artist-client-1304468.jpg');
   background-size: cover;
   color:white;
-  height: 90vh;
+  height: 100vh;
   margin-bottom: 0 !important;
 }
 
@@ -23,12 +23,13 @@
 }
 
 .home-img{
-  width: 80% !important;
+  width: 60% !important;
 }
 
 .about-custom{
-  background-color:#212121;
-  padding: 5%;
+  background-color:black;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .card-height{
@@ -36,11 +37,14 @@
 }
 
 .card-custom{
-  background-color: #212121 !important;
+  background-color: black !important;
   padding: 3%;
   border: 0px !important;
 }
 
+.card-body-custom{
+  padding-top: 30%;
+}
 .footer{
   background-color: black;
   color: grey;

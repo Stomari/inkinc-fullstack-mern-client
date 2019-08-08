@@ -9,7 +9,8 @@ import FavoriteArtists from './favoriteArtist/FavoriteArtists';
 
 class Profile extends Component {
   constructor(props){
-    super(props);
+    super(props)
+
     this.state = {
       folders: [],
       favoriteArtists: []
@@ -20,10 +21,12 @@ class Profile extends Component {
     axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
     .then((response) => {
       let data = response.data;
+      console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', this.props)
       this.setState({
         folders: data.folder,
         favoriteArtists: data.favoriteArtist
       })
+      this.props.getUser(data)
     })
     .catch(err => console.log(err));
   }
