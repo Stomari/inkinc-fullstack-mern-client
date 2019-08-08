@@ -10,7 +10,7 @@ const EditArtist = (props) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    axios.put('http://localhost:8000/api/edit-artist', props.state, {withCredentials: true})
+    axios.put(`${process.env.REACT_APP_API_URL}/api/edit-artist`, props.state, {withCredentials: true})
       .then(() => {
         props.getArtist();
         props.handleShowEditProfile();
