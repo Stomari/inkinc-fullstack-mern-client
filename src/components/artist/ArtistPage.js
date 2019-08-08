@@ -272,7 +272,7 @@ handleShowFollow(id){
 
                 <h5 className="text-uppercase text-center">Flashes</h5>
               {/* <div className="row"> */}
-              <div className="col-lg-12">
+              <div className="col-lg-12 d-flex flex-wrap">
 
                 <Flashes
                   user={this.props.user}
