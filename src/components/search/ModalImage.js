@@ -8,28 +8,29 @@ const ModalImage = (props) => {
       <span className="close-modal-btn" onClick={() => props.handleCloseModal()}></span>
         <div className="form-modal">
           <div className="row">
-          <div className="col-lg-7">
+          <div className="col-lg-8">
             <img src={props.shownTattoo.image} className="modal-image" alt="..."/>
           </div> 
-          <div className="col-lg-5">
-            <div className="row">
-              <img src={props.shownTattoo.artist.profileImg} alt="artist"/>
-              <p>{props.shownTattoo.artist.name}</p>
+          <div className="col-lg-4 artist-modal-info flex-column">
+            <h6 className="text-uppercase text-center">Done By</h6>
+            <div className="row align-items-center modal-content-info">
+              <img className="rounded-circle artist-modal-img" src={props.shownTattoo.artist.profileImg} alt="artist"/>
+              <p className="pl-3">{props.shownTattoo.artist.name}</p>
             </div>
             <div>
               <div>
               {
                 props.shownTattoo.artist.category.map(e => {
-                  return <p> #{e.tag} </p>
+                  return <p> {e.tag} </p>
                 })
               }
               </div>
             </div>
-            <div>
+            <div className="text-center link-artist">
               <Link to={`/artists/${ props.shownTattoo.artist._id}`}>
-              See more of this Artist
+              See more of this artist!
               </Link>
-              <CreateFolder/>
+              {/* <CreateFolder/> */}
 
             </div>
           </div>

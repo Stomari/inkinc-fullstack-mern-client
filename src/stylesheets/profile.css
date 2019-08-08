@@ -293,9 +293,32 @@ a.card-art:hover{
 .modal-color{
   color: black;
 }
-.carousel-inner .active.left { left: -33%; }
-.carousel-inner .next        { left:  33%; }
-.carousel-control.left,.carousel-control.right {background-image:none;}
+
+@media only screen and (max-width: 481px) {
+  .profile-custom{
+    color: white;
+    padding-top: 5%;
+    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/images/img-back.png");
+    background-repeat: no-repeat;
+    background-size: 100% 200px;
+  }
+}
+@media only screen and (min-width: 481px) and (max-width: 1400px) {
+  .profile-custom{
+    color: white;
+    padding-top: 5%;
+    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/images/img-back.png");
+    background-repeat: no-repeat;
+    background-size: 100% 350px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .edit{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
 
 .flashes-container {
   display: flex;
@@ -336,3 +359,4 @@ a.card-art:hover{
   flex-direction: column;
   justify-content: space-around;
 }
+

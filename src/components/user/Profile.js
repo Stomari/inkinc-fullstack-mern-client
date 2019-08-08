@@ -72,7 +72,7 @@ class Profile extends Component {
 
             <div className="col-lg-9 p-0 profile-side-main">
               <div className="d-flex justify-content-center">
-                <div className="row text-uppercase folder-header d-flex justify-content-center mb-5 text-center">
+                <div className="row text-uppercase folder-header d-flex justify-content-center mb-5 pb-3 text-center">
                  <h4 className="mr-3">Tattoos you liked</h4>
                   <CreateFolder foldersInfo={() => this.getInfo()}/>
                 </div>

@@ -20,6 +20,49 @@
   height: 2rem;
   padding-left: 10px;
   padding-right: 10px;
-
-
 }
+
+.artist-modal-info h6{
+  border-bottom: 1px solid white;
+  padding-bottom: 1rem;
+}
+
+.modal-content-info{
+  padding-top: 1rem;
+  padding-left: 10px;
+}
+.artist-modal-img {
+  object-fit: cover;
+  width: 4rem;
+  height: 4rem;
+}
+
+.link-artist a{
+  text-decoration: none;
+  color: white;
+}
+.link-artist a:hover{
+  text-decoration: none;
+  color: red;
+}
+
+
+@media only screen and (max-width: 481px) {
+  .search-page{
+    color: white;
+    padding-top: 5%;
+    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/images/img-back.png");
+    background-repeat: no-repeat;
+    background-size: 100% 200px;
+  }
+}
+@media only screen and (min-width: 481px) and (max-width: 1400px) {
+  .search-page{
+    color: white;
+    padding-top: 5%;
+    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/images/img-back.png");
+    background-repeat: no-repeat;
+    background-size: 100% 350px;
+  }
+}
+

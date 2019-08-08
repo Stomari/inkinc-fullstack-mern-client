@@ -219,7 +219,19 @@ class SearchPage extends Component {
     return(
       <Fragment>
         <div className="container-fluid search-page">
-        <div className="container ">
+        <div className="container">
+          {
+            this.state.artistsSearch ? 
+              <div className="d-flex justify-content-center pb-4">
+                <h3 className="text-uppercase">Artists</h3> 
+              </div>
+            : 
+              <div className="d-flex justify-content-center pb-4">
+                <h3 className="text-uppercase">Tattoos</h3>
+              </div>
+
+          }
+
           {/* <ArtistsTattoosToggle artistsSearch={this.state.artistsSearch} toggleHandler={() => this.toggleHandler()} /> */}
           <SearchBar state={this.state} searchHandler={(event) => this.searchHandler(event)} />
           <Categories categories={this.state.categories} chooseCategories={(e) => this.chooseCategories(e)} />

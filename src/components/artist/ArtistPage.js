@@ -230,7 +230,7 @@ handleShowFollow(id){
                 {this.state.showCreateFlashForm && <CreateFlashForm getArtist={() => this.getArtist()} handlerShowForm={() => this.handleShowCreateFlash()} categories={this.state.categories}/>}
                 </div>
 
-                <div className="col-lg-2">
+                <div className="col-lg-2 edit">
 
                 {
                   this.props.user && (this.props.user._id === this.state.artist._id) &&

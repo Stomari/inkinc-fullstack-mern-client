@@ -73,7 +73,7 @@ class TattoosSearch extends Component {
         loadItems={() => this.loadMore()}
         scrollContainer={() => window}
         // columnWidth={260}
-        // minCols={1}
+        minCols={1}
         // virtualize
       />
     </div>
