@@ -23,7 +23,7 @@ class FavoriteArtists extends Component {
   render(){
     return(
       <div className="fav-custom">
-        <p className="text-uppercase pt-3">Artists you liked</p>
+        <h6 className="text-uppercase pt-3 pb-3">Artists you liked</h6>
         {
           this.props.artists.map((artist, index) => {
             let artistId = artist._id;

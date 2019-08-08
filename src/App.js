@@ -69,7 +69,7 @@ class App extends Component {
               <Route exact path='/search/tattoos' key="search-tattoos" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={false} />} />
 
               {/* Profile Pages */}
-              <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} component={Profile} getUser={(obj) => this.getTheUser(obj)} /> 
+              <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} getUser={(obj) => this.getTheUser(obj)} component={Profile} /> 
               <ProtectedRoute exact path='/profile/folder/:id' user={this.state.loggedInUser} component={FolderDetail} getUser={(obj) => this.getTheUser(obj)} /> 
             
             </Switch>
