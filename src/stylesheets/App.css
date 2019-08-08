@@ -275,3 +275,14 @@ html{
 .profile-image {
   object-fit: cover;
 }
+
+.folder-cover {
+  width: 100%;
+  height: 12rem;
+}
+
+.folder-cover img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

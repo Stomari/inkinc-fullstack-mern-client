@@ -16,7 +16,7 @@ class Folder extends Component {
             let folderId = folder._id;
               return  <div key={index}>
                         <div key={index} className="container-custom2 mb-3">
-                          <FolderCard getInfo={this.props.foldersInfo} key={index} deleteFolder={(folder) => this.deleteFolder(folderId)} state={folder}/>
+                          <FolderCard getInfo={this.props.foldersInfo} key={index} deleteFolder={(folder) => this.deleteFolder(folderId)} state={folder} user={this.props.user} idx={index}/>
                         </div>
                       </div>
           })

@@ -193,19 +193,11 @@ class SearchPage extends Component {
   addToFolder(id) {
     const tattooId = this.state.shownTattoo;
     const folderId = id;
-    console.log('ID', tattooId._id);
-    const folder = this.props.user.folder.find(el => el._id === id);
-    console.log(folder);
-    console.log('FOLDER IMAGES?', folder.image);
-    console.log('TATTOID', tattooId._id);
-    console.log('INCRUI? ', folder.image.includes(tattooId._id))
-    if (!folder.image.includes(tattooId._id)) {
-      axios.post('http://localhost:8000/api/add-tattoo-folder', { tattooId, folderId }, {withCredentials: true})
-        .then(() =>  {
-          this.handleCloseModal();
-        })
-        .catch(err => console.log(err));
-    }
+    axios.post('http://localhost:8000/api/add-tattoo-folder', { tattooId, folderId }, {withCredentials: true})
+      .then(() =>  {
+        this.handleCloseModal();
+      })
+      .catch(err => console.log(err));
   }
 
  
