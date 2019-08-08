@@ -5,6 +5,7 @@ import './stylesheets/mainPage.css';
 import './stylesheets/navbar.css';
 import './stylesheets/auth.css';
 import './stylesheets/profile.css';
+import './stylesheets/chat.css';
 import AuthService from './components/auth/auth-service';
 import { Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './components/auth/protected-routes'
