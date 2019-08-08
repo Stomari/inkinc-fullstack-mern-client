@@ -24,7 +24,7 @@ class Login extends Component {
         this.setState({ email: "", password: "", redirect: true });
         this.props.getUser(response)
       })
-      .catch(error => console.log(error))
+      .catch(error => this.setState({ message: error.response.data.message }))
 
   }
 
