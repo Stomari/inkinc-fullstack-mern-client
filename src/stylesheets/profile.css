@@ -11,6 +11,12 @@
   border-bottom: 1px solid white;
 }
 
+.trash-ico{
+  height: 1.7rem;
+}
+.fav-custom h6{
+  border-bottom: 1px solid white;
+}
 .card-prof-custom{
   background-color: #d5d1d5 !important;
   padding: 5px;
@@ -34,9 +40,9 @@
   }
 
 .fav-custom{
-  background-color: #d5d1d5;
   padding: 10px;
-  color: black;
+  color: white;
+  width: 100%;
 }
 
 .fav-custom h6{
@@ -84,10 +90,6 @@
   text-align: center;
 }
 
-.trash-ico{
-  width: 70%;
-  cursor: pointer;
-}
 
 .add-ico{
   width:2rem;
@@ -95,6 +97,10 @@
 
 .profile-side-header{
   padding: 0 !important;
+}
+
+.profile-side-main h4{
+font-weight: 700;
 }
 
 /* profile picture test */
@@ -203,43 +209,85 @@
 }
 
 /* artist page */
-.about{
-  height: 20vh;
+
+.art-div-info{
+  width: 100%;
+
 }
 
-.about p{
-  width: 100%
+.about-sec p{
+  padding: 2rem 1rem;
+
 }
 
-.artist-info{
-  background-color: #666;
+.about-sec h6{
+  padding-bottom: 1rem;
+  border-bottom: 1px solid white
 }
 
-.style-info{
-  height: 20vh;
-  background-color: #666;
+/* .artist-info{
+} */
+
+.style-content{
+  padding: 2rem 2rem;
+}
+
+.style-content p{
+  font-style: italic;
+}
+
+.hashtag{
+  color: rgba(97, 96, 96, 0.726)
+}
+
+.styles-info h6{
+  padding-bottom: 1rem;
+  border-bottom: 1px solid white
 }
 
 .map-info{
-  background-color: #666;
-}
+  padding: 2rem 0;
 
+}
+.map-info h6{
+  padding-bottom: 1rem;
+  border-bottom: 1px solid white
+}
 a.card-art:hover{
   text-decoration:none;
 }
 .fav-art-card img{
   object-fit: cover;
-  width: 5rem;
-  height: 5rem;
+  width: 4.5rem;
+  height: 4.5rem;
 }
 
 .fav-art-card{
-  min-width: 33vh;
-  color:black;
+  color:white;
+  padding-bottom: 1rem;
+}
+.art-div{
+  border-bottom: 1px solid grey;
 }
 
-.btn-artist-card img{
-width: 100%;
+.edit-ico{
+  height: 1.7rem;
+  cursor: pointer
+}
+
+.btn-artist{
+  background-color: rgba(212, 198, 198, 0.486);
+  border: 1px solid black;
+  color: white;
+  padding: 6px 15px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  margin-left: 1rem;
+}
+.btn-artist-del{
+  height: 1.2rem;
+  cursor: pointer;
+
 }
 .modal-color{
   color: black;

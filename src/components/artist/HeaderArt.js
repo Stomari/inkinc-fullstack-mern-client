@@ -5,9 +5,9 @@ const HeaderArt = (props) => {
   classWrapper = props.user._id === props.artist._id ? 'upload-image-container' : 'not-user'
   return (
     <div className={`d-flex flex-column align-items-center ${classWrapper}`}>
-      <div className="container-custom d-flex justify-content-center">
-        <label htmlFor="upload-image">
+      <div className="container-custom d-flex">
           <figure className="snip1566">
+        <label htmlFor="upload-image">
             {
               props.image !== '' ?
               <img src={props.image} alt="sq-sample14" className="profile-image" />
@@ -20,8 +20,8 @@ const HeaderArt = (props) => {
                 <span>UPLOAD</span>
               </figcaption>
             }
-          </figure>
         </label>
+          </figure>
       </div>
         <h2 className="pt-4 pb-4 text-uppercase">{props.artist.name}</h2>
     </div>

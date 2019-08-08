@@ -35,16 +35,16 @@ class CreateFolder extends Component {
         <img src="/images/plus-circle-solid.svg" className="btn-create" data-toggle="modal" data-target="#exampleModal" alt="create folder icon - plus sign" />
         <div className="modal fade modal-color" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
-            <div className="modal-content">
+            <div className="modal-content modal-custom">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Add Folder</h5>
+                <h5 className="modal-title" id="exampleModalLabel">Create Folder</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                  <span className="close-custom" aria-hidden="true">&times;</span>
                 </button>
               </div>
               <form>
                 <div className="modal-body">
-                  <p> Folder Name </p>
+                  <p>Folder Name:</p>
                   <input type='text' name='name' value={this.state.name} onChange={event => this.handleChange(event)} />
                 </div>
                 {
@@ -54,7 +54,7 @@ class CreateFolder extends Component {
                     null
                 }
                 <div className="modal-footer">
-                  <button type="submit" className="btn btn-secondary" onClick={event => this.handleFormSubmit(event)}>CREATE</button>
+                  <button type="submit" className="btn-submit align-self-center mt-4" onClick={event => this.handleFormSubmit(event)}>CREATE</button>
                 </div>
               </form>
             </div>

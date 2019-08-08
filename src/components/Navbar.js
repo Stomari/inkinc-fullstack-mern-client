@@ -65,7 +65,12 @@ class Navbar extends Component {
                 <Link to={'/search/tattoos'} className="nav-link text-uppercase">Get inspiration</Link>
               </li>
               <li className="nav-responsive-log nav-item nav-item-custom">
-                <Link to='/profile' className="nav-link text-uppercase">Profile</Link>
+                {
+                  this.state.loggedInUser.role === 'User' ?
+                    <Link to={'/profile'} className="text-uppercase">Profile</Link>
+                  :
+                    <Link to={`/artists/${this.state.loggedInUser._id}`} className="text-uppercase">Profile</Link>
+                }
               </li>
               <li className="nav-responsive-log nav-item nav-item-custom">
                 <Link to='/' className="nav-link text-uppercase" onClick={() => this.logoutUser()}> Logout </Link>
