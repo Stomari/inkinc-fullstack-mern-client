@@ -76,7 +76,6 @@ class Chat extends React.Component {
     axios.get(`${process.env.REACT_APP_API_URL}/api/has-chat-artist/${id}`, { withCredentials: true })
       .then(response => {
         if (response.data[0] !== undefined) {
-          console.log(response)
           this.setState({ chat: response.data[0], messages: [...response.data[0].historic], chatFlag: true })
           this.joinRoom(response.data[0]._id)
         }
@@ -111,9 +110,23 @@ class Chat extends React.Component {
         <div>
           {
             this.state.chat ?
-              <button className="start-chat" onClick={() => this.handleChat()}>Chat</button>
+              <button className="start-chat" onClick={() => this.handleChat()}>
+                {
+                  !this.state.chatFlag ?
+                    <img src="/images/chat.svg" alt="chat icon" />
+                    :
+                    <span style={{ color: "white", fontSize: "200%" }} aria-hidden="true">&times;</span>
+                }
+              </button>
               :
-              <button className="start-chat" onClick={(event) => this.createRoom(event)}>Chat</button>
+              <button className="start-chat" onClick={(event) => this.createRoom(event)}>
+                {
+                  !this.state.chatFlag ?
+                    <img src="/images/chat.svg" alt="chat icon" />
+                    :
+                    <span style={{ color: "white", fontSize: "200%" }} aria-hidden="true">&times;</span>
+                }
+              </button>
           }
           {
             this.state.chatFlag ?
@@ -126,7 +139,7 @@ class Chat extends React.Component {
                 <ScrollToBottom className="messages-container">
                   {this.state.messages.map((message, i) => {
                     return (
-                      <div className="messages" style={{ color: "black" }} key={i}><strong>{message.author}:</strong> {message.message}</div>
+                      <div className="messages" style={{ color: "black" }} key={i}><p><strong>{message.author}:</strong> {message.message}</p></div>
                     )
                   })}
                 </ScrollToBottom>
@@ -168,7 +181,14 @@ class Chat extends React.Component {
               :
               null
           }
-          <button className="start-chat" onClick={() => this.showUsersChat()}>Chat</button>
+          <button className="start-chat" onClick={() => this.showUsersChat()}>
+            {
+              !this.state.chatFlag ?
+                <img src="/images/chat.svg" alt="chat icon" />
+                :
+                <span style={{ color: "white", fontSize: "200%" }} aria-hidden="true">&times;</span>
+            }
+          </button>
           {
             this.state.chatFlag ?
               <div className="chat">

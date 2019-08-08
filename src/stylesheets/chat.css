@@ -1,17 +1,17 @@
 .chat {
   position: fixed;
-  bottom: 80px;
-  right: 20px;
+  bottom: 100px;
+  right: 50px;
   background-color: white;
-  width: 500px;
-  height: 400px;
-  border-radius: 3%;
+  width: 400px;
+  height: 500px;
+  border-radius: 3% 3% 0% 3%;
   color: black;
 }
 
 .chat-title {
-  padding-left: 50px;
-  padding-top: 20px;
+  padding-left: 10%;
+  padding-top: 10%;
 }
 
 .close-chat {
@@ -27,13 +27,18 @@
   height: 60px;
   border-radius: 50%;
   text-transform: uppercase;
-  background-color: darkred;
-  border-color: darkred;
-  border-style: none;
+  background-color: red;
+  border-color: red;
 }
 
 .start-chat:focus {
   outline:none;
+}
+
+.messages {
+  width: 100%;
+  overflow-x: hidden;
+  word-wrap: break-word;
 }
 
 .messages-container {
@@ -41,8 +46,8 @@
 }
 
 .messages-container {
-  height: 240px;
-  width: 450px;
+  height: 65%;
+  width: 90%;
   border-radius: 10%;
   overflow: auto;
   background-color: white;
@@ -54,7 +59,7 @@
 }
 
 .inputs-chat input {
-  width: 350px;
+  width: 80%;
 }
 
 .inputs-chat button {
@@ -65,8 +70,8 @@
 .users-container-chat {
   padding-top: 50px;
   padding-left: 50px;
-  height: 300px;
-  width: 450px;
+  height: 80%;
+  width: 80%;
   border-collapse: black;
 }
 
@@ -75,7 +80,7 @@
   align-items: center;
   padding: 5px;
   border-bottom: 1px solid black;
-  width: 350px;
+  width: 100%;
 }
 
 .user-chat:hover {
