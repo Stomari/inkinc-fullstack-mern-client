@@ -270,9 +270,9 @@ handleShowFollow(id){
 
             <div className="col-lg-9">
 
-                <h5 className="text-uppercase text-center">Flashes</h5>
+                <h5 className="text-uppercase text-center" style={{margin: '100px 0 50px 0'}}>Flashes</h5>
               {/* <div className="row"> */}
-              <div className="col-lg-12 d-flex">
+              <div className="col-lg-12 d-flex flashes-container-out">
 
                 <Flashes
                   user={this.props.user}
@@ -287,7 +287,7 @@ handleShowFollow(id){
               {/* </div> */}
 
               <div className="col-lg-12">
-                <h5 className="text-uppercase text-center">Portfolio</h5>
+                <h5 className="text-uppercase text-center" style={{margin: '100px 0 50px 0'}}>Portfolio</h5>
                 <ArtistGallery
                   user={this.props.user}
                   artist={this.state.artist}
