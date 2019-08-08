@@ -31,17 +31,15 @@ class FolderDetail extends Component {
   
 
   renderData(data) {
-    return <FolderMasonry {...data} detailsProps={this.props} />
+    return <FolderMasonry {...data} detailsProps={this.props} getInfo={() => this.props.getUser()} />
   }
 
   render(){
-    console.log('FD', this.props);
-    this.state.folder.image && console.log(this.state.folder.image.length);
     return (
       <div className="container">
         <h2>{this.state.folder.name}</h2>
         {
-          this.state.folder && this.state.folder.image && this.state.folder.image.length > 1 &&
+          this.state.folder && this.state.folder.image && this.state.folder.image.length > 0 &&
           <Masonry
             comp={(data) => this.renderData(data)}
             items={this.state.folder.image}
