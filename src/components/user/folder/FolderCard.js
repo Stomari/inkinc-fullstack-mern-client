@@ -14,14 +14,25 @@ class FolderCard extends Component {
       })
   }
 
-  render(){
-    return(
-      <div className="card card-prof-custom" style={{"width": "20rem"}}>
+  getFolderFirstImage() {
 
-        <picture>
-          {/* grid image */}
-          <img src="/images/teste-folder.jpeg" className="card-img-top"  style={{"height": "15rem"}} alt="..."/>
-        </picture>
+  }
+
+  render(){
+    // console.log(this.props.user.folder[this.props.idx].image.length)
+    return(
+      <div className="card card-prof-custom" style={{width: "20rem", background: 'yellow'}}>
+
+        {/* grid image */}
+        <figure className="folder-cover">
+          <Link className="link-custom text-uppercase" to={`/profile/folder/${this.props.state._id}`}>
+          {
+            this.props.user.folder[this.props.idx] && this.props.user.folder[this.props.idx].image.length > 0 ?
+            <img className="card-img-top" src={this.props.user.folder[this.props.idx].image[0].image} alt="folder cover"/>
+            : <img className="card-img-top" src="/images/teste-folder.jpeg"  alt="folder cover"/>
+          }
+          </Link>
+        </figure>
 
         <div className="card-body">
           <p className="card-text">
@@ -30,12 +41,9 @@ class FolderCard extends Component {
           </Link>
           </p>
           <div className="overlay2">
-            <p className="text2 text-uppercase">
-              <p onClick={(folder) => this.deleteFolder(this.props.state._id)}> 
-              <img src="/images/trash-solid.svg" className="trash-ico"/>
-
-              </p>
-            </p>
+            <div className="text2 text-uppercase">
+                <img src="/images/trash-solid.svg" className="trash-ico" alt="folder cover" onClick={(folder) => this.deleteFolder(this.props.state._id)} />
+            </div>
           </div>
         </div>
         

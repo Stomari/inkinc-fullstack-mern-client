@@ -16,6 +16,11 @@ class FolderDetail extends Component {
   }
   
   componentWillMount(){
+    this.updateFolderInfo();
+  }
+
+
+  updateFolderInfo() {
     axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
     .then((response) => {
       let folderData = response.data.folder;
@@ -31,7 +36,7 @@ class FolderDetail extends Component {
   
 
   renderData(data) {
-    return <FolderMasonry {...data} detailsProps={this.props} getInfo={() => this.props.getUser()} />
+    return <FolderMasonry {...data} detailsProps={this.props} updateFolderInfo={() => this.updateFolderInfo()}/>
   }
 
   render(){

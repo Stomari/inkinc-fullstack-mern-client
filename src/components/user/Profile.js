@@ -77,10 +77,10 @@ class Profile extends Component {
               <div className="d-flex justify-content-center">
                 <div className="row text-uppercase folder-header d-flex justify-content-center mb-5 text-center">
                  <h4 className="pr-5">Tattoos you liked</h4>
-                  <CreateFolder foldersInfo={() => this.getInfo()}/>
+                  <CreateFolder foldersInfo={() => this.getInfo()} user={this.props.user} />
                 </div>
               </div>
-              <Folder id="folder" foldersInfo={() => this.getInfo()} folders={this.state.folders} />
+              <Folder id="folder" foldersInfo={() => this.getInfo()} folders={this.state.folders} user={this.props.user}/>
             </div>
 
           </div>
