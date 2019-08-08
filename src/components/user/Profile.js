@@ -8,24 +8,25 @@ import CreateFolder from './folder/CreateFolder';
 import FavoriteArtists from './favoriteArtist/FavoriteArtists';
 
 class Profile extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props){
+    super(props)
     this.state = {
       folders: [],
       favoriteArtists: []
     }
   }
 
-  getInfo() {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/user`, { withCredentials: true })
-      .then((response) => {
-        let data = response.data;
-        this.setState({
-          folders: data.folder,
-          favoriteArtists: data.favoriteArtist
-        })
+  getInfo(){
+    axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
+    .then((response) => {
+      let data = response.data;
+      this.setState({
+        folders: data.folder,
+        favoriteArtists: data.favoriteArtist
       })
-      .catch(err => console.log(err));
+      this.props.getUser(data)
+    })
+    .catch(err => console.log(err));
   }
 
   componentDidMount() {

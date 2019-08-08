@@ -58,25 +58,40 @@ class Navbar extends Component {
               <li className="nav-item nav-item-custom">
                 <Link to={`/artists/${this.state.loggedInUser._id}`} className="nav-link text-uppercase"> Artist </Link>
               </li>
+              <li className="nav-item nav-item-custom">
+                <Link to={`/search`} className="nav-link text-uppercase"> Search </Link>
+              </li>
+              {/* responsive hidden li's */}
+
               <li className="nav-responsive-log nav-item nav-item-custom">
                 <Link to='/profile' className="nav-link text-uppercase">Profile</Link>
               </li>
               <li className="nav-responsive-log nav-item nav-item-custom">
                 <Link to='/' className="nav-link text-uppercase" onClick={() => this.logoutUser()}> Logout </Link>
               </li>
+             {/* ------------------ */}
             </ul>
             {/* end of page */}
             <div className="navbar-nav">
               <div className="btn-group nav-responsive">
-                <Link to='/profile' className="text-uppercase btn btn-prof">Profile</Link>
+
+                <button type="button" className="btn btn-prof">
+                  {
+                    this.state.loggedInUser.role === 'User' ?
+                      <Link to={'/profile'} className="text-uppercase">Profile</Link>
+                    :
+                      <Link to={`/artists/${this.state.loggedInUser._id}`} className="text-uppercase">Profile</Link>
+                  }
+                </button>
+
                 <button type="button" className="btn btn-prof dropdown-toggle dropdown-toggle-split " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div className="dropdown-menu dropdown-custom">
                   <Link to='/' className="nav-link text-uppercase dropdown-item" onClick={() => this.logoutUser()}> Logout </Link>
                 </div>
-
               </div>
             </div>
+
           </div>
         </nav>
 
@@ -86,10 +101,9 @@ class Navbar extends Component {
         <nav className="nav-style">
 
         </nav>
-      )
-    } else {
-      return (
-        <nav className="navbar navbar-expand-lg navbar-dark nav-custom p-3">
+     )} else {
+      return ( 
+        <nav className="navbar navbar-expand-lg nav-custom p-3">
           <Link className="navbar-brand" to='/'>
             {/* <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/> */}
             Ink.inc
@@ -106,7 +120,7 @@ class Navbar extends Component {
                 <Link to='/search' className="nav-link text-uppercase" >Search</Link>
               </li>
               <li className="nav-responsive-log nav-item nav-item-custom">
-                <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
+              <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
               </li>
               <li className="nav-responsive-log nav-item nav-item-custom">
                 <Link to='/login' className="nav-link text-uppercase">Log In</Link>

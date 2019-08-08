@@ -22,10 +22,9 @@ class ArtistGallery extends Component {
   }
 
   render() {
-    return (
+    return(
       <div>
         {this.props.artist.artistTattoo.length > 0 ? this.showTattoos() : null}
-
       </div>
     )
   }
