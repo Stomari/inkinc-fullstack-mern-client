@@ -3,8 +3,9 @@
   padding-top: 5%;
   background-image: url("/images/img-back.png");
   background-repeat: no-repeat;
-  background-size: 100% 80%;
+  background-size: 100% 400px;
 }
+
 .folder-header{
   width: 50%;
   border-bottom: 1px solid white;
@@ -22,10 +23,11 @@
 }
 
 .link-custom{
-text-decoration: none;
-color: black;
-font-weight: 600;
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
 }
+
 .link-custom:hover{
   text-decoration: none;
   color:(173, 21, 51);
@@ -33,6 +35,14 @@ font-weight: 600;
 
 .fav-custom{
   background-color: #d5d1d5;
+  padding: 10px;
+  color: black;
+}
+
+.fav-custom h6{
+  /* border-bottom: 1px solid black; */
+  font-weight: 600;
+  
 }
 
 .btn-create{
@@ -122,8 +132,8 @@ font-weight: 600;
   left: 0px;
   right: 0px;
   z-index: -1;
-  border: 2px solid rgba(173, 21, 51);
-  border-color: transparent rgba(173, 21, 51);
+  border: 2px solid red;
+  border-color: transparent red;
 }
 
 .snip1566 img {
@@ -212,18 +222,19 @@ font-weight: 600;
 
 .map-info{
   background-color: #666;
-
 }
 
 a.card-art:hover{
   text-decoration:none;
 }
 .fav-art-card img{
-  width: 18%;
+  object-fit: cover;
+  width: 5rem;
 }
 
 .fav-art-card{
-  color: white;
+  min-width: 33vh;
+  color:black;
 }
 
 .modal-color{
