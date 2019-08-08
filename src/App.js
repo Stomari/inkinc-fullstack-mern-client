@@ -65,7 +65,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' render={() => <Home/>} />
               <Route exact path="/home" render={() => <Home user={this.state.loggedInUser}/>}/> 
-              <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={() => this.getTheUser()}/>} />
+              <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={(obj) => this.getTheUser(obj)}/>} />
               <Route exact path='/search/artists' key="search-artists" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={true} />} />
               <Route exact path='/search/tattoos' key="search-tattoos" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={false} />} />
 
