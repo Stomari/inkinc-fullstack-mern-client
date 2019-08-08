@@ -1,66 +1,70 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
+import { Redirect } from 'react-router-dom';
 
 //Components
 import Role from './Role';
 import Form from './Form';
 
 class Signup extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = { 
-      email: '', 
-      password: '', 
-      name: '', 
-      role: '', 
-      classeCli: '', 
-      classeArt: '', 
-      workplace: [], 
-      showForm: false, 
+    this.state = {
+      email: '',
+      password: '',
+      name: '',
+      role: '',
+      classeCli: '',
+      classeArt: '',
+      workplace: [],
+      showForm: false,
       showWorkplace: false,
       output: [],
       newOutput: [],
+      message: '',
+      redirect: false,
     };
     this.service = new AuthService();
   }
 
-  handleFormSubmit(event){
+  handleFormSubmit(event) {
     event.preventDefault();
-    const {email, password, name, role, workplace} = this.state;
+    const { email, password, name, role, workplace } = this.state;
     this.service.signup(email, password, name, role, workplace)
-    .then( response => {
+      .then(response => {
         this.setState({
-            email:'', 
-            password: '',
-            name: '',
-            role: '',
-            workplace: [],
-            shorForm: false,
-            showWorkplace: false
+          email: '',
+          password: '',
+          name: '',
+          role: '',
+          workplace: [],
+          shorForm: false,
+          showWorkplace: false,
+          redirect: true,
         });
         this.props.getUser(response)
-    })
-    .catch( error => console.log(error) )
+      })
+      .catch(error => this.setState({ message: error.response.data.message }))
   }
 
-  handleChange(event){  
-    const {name, value} = event.target;
+  handleChange(event) {
+    const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
   }
 
-  handleForm(event){
-    const {name, value} = event.target;
+  handleForm(event) {
+    const { name, value } = event.target;
     this.setState({
-      showForm:true,
+      showForm: true,
       classeCli: 'displayBtn',
       [name]: value,
     });
   }
 
-  handleClass(event){
-    const {name, value} = event.target;
+  handleClass(event) {
+    const { name, value } = event.target;
     this.setState({
       showForm: true,
       classeArt: 'displayBtn',
@@ -68,7 +72,7 @@ class Signup extends Component {
     });
   }
 
-  handleWorkplace(event){
+  handleWorkplace(event) {
     this.setState({
       showWorkplace: !this.state.showWorkplace
     });
@@ -81,20 +85,22 @@ class Signup extends Component {
   }
 
 
-  render(){
-    console.log(this.props)
-    return(
+  render() {
+    if (this.state.redirect) {
+      return <Redirect to="/home"></Redirect>
+    }
+    return (
       <div className="container d-flex justify-content-center auth-custom flex-wrap">
-     
-        <Role handleForm={e => this.handleForm(e)} handleClass={e => this.handleClass(e)} state={this.state}/>
 
-        {  this.state.showForm ? 
+        <Role handleForm={e => this.handleForm(e)} handleClass={e => this.handleClass(e)} state={this.state} />
+
+        {this.state.showForm ?
           <Form placeHandler={(value) => this.placeHandler(value)} handleChange={e => this.handleChange(e)} handleWorkplace={e => this.handleWorkplace(e)} handleFormSubmit={e => this.handleFormSubmit(e)} state={this.state} />
           : null
         }
       </div>
     )
-  
-}
+
+  }
 }
 export default Signup;

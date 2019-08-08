@@ -1,4 +1,3 @@
-import Header from '../user/Header';
 import React, {Component} from 'react';
 import HeaderArt from './HeaderArt';
 import Categories from './Categories';
@@ -12,13 +11,7 @@ import EditArtist from './EditArtist';
 import AuthService from '../auth/auth-service';
 import CreateTattooForm from './CreateTattooForm';
 import CreateFlashForm from './CreateFlashForm';
-
 import Chat from '../chat/Chat';
-import Chat1 from '../chat/Chat1';
-import io from "socket.io-client";
-
-const socket = io.connect(process.env.REACT_APP_API_URL);
-
 
 class ArtistPage extends Component {
   constructor(props) {
@@ -31,8 +24,11 @@ class ArtistPage extends Component {
       showCreateFlashForm: false,
       showEditArtistForm: false,
       artistCategories: [],
-      about: '',
       name: '',
+      about: '',
+      category: '',
+      image: '',
+      workplace: '', 
       showFollow: true
     };
     this.service = new AuthService();
@@ -43,6 +39,11 @@ class ArtistPage extends Component {
       .then(response => {
         this.setState({
           artist: response.data,
+          name: response.data.name,
+          about: response.data.about,
+          category: response.data.category.map(el => el._id),
+          image: response.data.profileImg,
+          workplace: response.data.workplace,
         })
         this.handleShowFollow(this.props.match.params.id)
 
@@ -60,7 +61,7 @@ class ArtistPage extends Component {
       .catch(err => console.log(err));
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getArtist();
   }
 
@@ -111,6 +112,42 @@ class ArtistPage extends Component {
       .catch(err => console.log(err));
   }
 
+  handleChange(event) {  
+    const {name, value} = event.target;
+    this.setState({[name]: value});
+  }
+
+  handleChangeCheckbox(event) {
+    const {value} = event.target;
+    let newCategory = [...this.state.category];
+    if (newCategory.some(cat => cat === value)) {
+      newCategory = newCategory.filter(el => el !== value)
+    } else {
+      newCategory.push(value);
+    }
+    this.setState({category: newCategory});
+  }
+
+  handleFileUpload(e) {
+    this.setState({
+      image: 'https://media.tenor.com/images/80cb16bb74ed9027ea1b25d077ce6d97/tenor.gif'
+    });
+    const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+    uploadData.append("image", e.target.files[0]);
+    axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData, {withCredentials: true})
+      .then(response => {
+          this.setState({ image: response.data.secure_url });
+          axios.put('http://localhost:8000/api/edit-artist', this.state, {withCredentials: true})
+            .then(() => {
+              this.getArtist();
+            })
+            .catch(err => console.log(err));
+        })
+      .catch(err => console.log(err));
+  }
+
   handleUserInfo(){
     axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
       .then((response) => {
@@ -118,15 +155,8 @@ class ArtistPage extends Component {
       })
       .catch(err => console.log(err))
   }
-  // showChat = (event) => {
-  //   event.preventDefault()
-  //   socket.emit('SUBSCRIBE', {
-  //     user: this.props.user._id,
-  //     artist: this.props.match.params.id,
-  //   })
-  // }
 
-  //VER QUANDO CRIAR PAGINA PRA ESCOLHER PROFILES
+// VER QUANDO CRIAR PAGINA PRA ESCOLHER PROFILES
 favArtist(artistId){
   if(this.props.user === null){
     return null
@@ -182,7 +212,13 @@ handleShowFollow(id){
         <div className="row m-5">
             
             <div className="col-lg-3 text-center profile-side-header mb-5">
-               <HeaderArt artist={this.state.artist}/>
+               <HeaderArt
+                user={this.props.user}
+                artist={this.state.artist}
+                getArtist={() => this.getArtist()}
+                handleFileUpload={(e) => this.handleFileUpload(e)}
+                image={this.state.image}
+               />
               <div className="row d-flex justify-content-center">
 
                   {this.props.user && (this.props.user._id === this.state.artist._id) &&  <button onClick={() => this.handleShowCreateTattoo()}>New Tattoo</button>}
@@ -202,6 +238,8 @@ handleShowFollow(id){
                     showAllCategories={true}
                     user={this.props.user}
                     artist={this.state.artist}
+                    handleChange={(e) => this.handleChange(e)}
+                    handleChangeCheckbox={(e) => this.handleChangeCheckbox(e)}
                   />
                 }
               </div>
@@ -277,8 +315,7 @@ handleShowFollow(id){
           <Categories showAllCategories={false} user={this.props.user} categories={this.state.categories} artist={this.state.artist} />
         }
 
-        <button onClick={this.showChat}>CHAT</button>
-        {/* <Chat1 user={this.props.user} artistId={this.props.match.params.id} /> */}
+        <Chat user={this.props.user} artistId={this.props.match.params.id} getUser={this.props.getUser} />
 
         </div>
         : null

@@ -5,6 +5,7 @@ import './stylesheets/mainPage.css';
 import './stylesheets/navbar.css';
 import './stylesheets/auth.css';
 import './stylesheets/profile.css';
+import './stylesheets/chat.css';
 import './stylesheets/searchPage.css';
 import AuthService from './components/auth/auth-service';
 import { Switch, Route } from 'react-router-dom';
@@ -64,7 +65,9 @@ class App extends Component {
             <Switch>
               <Route exact path='/' render={() => <Home/>} />
               <Route exact path="/home" render={() => <Home user={this.state.loggedInUser}/>}/> 
-              <Route exact path='/search' render={() => <SearchPage user={this.state.loggedInUser}/>} />
+              <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={() => this.getTheUser()}/>} />
+              <Route exact path='/search/artists' key="search-artists" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={true} />} />
+              <Route exact path='/search/tattoos' key="search-tattoos" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={false} />} />
 
               {/* Profile Pages */}
                 {/* <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} getUser={(obj) => this.getTheUser(obj)} component={Profile} /> */}

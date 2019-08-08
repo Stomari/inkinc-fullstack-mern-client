@@ -1,5 +1,7 @@
 import React from "react";
 import io from "socket.io-client";
+import axios from "axios";
+import ScrollToBottom from 'react-scroll-to-bottom';
 const socket = io.connect(process.env.REACT_APP_API_URL);
 
 class Chat extends React.Component {
@@ -7,48 +9,32 @@ class Chat extends React.Component {
     super(props);
 
     this.state = {
-      userLogged: null,
-      username: '',
+      chat: '',
+      user: '',
       message: '',
       messages: [],
-      chat: null,
+      chatFlag: false,
+      artistChatFlag: false,
     };
-    this.getChatFlag = true;
-    console.log(this.props.artistId)
   }
 
   componentDidMount() {
-    socket.on('RECEIVE_MESSAGE', (data) => {
-      this.addMessage(data);
-    });
-    socket.on('RETRIEVE_CHAT', (chat) => {
-      this.setChat(chat);
+    this.setState({ user: this.props.user });
+    axios.get(`${process.env.REACT_APP_API_URL}/api/has-chat/${this.props.artistId}`, { withCredentials: true })
+      .then(response => {
+        if (response.data[0] !== undefined) {
+          this.setState({ chat: response.data[0], messages: [...response.data[0].historic], chatFlag: true })
+          this.joinRoom(response.data[0]._id)
+          this.updateChat();
+        }
+      })
+      .catch(err => console.log(err))
+    socket.on('RECEIVE_MESSAGE', (message) => {
+      this.setState({
+        messages: [...this.state.messages, message],
+      });
     })
-    this.setState({ userLogged: this.props.user });
-  }
-
-  // START OF CHAT HANDLERS
-  // getChat() {
-  //   socket.emit('GET_CHAT', {
-  //     user: this.state.userLogged,
-  //     artist: this.props.artistId,
-  //   })
-  //   this.getChatFlag = false
-  // }
-
-  setChat(data) {
-    console.log(data)
-    this.setState({
-      messages: [...data[0].historic], 
-      chat: data
-    });
-  }
-  // END OF CHAT HANDLERS
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      userLogged: nextProps.user,
-    })
+    this.updateChat();
   }
 
   inputHandler(event) {
@@ -56,53 +42,152 @@ class Chat extends React.Component {
     this.setState({ [name]: value });
   }
 
-  // START OF MESSAGE HANDLERS
-  addMessage = (data) => {
-    this.setState({ messages: [...this.state.messages ,data] });
-  };
-
-  sendMessage = (ev) => {
-    ev.preventDefault();
-    socket.emit('SEND_MESSAGE', {
-      author: this.props.user.name,
-      message: this.state.message,
-      chatId: this.state.chat[0]._id,
-    });
-    this.setState({ message: '' });
+  sendMessage = (event) => {
+    event.preventDefault();
+    axios.put(`${process.env.REACT_APP_API_URL}/api/add-message/${this.state.chat._id}`, { author: this.state.user.name, message: this.state.message }, { withCredentials: true })
+      .then(() => {
+        this.setState({ messages: [...this.state.messages, { author: this.state.user.name, message: this.state.message }] })
+        socket.emit('SEND_MESSAGE', {
+          author: this.state.user.name,
+          message: this.state.message,
+          room: this.state.chat._id,
+        })
+        this.setState({ message: '' })
+      })
+      .catch(err => console.log(err));
   }
-  // END OF MESSAGE HANDLERS
+
+  createRoom(event) {
+    event.preventDefault();
+    axios.get(`${process.env.REACT_APP_API_URL}/api/create-chat/${this.props.artistId}`, { withCredentials: true })
+      .then((response) => {
+        this.setState({ chat: response.data })
+        this.joinRoom(response.data._id)
+      })
+      .catch(err => console.log(err));
+    this.setState({ chatFlag: !this.state.chatFlag })
+  }
+
+  joinRoom(room) {
+    socket.emit('SUBSCRIBE', room);
+  }
+
+  getClientChat(event) {
+    event.preventDefault();
+    axios.get(`${process.env.REACT_APP_API_URL}/api/has-chat-artist/${event.target[0].value}`, { withCredentials: true })
+      .then(response => {
+        if (response.data[0] !== undefined) {
+          this.setState({ chat: response.data[0], messages: [...response.data[0].historic], chatFlag: true })
+          this.joinRoom(response.data[0]._id)
+        }
+      })
+      .catch(err => console.log(err))
+  }
+
+  updateChat() {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/user`, { withCredentials: true })
+      .then((response) => {
+        this.props.getUser(response.data);
+      })
+      .catch(err => console.log(err));
+  }
+
+  closeChat() {
+    this.setState({ chatFlag: false });
+  }
+
+  showUsersChat() {
+    this.setState({ artistChatFlag: !this.state.artistChatFlag });
+  }
 
   render() {
-    // if (this.state.userLogged && this.getChatFlag === true) {
-    //   this.getChat();
-    // } 
-
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-4">
-            <div className="card">
-              <div className="card-body">
-                <div className="card-title">Global Chat</div>
+    if (this.state.user !== undefined && this.state.user.role === 'User') {
+      return (
+        <div>
+          <button className="start-chat" onClick={(event) => this.createRoom(event)}>Chat</button>
+          {
+            this.state.chatFlag ?
+              <div className="chat">
+                <button type="button" className="close" onClick={() => this.closeChat()}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 className="title">Ink Chat</h3>
                 <hr />
-                <div className="messages">
+                <ScrollToBottom className="messages-container">
                   {this.state.messages.map((message, i) => {
                     return (
-                      <div key={i}>{message.author}: {message.message}</div>
+                      <div className="messages" style={{ color: "black" }} key={i}><strong>{message.author}:</strong> {message.message}</div>
                     )
                   })}
-                </div>
-                <div className="footer">
-                  <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} />
-                  <br />
-                  <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
-                </div>
+                </ScrollToBottom>
+                <form autoComplete="off" >
+                  <div className="inputs">
+                    <input type="text" placeholder="Message" name="message" className="" value={this.state.message} onChange={(event) => this.inputHandler(event)} />
+                    <button type="submit" onClick={this.sendMessage} className="btn btn-primary">Send</button>
+                  </div>
+                </form>
               </div>
-            </div>
-          </div>
+              :
+              null
+          }
         </div>
-      </div>
-    );
+      );
+    } else if (this.state.user !== undefined && this.state.user.role === 'Artist') {
+      return (
+        <div className="container">
+          {/* <form onSubmit={(event) => this.getClientChat(event)}>
+            <select>
+              {
+                this.state.user.chatHistoric.map((e, i) => {
+                  return <option key={i} value={e.user._id}>{e.user.name}</option>
+                })
+              }
+            </select>
+            <button className="start-chat">Chat</button>
+          </form> */}
+          {
+            this.state.artistChatFlag ?
+              <div className="chat">
+                {
+                  this.state.user.chatHistoric.map((e, i) => {
+                    return <div key={i} value={e.user._id} className="user-select">{e.user.name}</div>
+                  })
+                }
+              </div>
+              :
+              null
+          }
+          <button className="start-chat" onClick={() => this.showUsersChat()}>Chat</button>
+          {
+            this.state.chatFlag ?
+              <div className="chat">
+                <button type="button" className="close" onClick={() => this.closeChat()}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 className="title">Ink Chat</h3>
+                <hr />
+                <ScrollToBottom className="messages-container">
+                  {this.state.messages.map((message, i) => {
+                    return (
+                      <div className="messages" style={{ color: "black" }} key={i}><strong>{message.author}:</strong> {message.message}</div>
+                    )
+                  })}
+                </ScrollToBottom>
+                <form autoComplete="off" >
+                  <div className="inputs">
+                    <input type="text" placeholder="Message" name="message" className="" value={this.state.message} onChange={(event) => this.inputHandler(event)} />
+                    <button type="submit" onClick={this.sendMessage} className="btn btn-primary">Send</button>
+                  </div>
+                </form>
+              </div>
+              :
+              null
+          }
+        </div>
+      );
+    } else {
+      return null
+    }
   }
 }
 

@@ -30,7 +30,6 @@
       this.setState({
         [name]: value,
       })
-      console.log('place select')
     }
 
     handleScriptLoad() {

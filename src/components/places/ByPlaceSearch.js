@@ -30,7 +30,6 @@ class ByPlaceSearch extends Component {
     this.setState({
       [name]: value,
     })
-    console.log('update')
   }
 
   handleScriptLoad() {
