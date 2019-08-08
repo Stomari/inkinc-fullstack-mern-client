@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import CreateFolder from '../user/folder/CreateFolder';
 
 const ModalImage = (props) => {
+  console.log('MODAL IMAGE', props)
   return(
     <div className="modal-wrapper">
       <span className="close-modal-btn" onClick={() => props.handleCloseModal()}></span>

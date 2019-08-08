@@ -297,12 +297,23 @@ a.card-art:hover{
 .carousel-inner .next        { left:  33%; }
 .carousel-control.left,.carousel-control.right {background-image:none;}
 
+
+.flashes-container-out {
+  overflow-x: hidden;
+}
+
 .flashes-container {
   display: flex;
   flex-direction: row;
-  overflow-x: hidden;
-  position: absolute;
-  left: 0;
+  width: 100%;
+  left: 0px;
+}
+
+.slider-overflow-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 50px;
 }
 
 .card-flash{

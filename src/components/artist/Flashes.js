@@ -6,7 +6,7 @@ class Flashes extends Component {
     return (
       this.props.artist.flash.map((el, idx) => {
         return (
-          <div class="card card-flash m-5">
+          <div class="card card-flash">
             <img src={el.image} alt={el.tag} style={{width:'100%', padding: '5px'}}/>
               <div class="card-body">
                 {/* <p>{el.tag.join(', ')}</p> */}
@@ -16,7 +16,7 @@ class Flashes extends Component {
                   )
                 })} */}
                 <p>${el.price}</p>
-                {/* {this.props.user && (this.props.user._id === this.props.artist._id) &&  <button onClick={(e) => this.props.handleDeleteFlash(e, el._id)}>Delete</button>} */}
+                {this.props.user && (this.props.user._id === this.props.artist._id) &&  <button onClick={(e) => this.props.handleDeleteFlash(e, el._id)}>Delete</button>}
             </div>
           </div>
 
@@ -25,20 +25,13 @@ class Flashes extends Component {
       )
     }
 
-  previous() {
-    console.log('clicou');
-    let left = this.cont.style.left;
-    console.log('LEFT', left);
-    left = left + 50 + 'px';
-    console.log(this.cont.style.left)
-  }
 
   render() {
     return(
-      <div class="flashes-container" ref={ref => this.cont = ref}>
-        <button style={{position: 'absolute', left: 0, zIndex: '999'}} onClick={() => this.previous()}>P</button>
-        {this.props.artist.flash.length > 0 ? this.showFlashes() : null}
-        <button style={{position: 'absolute', right: 0}} onClick={() => this.next()}>N</button>
+      <div class="flashes-container">
+        <div className="slider-overflow-container">
+          {this.props.artist.flash.length > 0 ? this.showFlashes() : null}
+        </div>
       </div>   
 
     )
