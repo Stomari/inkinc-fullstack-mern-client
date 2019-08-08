@@ -24,7 +24,7 @@ class SearchPage extends Component {
       openedImageSave: false,
       imageToSaveId: '',
       shownTattoo: '',
-      imageModal: false
+      imageModal: false,
     }
   }
 
@@ -70,6 +70,20 @@ class SearchPage extends Component {
       
 
       // this.getResults();
+  }
+
+  getInfo(){
+    axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
+    .then((response) => {
+      let data = response.data;
+      this.setState({
+        folders: data.folder,
+        favoriteArtists: data.favoriteArtist,
+        image: data.profileImg,
+      })
+      this.props.getUser(data)
+    })
+    .catch(err => console.log(err));
   }
 
   searchHandler(event) {
@@ -212,7 +226,7 @@ class SearchPage extends Component {
           <Categories categories={this.state.categories} chooseCategories={(e) => this.chooseCategories(e)} />
           {
             this.state.artistsSearch && 
-            <ArtistsSearch filteredResults={this.state.filteredResults} />
+            <ArtistsSearch filteredResults={this.state.filteredResults} user={this.props.user} getInfo={() => this.getInfo()}/>
           }
           {
             !this.state.artistsSearch &&
@@ -224,7 +238,8 @@ class SearchPage extends Component {
               filteredResults={this.state.filteredResults}
               tattoos={this.state.resultsTattoos}
               user={this.props.user}
-              modal={() => this.handleShowModal()}
+              modal={() => this.handleShowModal()
+            }
             />
           }
   

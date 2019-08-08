@@ -5,9 +5,23 @@ import axios from 'axios';
 const ArtistsSearch = (props) => {
 
   const favArtist = (artistId) => {
-    axios.put(`${process.env.REACT_APP_API_URL}/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
-      .then(() => {})
-      .catch(err => console.log(err));
+    if (!props.user.favoriteArtist.some(el => el._id === artistId)) {
+      axios.put(`${process.env.REACT_APP_API_URL}/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
+        .then(() => {
+          props.getInfo();
+        })
+        .catch(err => console.log(err));
+    }
+  }
+
+  const deleteArtist = (artist) => {
+    axios.put(`${process.env.REACT_APP_API_URL}/api/favorite-artist-remove/${artist}`, {}, { withCredentials: true })
+      .then(() => {
+        props.getInfo()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   return(
@@ -27,8 +41,12 @@ const ArtistsSearch = (props) => {
                 <div className="search-artst-tattoos-preview">
                   {el.artistTattoo.filter((el, i) => i < 5).map((e, idx) => <img key={idx} src={e.image} className="artist-search-tattoo-preview" alt={e.tag} />)}
                 </div>
-                <p onClick={(id) => favArtist(el._id)}>Fav</p>
               </Link>
+                {
+                  !props.user.favoriteArtist.some(fav => fav._id === el._id) ?
+                  <p style={{cursor: 'pointer'}} onClick={(id) => favArtist(el._id)}>Imagem de ícone pra favoritar</p>
+                  : <p style={{cursor: 'pointer'}} onClick={(id) => deleteArtist(el._id)}>Imagem de ícone favoritado</p>
+                }
             </div>
           )
         })
