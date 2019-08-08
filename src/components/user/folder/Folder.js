@@ -10,7 +10,7 @@ class Folder extends Component {
 
   render(){
     return(
-        <div className="card-deck group-custom d-flex align-items-center justify-content-center ml-5">
+        <div className="card-deck group-custom d-flex align-items-center justify-content-center">
         {
           this.props.folders.map((folder, index) => {
             let folderId = folder._id;

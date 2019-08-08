@@ -29,11 +29,12 @@ class FavoriteArtists extends Component {
             let artistId = artist._id;
             return  <div key={index}>
                       <ul className="list-unstyled">
-                        <div className="row">
+                        <div className="d-flex align-items-center mt-5 art-div flex-wrap">
                           <Link className="card-art col-lg-10" to={`/artists/${artist._id}`}>
                             <ArtistCard key={index} state={artist} deleteArtist={(artist) => this.deleteArtist(artistId)}/>
                           </Link>
-                          <img className="col-lg-1 btn-artist-del" src="/images/trash-solid.svg"  onClick={(artist) => this.deleteArtist(artistId)}/> 
+                            
+                          <img className="col-lg-2 btn-artist-del mb-4" src="/images/trash-solid.svg"  onClick={(artist) => this.deleteArtist(artistId)}/> 
                         </div>
                       </ul>
                     </div>

@@ -20,18 +20,18 @@ const EditArtist = (props) => {
   }
 
   return(
-    <div>
-      <button onClick={() => props.handleShowEditProfile()}>Edit Profile</button>
+    <div className="justify-self-end">
+      <img className="edit-ico" onClick={() => props.handleShowEditProfile()} src="/images/edit-solid.svg"/>
       {
         props.showEditProfileForm && 
         <div className="modal-wrapper">
         <span className="close-modal-btn" onClick={(e) => handleCloseModal(e)}></span>
         <form onSubmit={(event) => handleFormSubmit(event)} className="form-modal">
-          <label>Name:</label>
+          <label className="text-uppercase label-cat">Name:</label>
           <input type="text" name="name" value={props.state.name} onChange={ (event) => props.handleChange(event)}/>
-          <label>About:</label>
-          <input type="text" name="about" value={props.state.about} onChange={ (event) => props.handleChange(event)}/>
-          <label>Category:</label>
+          <label  className="text-uppercase label-cat">About:</label>
+          <textarea type="text" name="about" value={props.state.about} onChange={ (event) => props.handleChange(event)}/>
+          <label  className="text-uppercase label-cat">Category:</label>
           <div className="categories-container">
             {props.categories.map((el, idx) => {
               let check = false;
@@ -49,7 +49,7 @@ const EditArtist = (props) => {
              return <p key={idx}><strong>{el.name}</strong> - {el.address}</p>
             })
           }
-          <input type="submit" value="Submit" />
+          <input className="btn-submit align-self-center"type="submit" value="Submit"/>
         </form>
         <div className="modal-bg" onClick={(e) => handleCloseModal(e)}></div>
       </div>

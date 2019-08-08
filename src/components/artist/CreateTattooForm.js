@@ -77,22 +77,25 @@ class CreateTattooForm extends Component {
       <div className="modal-wrapper">
         <span className="close-modal-btn" onClick={() => this.handleCloseModal()}></span>
         <form onSubmit={(event) => this.handleFormSubmit(event)} className="form-modal">
-          <label>Tags:</label>
-          <input type="text" name="tag" value={this.state.tag} placeholder="Separate tags by comma (ex.: skull, fish, triangle)" onChange={(event) => this.handleChange(event)} />
-          <label>Category:</label>
+          <label className="text-uppercase label-cat">Tags:</label>
+          <input type="text" name="tag" value={this.state.tag} placeholder="Separate tags by comma (ex.: skull, rose, triangle)" onChange={(event) => this.handleChange(event)} />
+          <label className="text-uppercase label-cat">Category:</label>
+          <div className="categories-container">
           {this.props.categories.map((el, idx) => {
             // const check = (this.state.category.includes(el._id)) ? true : false
             return (
-              <div key={idx}>
+              <div key={idx} className="category-container">
                 <input type="checkbox" id={"tattoo-" + el.tag} name="category" value={el._id} onChange={(event) => this.handleChangeCheckbox(event)} />
                 <label htmlFor={"tattoo-" + el.tag}>{el.tag}</label>
               </div>
             )
           })}
-          <label>Image:</label>
+          </div>
+          <label className="text-uppercase label-cat">Image:</label>
           <input type="file" name="image" onChange={(e) => this.handleFileUpload(e)} ref={ref => this.fileInput = ref} />
           {this.state.image !== '' && <img src={this.state.image} alt='upload' width="200" />}
-          <input type="submit" value="Submit" />
+
+          <input className="btn-submit align-self-center mt-4"type="submit" value="Submit"/>
 
         </form>
         <div className="modal-bg" onClick={() => this.handleCloseModal()}></div>

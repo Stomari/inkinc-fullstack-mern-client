@@ -61,22 +61,19 @@ class Profile extends Component {
     return(
       <Fragment>
         <div className="container-fluid profile-custom">
-          <div className="profile-bg">
-
-          </div>
           <div className="row m-5">
 
-            <div className="col-lg-3 text-center profile-side-header">
-              <div className="d-flex row justify-content-center">
-              <Header user={this.props.user} image={this.state.image} handleFileUpload={(e) => this.handleFileUpload(e)} />
-              <FavoriteArtists id="artists" artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists}/>
+            <div className="col-lg-3 d-flex justify-content-center text-center profile-side-header align-items-start">
+              <div className="d-flex row justify-content-center align-items-start">
+                <Header user={this.props.user} image={this.state.image} handleFileUpload={(e) => this.handleFileUpload(e)} />
+                <FavoriteArtists id="artists" artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists}/>
               </div>
             </div>
 
-            <div className="col-lg-9 p-0 profile-side-main pr-5">
+            <div className="col-lg-9 p-0 profile-side-main">
               <div className="d-flex justify-content-center">
                 <div className="row text-uppercase folder-header d-flex justify-content-center mb-5 text-center">
-                 <h4 className="pr-5">Tattoos you liked</h4>
+                 <h4 className="mr-3">Tattoos you liked</h4>
                   <CreateFolder foldersInfo={() => this.getInfo()}/>
                 </div>
               </div>

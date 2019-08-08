@@ -62,16 +62,38 @@ html{
 }
 
 .form-modal {
-  width: 50%;
+  width: 45%;
   display: flex;
   flex-direction: column;
-  background: #e1e1e1;
+  background: #141414;
   border-radius: 20px;
   padding: 30px;
   text-align: left;
   z-index: 2;
+  padding: 2rem 2rem;
 }
 
+.modal-custom{
+  background-color: #212121 !important;
+  color: white;
+}
+.close-custom{
+  color: white;
+}
+.btn-submit{
+  width: 10rem;
+  border: 1px solid red;
+  background: none;
+  border-radius: 30px;
+  color: white;
+  padding: .3rem;
+  text-transform: uppercase
+}
+
+.btn-submit:hover{
+  background: rgb(236, 50, 59);
+
+}
 .close-modal-btn {
   position: absolute;
   right: 32px;
@@ -158,9 +180,9 @@ html{
 }
 
 .categories-container {
+  font-size: 2rem;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 3rem;
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
@@ -172,12 +194,16 @@ html{
   margin: .5rem .5rem;
 }
 
+.label-cat{
+  padding:1rem 0px 0px 0px;
+}
+
 .category-container label {
   width: 100%;
   text-align: center;
   display: inline-block;
   font-size: .8rem;
-  border: 1px solid #A61415;
+  border: 1px solid rgb(236, 50, 59);
   border-radius: .3rem;
   padding: .5rem 1.5rem;
   cursor: pointer;
@@ -190,7 +216,7 @@ html{
 }
 
 .category-container input:checked + label, .category-container:hover label {
-  background: #FF4D4E;
+  background: rgb(243, 36, 64);
   border: 1px solid white;
   transition: .2s ease;
   transform: scale(1.1);

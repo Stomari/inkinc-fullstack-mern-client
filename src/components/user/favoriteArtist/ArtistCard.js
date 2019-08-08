@@ -9,7 +9,6 @@ const ArtistCard = (props) => {
           <h5 className="mt-3 ml-3"> {props.state.name}</h5>
         </div>
       </div>
-      <hr />
     </li>
 
 

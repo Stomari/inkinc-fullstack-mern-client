@@ -211,7 +211,9 @@ handleShowFollow(id){
       <div className="container-fluid profile-custom">
         <div className="row m-5">
             
-            <div className="col-lg-3 text-center profile-side-header mb-5">
+            <div className="col-lg-3 d-flex justify-content-center text-center profile-side-header align-items-start">
+            <div className="d-flex row justify-content-center align-items-start">
+              
                <HeaderArt
                 user={this.props.user}
                 artist={this.state.artist}
@@ -219,13 +221,16 @@ handleShowFollow(id){
                 handleFileUpload={(e) => this.handleFileUpload(e)}
                 image={this.state.image}
                />
-              <div className="row d-flex justify-content-center">
+              <div className="row d-flex justify-content-center col-lg-12">
+                <div className="col-lg-10">
+                {this.props.user && (this.props.user._id === this.state.artist._id) &&  <button onClick={() => this.handleShowCreateTattoo()} className="btn-artist">Upload Work</button>}
+                {this.state.showCreateTattooForm && <CreateTattooForm getArtist={() => this.getArtist()} handlerShowForm={() => this.handleShowCreateTattoo()} categories={this.state.categories}/>}
 
-                  {this.props.user && (this.props.user._id === this.state.artist._id) &&  <button onClick={() => this.handleShowCreateTattoo()}>New Tattoo</button>}
-                  {this.state.showCreateTattooForm && <CreateTattooForm getArtist={() => this.getArtist()} handlerShowForm={() => this.handleShowCreateTattoo()} categories={this.state.categories}/>}
+                {this.props.user && (this.props.user._id === this.state.artist._id) &&  <button onClick={() => this.handleShowCreateFlash()} className="btn-artist">New Flash</button>}
+                {this.state.showCreateFlashForm && <CreateFlashForm getArtist={() => this.getArtist()} handlerShowForm={() => this.handleShowCreateFlash()} categories={this.state.categories}/>}
+                </div>
 
-                  {this.props.user && (this.props.user._id === this.state.artist._id) &&  <button onClick={() => this.handleShowCreateFlash()}>New Flash</button>}
-                  {this.state.showCreateFlashForm && <CreateFlashForm getArtist={() => this.getArtist()} handlerShowForm={() => this.handleShowCreateFlash()} categories={this.state.categories}/>}
+                <div className="col-lg-2">
 
                 {
                   this.props.user && (this.props.user._id === this.state.artist._id) &&
@@ -243,36 +248,24 @@ handleShowFollow(id){
                   />
                 }
               </div>
-              <div className="row">
-                {
-                  this.state.showFollow ?
-                 
-                  <button onClick={(id) => this.favArtist(this.state.artist._id)}>Fav</button>
-                  :
-                  <div>
-                  <p>
-                    You already follow this artist!
-                  </p>
-                </div>
-                  
-                }
               </div>
-              <div className="artist-info">
+              
+              <div className="art-div-info">
+               
                 <About artist={this.state.artist}/>
-              </div>
 
-              <div className="style-info">
                 <CategoriesDisplay category={this.state.artist.category}/>
-              </div>
 
               <div className="map-info">
-              <p className="text-uppercase"> Where to find me:</p>
+              <h6 className="text-uppercase"> Where to find me:</h6>
               {
                 this.state.artist.workplace &&
                 <Map user={this.props.user} artist={this.state.artist} />
               }
               </div>
 
+              </div>
+              </div>
             </div>
 
             <div className="col-lg-9">
