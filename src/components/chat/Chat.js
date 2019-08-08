@@ -183,7 +183,7 @@ class Chat extends React.Component {
           }
           <button className="start-chat" onClick={() => this.showUsersChat()}>
             {
-              !this.state.chatFlag ?
+              !this.state.artistChatFlag ?
                 <img src="/images/chat.svg" alt="chat icon" />
                 :
                 <span style={{ color: "white", fontSize: "200%" }} aria-hidden="true">&times;</span>
