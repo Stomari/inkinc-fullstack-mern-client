@@ -84,13 +84,13 @@ class Navbar extends Component {
                   {
                     this.state.loggedInUser.role === 'User' ?
                       <Link to={'/profile'} className="text-uppercase">
-                        <button type="button" className="btn btn-prof">
+                        <button type="button" className="btn btn-prof text-uppercase">
                           Profile
                         </button>
                       </Link>
                       :
                       <Link to={`/artists/${this.state.loggedInUser._id}`} className="text-uppercase">
-                        <button type="button" className="btn btn-prof">
+                        <button type="button" className="btn btn-prof text-uppercase">
                           Profile
                         </button>
                       </Link>

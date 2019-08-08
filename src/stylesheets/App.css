@@ -77,6 +77,21 @@ html{
   background-color: #212121 !important;
   color: white;
 }
+
+@media only screen and (max-width: 900px) {
+  .form-modal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #141414;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: left;
+    z-index: 2;
+  }
+}
+
+
 .close-custom{
   color: white;
 }
@@ -222,8 +237,9 @@ html{
   transform: scale(1.1);
 }
 
+
 .search-bar input {
-  width: 80vh;
+  width: 50vh;
   padding: .5rem 1.5rem;
   border-top: 0px;
   border-left: 0px;
@@ -319,3 +335,10 @@ html{
   height: 100%;
   object-fit: cover;
 }
+
+@media only screen and (max-width: 900px) {
+  .search-bar input{
+   width: 30vh;
+  }
+}
+
