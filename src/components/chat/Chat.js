@@ -97,7 +97,7 @@ class Chat extends React.Component {
   }
 
   handleChat() {
-    this.setState({ chatFlag: !this.state.chatFlag }) 
+    this.setState({ chatFlag: !this.state.chatFlag })
   }
 
   showUsersChat() {
@@ -111,9 +111,9 @@ class Chat extends React.Component {
         <div>
           {
             this.state.chat ?
-            <button className="start-chat" onClick={() => this.handleChat()}>Chat</button>
-            :
-            <button className="start-chat" onClick={(event) => this.createRoom(event)}>Chat</button>
+              <button className="start-chat" onClick={() => this.handleChat()}>Chat</button>
+              :
+              <button className="start-chat" onClick={(event) => this.createRoom(event)}>Chat</button>
           }
           {
             this.state.chatFlag ?
@@ -142,20 +142,26 @@ class Chat extends React.Component {
           }
         </div>
       );
-    } else if (this.state.user !== undefined && this.state.user.role === 'Artist') {
+    } else if (this.state.user !== undefined && this.state.user.role === 'Artist' && this.props.artistId === this.state.user._id) {
       return (
         <div className="container">
           {
             this.state.artistChatFlag ?
               <div className="chat">
+                <h3 className="chat-user-title">Clients</h3>
                 <ScrollToBottom className="users-container-chat">
                   {
-                    this.state.user.chatHistoric.map((e, i) => {
-                      return  <div className="user-chat" onClick={(id) => this.getClientChat(e.user._id)}>
-                                <img className="img-chat" src={e.user.profileImg} alt={e.user.name} />
-                                <p key={i} className="user-select-chat">{e.user.name}</p>
-                              </div>
-                    })
+                    this.state.user.chatHistoric.length > 0 ?
+                      this.state.user.chatHistoric.map((e, i) => {
+                        return <div className="user-chat" onClick={(id) => this.getClientChat(e.user._id)}>
+                          <img className="img-chat" src={e.user.profileImg} alt={e.user.name} />
+                          <p key={i} className="user-select-chat">{e.user.name}</p>
+                        </div>
+                      })
+                      :
+                      <div className="user-chat">
+                        <p className="user-select-chat"><strong>You have no messages yet</strong></p>
+                      </div>
                   }
                 </ScrollToBottom>
               </div>
