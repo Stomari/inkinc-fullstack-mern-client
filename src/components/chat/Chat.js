@@ -23,7 +23,7 @@ class Chat extends React.Component {
     axios.get(`${process.env.REACT_APP_API_URL}/api/has-chat/${this.props.artistId}`, { withCredentials: true })
       .then(response => {
         if (response.data[0] !== undefined) {
-          this.setState({ chat: response.data[0], messages: [...response.data[0].historic], chatFlag: true })
+          this.setState({ chat: response.data[0], messages: [...response.data[0].historic] })
           this.joinRoom(response.data[0]._id)
           this.updateChat();
         }
@@ -153,9 +153,9 @@ class Chat extends React.Component {
                   {
                     this.state.user.chatHistoric.length > 0 ?
                       this.state.user.chatHistoric.map((e, i) => {
-                        return <div className="user-chat" onClick={(id) => this.getClientChat(e.user._id)}>
+                        return <div key={i} className="user-chat" onClick={(id) => this.getClientChat(e.user._id)}>
                           <img className="img-chat" src={e.user.profileImg} alt={e.user.name} />
-                          <p key={i} className="user-select-chat">{e.user.name}</p>
+                          <p className="user-select-chat">{e.user.name}</p>
                         </div>
                       })
                       :
