@@ -230,6 +230,7 @@ a.card-art:hover{
 .fav-art-card img{
   object-fit: cover;
   width: 5rem;
+  height: 5rem;
 }
 
 .fav-art-card{
@@ -237,6 +238,9 @@ a.card-art:hover{
   color:black;
 }
 
+.btn-artist-card img{
+width: 100%;
+}
 .modal-color{
   color: black;
 }

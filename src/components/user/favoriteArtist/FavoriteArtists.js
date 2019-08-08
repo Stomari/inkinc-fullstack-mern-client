@@ -33,7 +33,7 @@ class FavoriteArtists extends Component {
                           <Link className="card-art col-lg-10" to={`/artists/${artist._id}`}>
                             <ArtistCard key={index} state={artist} deleteArtist={(artist) => this.deleteArtist(artistId)}/>
                           </Link>
-                          <button className="col-lg-1" onClick={(artist) => this.deleteArtist(artistId)}> Del </button>
+                          <img className="col-lg-1 btn-artist-del" src="/images/trash-solid.svg"  onClick={(artist) => this.deleteArtist(artistId)}/> 
                         </div>
                       </ul>
                     </div>
