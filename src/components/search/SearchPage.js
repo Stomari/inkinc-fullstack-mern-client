@@ -216,7 +216,6 @@ class SearchPage extends Component {
 
  
   render() {
-    console.log('AS', this.props)
     return(
       <Fragment>
         <div className="container-fluid search-page">
