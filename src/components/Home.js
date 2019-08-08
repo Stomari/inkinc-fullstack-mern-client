@@ -21,27 +21,33 @@ class Home extends Component {
             <div className="card-deck home-custom">
               
               <div className="card d-flex align-items-center card-custom">
-                   <img src="/images/dribbble-show-series-1-7-05.png" className="card-img-top home-img pt-4" alt="..."/>
-                  <div className="card-body mt-4 text-center">
+                   <img src="/images/heart.svg" className="card-img-top home-img" alt="..."/>
+                  <div className="card-body mt-4 d-flex align-items-end text-center">
+                    <div className="col">
                     <h5 className="card-title text-uppercase">Find artists</h5>
                     <p className="card-text">This is a longer card with supporting text below as a natural </p>
+                    </div>
                 </div>
               </div>
 
               <div className="card d-flex align-items-center card-custom">
-                  <img src="/images/balloon.png" className="card-img-top home-img " alt="..."/>
-                  <div className="card-body text-center">
+                  <img src="/images/chat.svg" className="card-img-top home-img" alt="..."/>
+                  <div className="card-body d-flex align-items-end text-center">
+                  <div className="col">
                     <h5 className="card-title text-uppercase">Get inspired</h5>
                     <p className="card-text">This is a longer card with supporting text below as a natural.</p>
+                    </div>
                   </div>
                 </div>
 
               <div className="card d-flex align-items-center card-custom">
-                  <img src="/images/mail.png" className="card-img-top home-img" alt="..."/>
-                  <div className="card-body mt-4 text-center">
+                  <img src="/images/tattoo-machine.svg" className="card-img-top home-img" alt="..."/>
+                  <div className="card-body mt-4 d-flex align-items-end text-center">
+                    <div className="col">
                     <h5 className="card-title text-uppercase">Book Now?</h5>
                     <p className="card-text">This is a longer card with supporting text below as a natural </p>
                   </div>
+                </div>
                 </div> 
 
             </div>

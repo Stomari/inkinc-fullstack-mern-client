@@ -22,8 +22,6 @@ class ArtistGallery extends Component {
     }
 
   render() {
-    console.log('user', this.props.user);
-    console.log('artist', this.props.artist);
     
     return(
       <div>

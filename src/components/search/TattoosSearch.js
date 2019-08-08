@@ -4,7 +4,14 @@ import ShowMansory from './ShowMasonry';
 import 'gestalt/dist/gestalt.css';
 
 const TattoosSearch = (props) => {
-  const render = (data) => <ShowMansory user={props.user} openedImageSave={props.openedImageSave} openedImageSaveHandler={props.openedImageSaveHandler} {...data}/>
+  const render = (data) => {
+    return <ShowMansory
+      user={props.user}
+      openedImageSave={props.openedImageSave}
+      openedImageSaveHandler={props.openedImageSaveHandler}
+      handleShowModal={props.modal}{...data}
+    />
+  }
 
   return(
     <div className="search-tattoos-grid-container">
