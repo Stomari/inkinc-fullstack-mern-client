@@ -14,7 +14,6 @@ class Chat extends React.Component {
       chat: null,
     };
     this.getChatFlag = true;
-    console.log(this.props.artistId)
   }
 
   componentDidMount() {
@@ -37,7 +36,6 @@ class Chat extends React.Component {
   // }
 
   setChat(data) {
-    console.log(data)
     this.setState({
       messages: [...data[0].historic], 
       chat: data

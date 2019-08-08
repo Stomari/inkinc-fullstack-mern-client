@@ -25,14 +25,14 @@ class FolderCard extends Component {
 
         <div className="card-body">
           <p className="card-text">
-            <Link className="link-custom text-uppercase" to={`/profile/folder/${this.props.state._id}`}>
+            <Link className="link-custom text-uppercase" to={{pathname: `/profile/folder/${this.props.state._id}`, state: { getUser: this.props.getUser() }}}>
               {this.props.state.name}
             </Link>
           </p>
           <div className="overlay2">
             <p className="text2 text-uppercase">
               <p onClick={(folder) => this.deleteFolder(this.props.state._id)}> 
-              <img src="/images/trash-2-64.png" className="trash-ico"/>
+              <img src="/images/trash-2-64.png" className="trash-ico" alt="trash-icon"/>
               </p>
             </p>
           </div>

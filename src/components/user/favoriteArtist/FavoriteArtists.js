@@ -27,10 +27,10 @@ class FavoriteArtists extends Component {
         {
           this.props.artists.map((artist, index) => {
             let artistId = artist._id;
-            return  <div>
+            return  <div key={index}>
                       <ul className="list-unstyled">
                         <div className="row">
-                          <Link className="card-art col-lg-10" to={`/profile/artist/${artist._id}`}>
+                          <Link className="card-art col-lg-10" to={`/artists/${artist._id}`}>
                             <ArtistCard key={index} state={artist} deleteArtist={(artist) => this.deleteArtist(artistId)}/>
                           </Link>
                           <button className="col-lg-1" onClick={(artist) => this.deleteArtist(artistId)}> Del </button>

@@ -82,7 +82,6 @@ class Signup extends Component {
 
 
   render(){
-    console.log(this.props)
     return(
       <div className="container d-flex justify-content-center auth-custom flex-wrap">
      

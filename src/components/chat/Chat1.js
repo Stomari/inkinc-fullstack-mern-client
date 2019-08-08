@@ -71,10 +71,8 @@ class Chat1 extends React.Component {
 
   getClientChat(event) {
     event.preventDefault();
-    console.log(event.target[0].value)
     axios.get(`${process.env.REACT_APP_API_URL}/api/has-chat-artist/${event.target[0].value}`, { withCredentials: true })
       .then(response => {
-        console.log(response.data)
         if (response.data[0] !== undefined) {
           this.setState({ chat: response.data[0], messages: [...response.data[0].historic], chatFlag: true })
           this.joinRoom(response.data[0]._id)
@@ -84,7 +82,6 @@ class Chat1 extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     if (this.state.user.role === 'User') {
       return (
         <div className="container">

@@ -16,11 +16,11 @@ const Form = (props) => {
             </div>
             <div className="form-group"> 
               <label for="password">Password:</label>
-              <input type="password"  class="form-control" name="password" placeholder="Password" value={props.state.password} onChange={ e => props.handleChange(e)}/>
+              <input type="password"  className="form-control" name="password" placeholder="Password" value={props.state.password} onChange={ e => props.handleChange(e)}/>
             </div>
             <div className="form-group"> 
               <label for="name">Name:</label>
-              <input type="text" class="form-control" name="name" placeholder="Jon Snow" value={props.state.name} onChange={ e => props.handleChange(e)}/>
+              <input type="text" className="form-control" name="name" placeholder="Jon Snow" value={props.state.name} onChange={ e => props.handleChange(e)}/>
             </div>
          
           {
@@ -48,7 +48,7 @@ const Form = (props) => {
             </div>
             : null
           }
-              <input class="btn btn-custom" type="submit" value="SignUp" />
+              <input className="btn btn-custom" type="submit" value="SignUp" />
       </form>
       <small className="form-text text-muted">
         Already have an account?

@@ -70,7 +70,6 @@ class CreateFlashForm extends Component {
   }
     
   render() {
-    console.log('DJSOIDHSAIUDSHDALKJ',this.state);
     return(
       
       <div className="modal-wrapper">

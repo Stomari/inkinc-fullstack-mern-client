@@ -43,7 +43,6 @@ class CreateTattooForm extends Component {
     uploadData.append("image", e.target.files[0]);
     axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData, {withCredentials: true})
       .then(response => {
-        console.log('UPLOAD');
           this.setState({ image: response.data.secure_url });
         })
       .catch(err => console.log(err));
