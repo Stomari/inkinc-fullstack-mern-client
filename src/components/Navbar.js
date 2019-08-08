@@ -4,10 +4,10 @@ import AuthService from './auth/auth-service';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class Navbar extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       loggedInUser: null,
       collapsed: true,
       isVisible: false
@@ -17,32 +17,32 @@ class Navbar extends Component {
     this.toggleNavbar = this.toggleNavbar.bind(this);
   }
   // navbar collapse func
-    toggleNavbar(){
-      this.setState({
+  toggleNavbar() {
+    this.setState({
       collapsed: !this.state.collapsed
-      });
+    });
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({...this.state, loggedInUser: nextProps["userInSession"]});
+    this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] });
   }
 
-  logoutUser = () =>{
+  logoutUser = () => {
     this.service.logout()
-    .then(() => {
-      this.setState({ loggedInUser: null });
-      this.props.getUser(null);  
-    })
+      .then(() => {
+        this.setState({ loggedInUser: null });
+        this.props.getUser(null);
+      })
   }
 
-  render(){
+  render() {
     //navbar collapse
     const collapsed = this.state.collapsed;
     const classOne = collapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
     const classTwo = collapsed ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
 
-    if(this.state.loggedInUser){
-      return(
+    if (this.state.loggedInUser) {
+      return (
         <nav className="navbar navbar-expand-lg navbar-dark nav-custom p-3">
           <Link className="navbar-brand" to='/'>
             Ink.inc
@@ -52,65 +52,64 @@ class Navbar extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className={`${classOne} justify-content-center`}  id="navbarSupportedContent">
-          {/* center of page */}
+          <div className={`${classOne} justify-content-center`} id="navbarSupportedContent">
+            {/* center of page */}
             <ul className="navbar-nav col-lg-10 d-flex justify-content-center">
               <li className="nav-item nav-item-custom">
                 <Link to={`/artists/${this.state.loggedInUser._id}`} className="nav-link text-uppercase"> Artist </Link>
               </li>
-              <li class="nav-responsive-log nav-item nav-item-custom">
+              <li className="nav-responsive-log nav-item nav-item-custom">
                 <Link to='/profile' className="nav-link text-uppercase">Profile</Link>
               </li>
               <li className="nav-responsive-log nav-item nav-item-custom">
                 <Link to='/' className="nav-link text-uppercase" onClick={() => this.logoutUser()}> Logout </Link>
               </li>
             </ul>
-          {/* end of page */}
+            {/* end of page */}
             <div className="navbar-nav">
-              <div class="btn-group nav-responsive">
-                <button type="button" class="btn btn-prof">
-                <Link to='/profile' className="text-uppercase">Profile</Link>
+              <div className="btn-group nav-responsive">
+                <Link to='/profile' className="text-uppercase btn btn-prof">Profile</Link>
+                <button type="button" className="btn btn-prof dropdown-toggle dropdown-toggle-split " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
-                  <button type="button" class="btn btn-prof dropdown-toggle dropdown-toggle-split " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  </button>
-                  <div class="dropdown-menu dropdown-custom">
+                <div className="dropdown-menu dropdown-custom">
                   <Link to='/' className="nav-link text-uppercase dropdown-item" onClick={() => this.logoutUser()}> Logout </Link>
-                  </div>
+                </div>
 
               </div>
             </div>
           </div>
         </nav>
-       
+
       )
-    } else if(this.state.loggedInUser === null){
-     return( 
+    } else if (this.state.loggedInUser === null) {
+      return (
         <nav className="nav-style">
-        
+
         </nav>
-     )} else {
-      return ( 
+      )
+    } else {
+      return (
         <nav className="navbar navbar-expand-lg navbar-dark nav-custom p-3">
           <Link className="navbar-brand" to='/'>
-          {/* <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/> */}
-          Ink.inc
+            {/* <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/> */}
+            Ink.inc
           </Link>
 
           <button onClick={this.toggleNavbar} className={`${classTwo}`} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className={`${classOne} justify-content-center`}  id="navbarSupportedContent">
+          <div className={`${classOne} justify-content-center`} id="navbarSupportedContent">
 
             <ul className="navbar-nav col-lg-10">
               <li className="nav-item nav-item-custom">
-                <Link to='/search' className="nav-link text-uppercase" >Search</Link>         
-              </li>
-              <li class="nav-responsive-log nav-item nav-item-custom">
-              <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
+                <Link to='/search' className="nav-link text-uppercase" >Search</Link>
               </li>
               <li className="nav-responsive-log nav-item nav-item-custom">
-              <Link to='/login' className="nav-link text-uppercase">Log In</Link>
+                <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
+              </li>
+              <li className="nav-responsive-log nav-item nav-item-custom">
+                <Link to='/login' className="nav-link text-uppercase">Log In</Link>
               </li>
             </ul>
 
@@ -129,7 +128,7 @@ class Navbar extends Component {
     }
   }
 
- 
+
 }
 
 export default Navbar;

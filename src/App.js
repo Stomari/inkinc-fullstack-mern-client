@@ -5,6 +5,7 @@ import './stylesheets/mainPage.css';
 import './stylesheets/navbar.css';
 import './stylesheets/auth.css';
 import './stylesheets/profile.css';
+import './stylesheets/chat.css';
 import AuthService from './components/auth/auth-service';
 import { Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './components/auth/protected-routes'
@@ -63,7 +64,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' render={() => <Home/>} />
               <Route exact path="/home" render={() => <Home user={this.state.loggedInUser}/>}/> 
-              <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={() => this.getTheUser()}/>} />
+              <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={this.getTheUser}/>} />
               <Route exact path='/search' render={() => <SearchPage user={this.state.loggedInUser}/>} />
 
               {/* Profile Pages */}
@@ -83,7 +84,7 @@ class App extends Component {
           <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>} />
           <Route exact path='/' render={() => <Home/>} />
           <Route exact path='/search' render={() => <SearchPage/>} />
-          <Route path='/artists/:id' render={(props) => <ArtistPage getUser={(e) => this.getTheUser(e)} {...props} />} />
+          <Route path='/artists/:id' render={(props) => <ArtistPage getUser={this.getTheUser} {...props} />} />
             {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
           </Switch>
         </div>

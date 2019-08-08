@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CategoriesDisplay = (props) => {
-  console.log(props);
   return(
     <div>
       <p className="text-uppercase"> Styles </p>

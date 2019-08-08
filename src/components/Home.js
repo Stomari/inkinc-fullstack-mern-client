@@ -1,6 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import AuthService from './auth/auth-service';
 
 class Home extends Component {
   constructor(props){
@@ -58,7 +56,7 @@ class Home extends Component {
               </div>
 
               <div className="col-lg-6 d-flex justify-content-end">
-                <p className="text-footer"> © 2019 Ink, Inc.</p>
+                <p className="text-footer"> © 2019 Ink.inc</p>
               </div>
 
             </div>

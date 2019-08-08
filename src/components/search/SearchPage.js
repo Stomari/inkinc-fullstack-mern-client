@@ -221,7 +221,6 @@ class SearchPage extends Component {
         {
           this.state.imageToSaveId !== '' &&
           <div className="modal-wrapper">
-            {console.log('USER', this.props.user)}
             <span className="close-modal-btn" onClick={() => this.handleCloseModal()}></span>
             <div className="form-modal">
               {this.state.shownTattoo !== '' && <img src={this.state.shownTattoo.image} width="300" alt={this.state.shownTattoo.tag.join(', ')} />}
