@@ -6,7 +6,7 @@ const FolderMasonry = (props) => {
   const deleteFolder = (folder) => {
     axios.put(`${process.env.REACT_APP_API_URL}/api/folder/${props.detailsProps.match.params.id}/remove/${props.data._id}`, {}, { withCredentials: true })
       .then(() => {
-        this.props.getInfo()
+        // props.getUser()
       })
       .catch((err) => {
         console.log(err)
