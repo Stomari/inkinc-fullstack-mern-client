@@ -27,7 +27,7 @@ class FolderCard extends Component {
         <figure className="folder-cover">
           <Link className="link-custom text-uppercase" to={`/profile/folder/${this.props.state._id}`}>
           {
-            this.props.user.folder[this.props.idx] && this.props.user.folder[this.props.idx].image.length > 0 ?
+            this.props.user.folder[this.props.idx] && this.props.user.folder[this.props.idx].image && this.props.user.folder[this.props.idx].image.length > 0 ?
             <img className="card-img-top" src={this.props.user.folder[this.props.idx].image[0].image} alt="folder cover"/>
             : <img className="card-img-top" src="/images/teste-folder.jpeg"  alt="folder cover"/>
           }
