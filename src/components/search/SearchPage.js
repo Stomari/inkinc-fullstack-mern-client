@@ -5,6 +5,7 @@ import ArtistsTattoosToggle from './ArtistsTattoosToggle';
 import ArtistsSearch from './ArtistsSearch';
 import TattoosSearch from './TattoosSearch';
 import Footer from '../Footer';
+import ModalImage from './ModalImage';
 import axios from 'axios';
 
 class SearchPage extends Component {
@@ -23,6 +24,7 @@ class SearchPage extends Component {
       openedImageSave: false,
       imageToSaveId: '',
       shownTattoo: '',
+      imageModal: false
     }
   }
 
@@ -133,9 +135,29 @@ class SearchPage extends Component {
   //   });
   // }
 
-  openedImageSaveHandler(event, i) {
+  openedImageSaveHandler(event, id, modal) {
+    console.log(modal)
     event.preventDefault();
-    this.getSingleTattoo(i);
+    axios.get(`http://localhost:8000/api/tattoo/${id}`, {withCredentials: true})
+    .then(response => {
+      const tattoo = response.data;
+      const idx = !this.state.openedImageSave ? id : ''
+      
+      if(modal === 'folder'){
+        this.setState({
+          openedImageSave: !this.state.openedImageSave,
+          imageToSaveId: idx,
+          shownTattoo: tattoo,
+        })
+      } else if(modal === 'image'){
+        this.setState({
+          imageModal: !this.state.imageModal,
+          shownTattoo: tattoo,
+        })
+      }
+      
+    })
+    .catch(err => console.log(err));
   }
 
   chooseCategories(event) {
@@ -164,22 +186,10 @@ class SearchPage extends Component {
       openedImageSave: false,
       imageToSaveId: '',
       shownTattoo: '',
+      imageModal: false
     })
   }
 
-  getSingleTattoo(id) {
-    axios.get(`http://localhost:8000/api/tattoo/${id}`, {withCredentials: true})
-      .then(response => {
-        const tattoo = response.data;
-        const idx = !this.state.openedImageSave ? id : ''
-        this.setState({
-          openedImageSave: !this.state.openedImageSave,
-          imageToSaveId: idx,
-          shownTattoo: tattoo
-        })
-      })
-      .catch(err => console.log(err));
-  }
 
   addToFolder(id) {
     const tattooId = this.state.shownTattoo;
@@ -191,6 +201,7 @@ class SearchPage extends Component {
       .catch(err => console.log(err));
   }
 
+ 
   render() {
     console.log('AS', this.state)
     return(
@@ -199,7 +210,6 @@ class SearchPage extends Component {
           {/* <ArtistsTattoosToggle artistsSearch={this.state.artistsSearch} toggleHandler={() => this.toggleHandler()} /> */}
           <SearchBar state={this.state} searchHandler={(event) => this.searchHandler(event)} />
           <Categories categories={this.state.categories} chooseCategories={(e) => this.chooseCategories(e)} />
-  
           {
             this.state.artistsSearch && 
             <ArtistsSearch filteredResults={this.state.filteredResults} />
@@ -207,13 +217,14 @@ class SearchPage extends Component {
           {
             !this.state.artistsSearch &&
             <TattoosSearch
-              openedImageSaveHandler={(e, i) => this.openedImageSaveHandler(e, i)}
+              openedImageSaveHandler={(e, i, modal) => this.openedImageSaveHandler(e, i,modal)}
               openedImageSave={this.state.openedImageSave}
               filterHandler={() => this.filterHandler(this.state.searchQuery)}
               categories={this.state.categories}
               filteredResults={this.state.filteredResults}
               tattoos={this.state.resultsTattoos}
               user={this.props.user}
+              modal={() => this.handleShowModal()}
             />
           }
   
@@ -229,6 +240,11 @@ class SearchPage extends Component {
             </div>
             <div className="modal-bg" onClick={() => this.handleCloseModal()}></div>
           </div>
+        }
+        {
+          this.state.imageModal ?
+          <ModalImage user={this.props.user} shownTattoo={this.state.shownTattoo} handleCloseModal={() => this.handleCloseModal()} openedImageSaveHandler={(e, i, modal) => this.openedImageSaveHandler(e, i, modal)}/>
+          : null
         }
         <Footer />
       </Fragment>

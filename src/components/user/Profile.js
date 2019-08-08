@@ -8,8 +8,8 @@ import CreateFolder from './folder/CreateFolder';
 import FavoriteArtists from './favoriteArtist/FavoriteArtists';
 
 class Profile extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props){
+    super(props)
     this.state = {
       folders: [],
       favoriteArtists: [],
@@ -26,7 +26,9 @@ class Profile extends Component {
         favoriteArtists: data.favoriteArtist,
         image: data.profileImg,
       })
-      .catch(err => console.log(err));
+      this.props.getUser(data)
+    })
+    .catch(err => console.log(err));
   }
 
   componentDidMount() {

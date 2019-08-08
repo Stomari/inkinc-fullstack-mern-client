@@ -6,6 +6,7 @@ import './stylesheets/navbar.css';
 import './stylesheets/auth.css';
 import './stylesheets/profile.css';
 import './stylesheets/chat.css';
+import './stylesheets/searchPage.css';
 import AuthService from './components/auth/auth-service';
 import { Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './components/auth/protected-routes'
@@ -49,7 +50,7 @@ class App extends Component {
     }
   }
 
-  getTheUser = (userObj) => {
+  getTheUser(userObj) {
     this.setState({
       loggedInUser: userObj
     })
@@ -69,7 +70,12 @@ class App extends Component {
               <Route exact path='/search/tattoos' key="search-tattoos" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={false} />} />
 
               {/* Profile Pages */}
-              <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} component={Profile} /> 
+                {/* <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} getUser={(obj) => this.getTheUser(obj)} component={Profile} /> */}
+                <Route path='/profile'  render={(props) => <Profile user={this.state.loggedInUser} {...props} getUser={(obj) => this.getTheUser(obj)}/>} />
+                <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={(obj) => this.getTheUser(obj)}/>} />
+
+                <Route path='/profile/folder/:id' render={(props) => <FolderDetail user={this.state.loggedInUser} {...props} getUser={(obj) => this.getTheUser(obj)}/>} />
+
               <ProtectedRoute exact path='/profile/folder/:id' user={this.state.loggedInUser} component={FolderDetail} /> 
             
             </Switch>

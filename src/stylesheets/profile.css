@@ -1,7 +1,10 @@
 .profile-custom{
   color: white;
+  padding-top: 5%;
+  background-image: url("/images/img-back.png");
+  background-repeat: no-repeat;
+  background-size: 100% 70%;
 }
-
 .folder-header{
   width: 40%;
   border-bottom: 1px solid white;
@@ -220,4 +223,12 @@ a.card-art:hover{
 
 .modal-color{
   color: black;
+}
+.carousel-inner .active.left { left: -33%; }
+.carousel-inner .next        { left:  33%; }
+.carousel-control.left,.carousel-control.right {background-image:none;}
+
+
+.card-flash{
+  background-color: grey !important;
 }
