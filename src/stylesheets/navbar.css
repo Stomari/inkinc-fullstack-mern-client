@@ -81,6 +81,10 @@
 }
 
 @media only screen and (max-width: 1024px) {
+  .nav-custom{
+    background-color: black;
+    position: relative;
+  }
   .nav-responsive button {
     display: none;
   }

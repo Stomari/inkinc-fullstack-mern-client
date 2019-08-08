@@ -61,11 +61,16 @@ class Profile extends Component {
     return(
       <Fragment>
         <div className="container-fluid profile-custom">
+          <div className="profile-bg">
+
+          </div>
           <div className="row m-5">
 
-            <div className="col-lg-3 text-center profile-side-header mb-5">
+            <div className="col-lg-3 text-center profile-side-header">
+              <div className="d-flex row justify-content-center">
               <Header user={this.props.user} image={this.state.image} handleFileUpload={(e) => this.handleFileUpload(e)} />
               <FavoriteArtists id="artists" artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists}/>
+              </div>
             </div>
 
             <div className="col-lg-9 p-0 profile-side-main pr-5">
