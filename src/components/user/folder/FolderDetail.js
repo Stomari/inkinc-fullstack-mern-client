@@ -35,7 +35,7 @@ class FolderDetail extends Component {
   }
 
   render(){
-    return (
+    return (  
       <div className="container">
         <h2>{this.state.folder.name}</h2>
         {

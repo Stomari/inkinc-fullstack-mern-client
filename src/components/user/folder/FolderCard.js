@@ -26,9 +26,8 @@ class FolderCard extends Component {
         <div className="card-body">
           <p className="card-text">
           <Link className="link-custom text-uppercase" to={`/profile/folder/${this.props.state._id}`}>
-            {/* <Link className="link-custom text-uppercase" to={`/profile/folder/${this.props.state._id}`}> */}
-              {this.props.state.name}
-            </Link>
+            {this.props.state.name}
+          </Link>
           </p>
           <div className="overlay2">
             <p className="text2 text-uppercase">

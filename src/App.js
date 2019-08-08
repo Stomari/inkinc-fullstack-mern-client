@@ -69,7 +69,7 @@ class App extends Component {
 
               {/* Profile Pages */}
               <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} component={Profile} /> 
-              <ProtectedRoute exact path='/profile/folder/:id' user={this.state.loggedInUser} component={FolderDetail} getUser={() => this.getTheUser()} /> 
+              <ProtectedRoute exact path='/profile/folder/:id' user={this.state.loggedInUser} component={FolderDetail} getUser={(obj) => this.getTheUser(obj)} /> 
             
             </Switch>
           </div>
