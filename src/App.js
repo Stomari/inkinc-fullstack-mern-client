@@ -61,11 +61,11 @@ class App extends Component {
     if(this.state.loggedInUser){
       return (
           <div className="App">
-            <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
+            <Navbar userInSession={this.state.loggedInUser} getUser={(obj) => this.getTheUser(obj)} />
             <Switch>
               <Route exact path='/' render={() => <Home/>} />
               <Route exact path="/home" render={() => <Home user={this.state.loggedInUser}/>}/> 
-              <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={() => this.getTheUser()}/>} />
+              <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={(obj) => this.getTheUser(obj)}/>} />
               <Route exact path='/search/artists' key="search-artists" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={true} />} />
               <Route exact path='/search/tattoos' key="search-tattoos" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={false} />} />
 
@@ -84,14 +84,14 @@ class App extends Component {
       } else {
       return (
         <div className="App">
-          <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>
+          <Navbar userInSession={this.state.loggedInUser} getUser={(obj) => this.getTheUser(obj)}/>
 
           <Switch>
-            <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>} />
-            <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>} />
+            <Route exact path='/signup' render={() => <Signup getUser={(obj) => this.getTheUser(obj)}/>} />
+            <Route exact path='/login' render={() => <Login getUser={(obj) => this.getTheUser(obj)}/>} />
             <Route exact path='/' render={() => <Home/>} />
             <Route exact path='/search' render={() => <SearchPage/>} />
-            <Route path='/artists/:id' render={(props) => <ArtistPage getUser={(e) => this.getTheUser(e)} {...props} />} />
+            <Route path='/artists/:id' render={(props) => <ArtistPage getUser={(obj) => this.getTheUser(obj)} {...props} />} />
             {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
           </Switch>
         </div>
