@@ -76,73 +76,80 @@ class Navbar extends Component {
             <div className="navbar-nav">
               <div className="btn-group nav-responsive">
 
-                {
-                  this.state.loggedInUser.role === 'User' ?
-                    <Link to={'/profile'} className="text-uppercase">Profile</Link>
-                    :
-                    <Link to={`/artists/${this.state.loggedInUser._id}`} className="text-uppercase">Profile</Link>
-                }
+                  {
+                    this.state.loggedInUser.role === 'User' ?
+                      <Link to={'/profile'} className="text-uppercase">
+                        <button type="button" className="btn btn-prof">
+                          Profile
+                        </button>
+                      </Link>
+                      :
+                      <Link to={`/artists/${this.state.loggedInUser._id}`} className="text-uppercase">
+                        <button type="button" className="btn btn-prof">
+                          Profile
+                        </button>
+                      </Link>
+                  }
 
-                <button type="button" className="btn btn-prof dropdown-toggle dropdown-toggle-split " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                </button>
-                <div className="dropdown-menu dropdown-custom">
-                  <Link to='/' className="nav-link text-uppercase dropdown-item" onClick={() => this.logoutUser()}> Logout </Link>
-                </div>
+                  <button type="button" className="btn btn-prof dropdown-toggle dropdown-toggle-split " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  </button>
+                  <div className="dropdown-menu dropdown-custom">
+                    <Link to='/' className="nav-link text-uppercase dropdown-item" onClick={() => this.logoutUser()}> Logout </Link>
+                  </div>
               </div>
-            </div>
+              </div>
 
-          </div>
+            </div>
         </nav>
 
-      )
+          )
     } else if (this.state.loggedInUser === null) {
       return (
         <nav className="nav-style">
 
-        </nav>
-      )
-    } else {
+          </nav>
+          )} else {
       return (
         <nav className="navbar navbar-expand-lg nav-custom p-3">
-          <Link className="navbar-brand" to='/'>
-            {/* <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/> */}
-            Ink.inc
+            <Link className="navbar-brand" to='/'>
+              {/* <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/> */}
+              Ink.inc
           </Link>
 
-          <button onClick={this.toggleNavbar} className={`${classTwo}`} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+            <button onClick={this.toggleNavbar} className={`${classTwo}`} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
 
-          <div className={`${classOne} justify-content-center`} id="navbarSupportedContent">
+            <div className={`${classOne} justify-content-center`} id="navbarSupportedContent">
 
-            <ul className="navbar-nav col-lg-10">
-              <li className="nav-item nav-item-custom">
-                <Link to='/search' className="nav-link text-uppercase" >Search</Link>
-              </li>
-              <li className="nav-responsive-log nav-item nav-item-custom">
-                <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
-              </li>
-              <li className="nav-responsive-log nav-item nav-item-custom">
-                <Link to='/login' className="nav-link text-uppercase">Log In</Link>
-              </li>
-            </ul>
+              <ul className="navbar-nav col-lg-10">
+                <li className="nav-item nav-item-custom">
+                  <Link to='/search' className="nav-link text-uppercase" >Search</Link>
+                </li>
+                <li className="nav-responsive-log nav-item nav-item-custom">
+                  <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
+                </li>
+                <li className="nav-responsive-log nav-item nav-item-custom">
+                  <Link to='/login' className="nav-link text-uppercase">Log In</Link>
+                </li>
+              </ul>
 
-            <div className="navbar-nav nav-responsive">
-              <button className="btn-log mr-3">
-                <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
-              </button>
-              <button className="btn-log">
-                <Link to='/login' className="nav-link text-uppercase">Log In</Link>
-              </button>
+              <div className="navbar-nav nav-responsive">
+                <button className="btn-log mr-3">
+                  <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
+                </button>
+                <button className="btn-log">
+                  <Link to='/login' className="nav-link text-uppercase">Log In</Link>
+                </button>
+              </div>
+
             </div>
-
-          </div>
-        </nav>
-      )
+          </nav>
+          )
+        }
+      }
+    
+    
     }
-  }
-
-
-}
-
+    
 export default Navbar;
