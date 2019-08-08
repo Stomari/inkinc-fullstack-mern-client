@@ -77,7 +77,7 @@ class Profile extends Component {
                   <CreateFolder foldersInfo={() => this.getInfo()}/>
                 </div>
               </div>
-              <Folder id="folder" foldersInfo={() => this.getInfo()} folders={this.state.folders} />
+              <Folder id="folder" foldersInfo={() => this.getInfo()} folders={this.state.folders} user={this.props.user}/>
             </div>
 
           </div>

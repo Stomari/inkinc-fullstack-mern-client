@@ -32,8 +32,8 @@ class CreateFolder extends Component {
   render() {
     return (
       <div>
-        <img src="/images/plus-circle-solid.svg" className="btn-create" data-toggle="modal" data-target="#exampleModal"/>
-        <div className="modal fade modal-color " id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <img src="/images/plus-circle-solid.svg" className="btn-create" data-toggle="modal" data-target="#exampleModal" alt="create folder icon - plus sign" />
+        <div className="modal fade modal-color" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content modal-custom">
               <div className="modal-header">

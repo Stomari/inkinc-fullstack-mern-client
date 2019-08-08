@@ -23,7 +23,7 @@ class Chat extends React.Component {
     axios.get(`${process.env.REACT_APP_API_URL}/api/has-chat/${this.props.artistId}`, { withCredentials: true })
       .then(response => {
         if (response.data[0] !== undefined) {
-          this.setState({ chat: response.data[0], messages: [...response.data[0].historic], chatFlag: true })
+          this.setState({ chat: response.data[0], messages: [...response.data[0].historic] })
           this.joinRoom(response.data[0]._id)
           this.updateChat();
         }
@@ -72,11 +72,11 @@ class Chat extends React.Component {
     socket.emit('SUBSCRIBE', room);
   }
 
-  getClientChat(event) {
-    event.preventDefault();
-    axios.get(`${process.env.REACT_APP_API_URL}/api/has-chat-artist/${event.target[0].value}`, { withCredentials: true })
+  getClientChat(id) {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/has-chat-artist/${id}`, { withCredentials: true })
       .then(response => {
         if (response.data[0] !== undefined) {
+          console.log(response)
           this.setState({ chat: response.data[0], messages: [...response.data[0].historic], chatFlag: true })
           this.joinRoom(response.data[0]._id)
         }
@@ -96,22 +96,32 @@ class Chat extends React.Component {
     this.setState({ chatFlag: false });
   }
 
+  handleChat() {
+    this.setState({ chatFlag: !this.state.chatFlag })
+  }
+
   showUsersChat() {
     this.setState({ artistChatFlag: !this.state.artistChatFlag });
+    this.closeChat();
   }
 
   render() {
     if (this.state.user !== undefined && this.state.user.role === 'User') {
       return (
         <div>
-          <button className="start-chat" onClick={(event) => this.createRoom(event)}>Chat</button>
+          {
+            this.state.chat ?
+              <button className="start-chat" onClick={() => this.handleChat()}>Chat</button>
+              :
+              <button className="start-chat" onClick={(event) => this.createRoom(event)}>Chat</button>
+          }
           {
             this.state.chatFlag ?
               <div className="chat">
-                <button type="button" className="close" onClick={() => this.closeChat()}>
+                <button type="button" className="close close-chat" onClick={() => this.closeChat()}>
                   <span aria-hidden="true">&times;</span>
                 </button>
-                <h3 className="title">Ink Chat</h3>
+                <h3 className="chat-title">Ink Chat</h3>
                 <hr />
                 <ScrollToBottom className="messages-container">
                   {this.state.messages.map((message, i) => {
@@ -121,7 +131,7 @@ class Chat extends React.Component {
                   })}
                 </ScrollToBottom>
                 <form autoComplete="off" >
-                  <div className="inputs">
+                  <div className="inputs-chat">
                     <input type="text" placeholder="Message" name="message" className="" value={this.state.message} onChange={(event) => this.inputHandler(event)} />
                     <button type="submit" onClick={this.sendMessage} className="btn btn-primary">Send</button>
                   </div>
@@ -132,27 +142,28 @@ class Chat extends React.Component {
           }
         </div>
       );
-    } else if (this.state.user !== undefined && this.state.user.role === 'Artist') {
+    } else if (this.state.user !== undefined && this.state.user.role === 'Artist' && this.props.artistId === this.state.user._id) {
       return (
         <div className="container">
-          {/* <form onSubmit={(event) => this.getClientChat(event)}>
-            <select>
-              {
-                this.state.user.chatHistoric.map((e, i) => {
-                  return <option key={i} value={e.user._id}>{e.user.name}</option>
-                })
-              }
-            </select>
-            <button className="start-chat">Chat</button>
-          </form> */}
           {
             this.state.artistChatFlag ?
               <div className="chat">
-                {
-                  this.state.user.chatHistoric.map((e, i) => {
-                    return <div key={i} value={e.user._id} className="user-select">{e.user.name}</div>
-                  })
-                }
+                <h3 className="chat-user-title">Clients</h3>
+                <ScrollToBottom className="users-container-chat">
+                  {
+                    this.state.user.chatHistoric.length > 0 ?
+                      this.state.user.chatHistoric.map((e, i) => {
+                        return <div key={i} className="user-chat" onClick={(id) => this.getClientChat(e.user._id)}>
+                          <img className="img-chat" src={e.user.profileImg} alt={e.user.name} />
+                          <p className="user-select-chat">{e.user.name}</p>
+                        </div>
+                      })
+                      :
+                      <div className="user-chat">
+                        <p className="user-select-chat"><strong>You have no messages yet</strong></p>
+                      </div>
+                  }
+                </ScrollToBottom>
               </div>
               :
               null
@@ -161,10 +172,10 @@ class Chat extends React.Component {
           {
             this.state.chatFlag ?
               <div className="chat">
-                <button type="button" className="close" onClick={() => this.closeChat()}>
+                <button type="button" className="close close-chat" onClick={() => this.closeChat()}>
                   <span aria-hidden="true">&times;</span>
                 </button>
-                <h3 className="title">Ink Chat</h3>
+                <h3 className="chat-title">Ink Chat</h3>
                 <hr />
                 <ScrollToBottom className="messages-container">
                   {this.state.messages.map((message, i) => {
@@ -174,7 +185,7 @@ class Chat extends React.Component {
                   })}
                 </ScrollToBottom>
                 <form autoComplete="off" >
-                  <div className="inputs">
+                  <div className="inputs-chat">
                     <input type="text" placeholder="Message" name="message" className="" value={this.state.message} onChange={(event) => this.inputHandler(event)} />
                     <button type="submit" onClick={this.sendMessage} className="btn btn-primary">Send</button>
                   </div>

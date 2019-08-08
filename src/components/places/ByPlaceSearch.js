@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 //Import React Scrit Libraray to load Google object
-import Script from 'react-load-script';
 // import axios from 'axios';
 
 
@@ -89,10 +88,6 @@ class ByPlaceSearch extends Component {
   render() {
     return (
       <div>
-        <Script
-          url={`https://maps.googleapis.com/maps/api/js?key=AIzaSyC5lG_0f00dNMOelO1DPnp8ZwFMuPEnQTU&libraries=places`}
-          onLoad={this.handleScriptLoad}
-        />
         <div className="form-group"> 
           <input id="autocomplete" className="form-control" placeholder="Find your workplace" name="query"  value={this.state.query} onChange={(event) => this.handleUpdate(event)}/>
         </div>

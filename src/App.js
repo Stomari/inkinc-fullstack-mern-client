@@ -49,11 +49,12 @@ class App extends Component {
     }
   }
 
-  getTheUser = (userObj) => {
+  getTheUser(userObj) {
     this.setState({
       loggedInUser: userObj
     })
   }
+
   
   render() {
     this.fetchUser()
