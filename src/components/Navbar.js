@@ -58,6 +58,12 @@ class Navbar extends Component {
               <li className="nav-item nav-item-custom">
                 <Link to={`/artists/${this.state.loggedInUser._id}`} className="nav-link text-uppercase"> Artist </Link>
               </li>
+              <li className="nav-item nav-item-custom">
+                <Link to={'/search/artists'} className="nav-link text-uppercase">Find Artists</Link>
+              </li>
+              <li className="nav-item nav-item-custom">
+                <Link to={'/search/tattoos'} className="nav-link text-uppercase">Get inspiration</Link>
+              </li>
               <li className="nav-responsive-log nav-item nav-item-custom">
                 <Link to='/profile' className="nav-link text-uppercase">Profile</Link>
               </li>
@@ -106,7 +112,7 @@ class Navbar extends Component {
                 <Link to='/search' className="nav-link text-uppercase" >Search</Link>
               </li>
               <li className="nav-responsive-log nav-item nav-item-custom">
-                <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
+              <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
               </li>
               <li className="nav-responsive-log nav-item nav-item-custom">
                 <Link to='/login' className="nav-link text-uppercase">Log In</Link>
