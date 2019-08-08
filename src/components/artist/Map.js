@@ -1,15 +1,14 @@
 /*global google*/ // To disable any eslint 'google not defined' errors
 import React, {Component} from 'react';
-import Script from 'react-load-script';
 
 class Map extends Component {
   constructor(props) {
     super(props);
   }
 
-  // componentWillReceiveProps(user) {
-  //   this.handleScriptLoad(user.artist);
-  // }
+  componentWillReceiveProps(user) {
+    this.handleScriptLoad(user.artist);
+  }
 
   handleScriptLoad(user) {
     this.bounds = new google.maps.LatLngBounds();
@@ -51,10 +50,6 @@ class Map extends Component {
   render () {
     return (
       <div>
-        <Script
-            url={`https://maps.googleapis.com/maps/api/js?key=AIzaSyC5lG_0f00dNMOelO1DPnp8ZwFMuPEnQTU`}
-            onLoad={(user) => this.handleScriptLoad(this.props.artist)}
-            />
         <div style={{ width: '100%', height: 300 }} id="map" />
         <br />
         {

@@ -28,7 +28,7 @@ class SearchPage extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
 
     axios.get(`${process.env.REACT_APP_API_URL}/api/categories`, {withCredentials: true})
       .then(response => {

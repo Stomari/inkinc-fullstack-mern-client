@@ -54,6 +54,7 @@ class App extends Component {
       loggedInUser: userObj
     })
   }
+
   
   render() {
     this.fetchUser()
