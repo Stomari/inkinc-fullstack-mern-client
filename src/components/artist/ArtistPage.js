@@ -139,7 +139,7 @@ class ArtistPage extends Component {
     axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData, {withCredentials: true})
       .then(response => {
           this.setState({ image: response.data.secure_url });
-          axios.put('http://localhost:8000/api/edit-artist', this.state, {withCredentials: true})
+          axios.put(`${process.env.REACT_APP_API_URL}/api/edit-artist`, this.state, {withCredentials: true})
             .then(() => {
               this.getArtist();
             })
@@ -166,7 +166,7 @@ favArtist(artistId){
         if(e._id === artistId){
           console.log("err")
         }else{
-          return axios.put(`http://localhost:8000/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
+          return axios.put(`${process.env.REACT_APP_API_URL}/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
                 .then(() => {
                   this.handleUserInfo()
                   this.setState({
@@ -177,7 +177,7 @@ favArtist(artistId){
         }
         })
     }else if (this.props.user.favoriteArtist.length === 0){
-      axios.put(`http://localhost:8000/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
+      axios.put(`${process.env.REACT_APP_API_URL}/api/favorite-artist/${artistId}`, {}, {withCredentials: true})
         .then(() => {
           this.handleUserInfo()
           this.setState({
@@ -272,7 +272,7 @@ handleShowFollow(id){
 
                 <h5 className="text-uppercase text-center">Flashes</h5>
               {/* <div className="row"> */}
-              <div className="col-lg-12 d-flex flex-wrap">
+              <div className="col-lg-12 d-flex">
 
                 <Flashes
                   user={this.props.user}
