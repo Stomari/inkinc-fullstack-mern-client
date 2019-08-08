@@ -74,9 +74,9 @@ class App extends Component {
                 <Route path='/profile'  render={(props) => <Profile user={this.state.loggedInUser} {...props} getUser={(obj) => this.getTheUser(obj)}/>} />
                 <Route path="/artists/:id" render={(props) => <ArtistPage user={this.state.loggedInUser} {...props} getUser={(obj) => this.getTheUser(obj)}/>} />
 
-                <Route path='/profile/folder/:id' render={(props) => <FolderDetail user={this.state.loggedInUser} {...props} getUser={(obj) => this.getTheUser(obj)}/>} />
+                {/* <Route exact path='/profile/folder/:id' render={(props) => <FolderDetail user={this.state.loggedInUser} {...props} getUser={(obj) => this.getTheUser(obj)}/>} /> */}
 
-              <ProtectedRoute exact path='/profile/folder/:id' user={this.state.loggedInUser} component={FolderDetail} /> 
+              <ProtectedRoute exact path='/profile/folder/:id' user={this.state.loggedInUser} component={FolderDetail} getUser={(obj) => this.getTheUser(obj)}/> 
             
             </Switch>
           </div>
