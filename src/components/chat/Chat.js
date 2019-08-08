@@ -16,7 +16,6 @@ class Chat extends React.Component {
       chatFlag: false,
       artistChatFlag: false,
     };
-
   }
 
   componentDidMount() {

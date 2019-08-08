@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Masonry} from 'gestalt';
+import FolderMasonry from './FolderMasonry';
 
 //Components
 import FolderImage from './FolderImage';
@@ -12,14 +14,14 @@ class FolderDetail extends Component {
     }
     
   }
-
+  
   componentWillMount(){
     axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
     .then((response) => {
       let folderData = response.data.folder;
       let filter = folderData.filter((elem) => {
         return elem._id.includes(this.props.match.params.id)
-       })[0];
+      })[0];
       this.setState({
         folder: filter
       })
@@ -28,23 +30,43 @@ class FolderDetail extends Component {
   }
   
 
+  renderData(data) {
+    return <FolderMasonry {...data} detailsProps={this.props} />
+  }
+
   render(){
-       if(this.state.folder.image === undefined){
-        return(
-         <p>TESTE</p>
-        )
-       } else {
-         return (
-          <div>
-           <p> {this.state.folder.name}</p>
-          { 
-            this.state.folder.image.map((img, index) => {
-            return <FolderImage key={index} image={img}/>
-            })
-          }
-         </div>
-       )
-       }
+    console.log('FD', this.props);
+    this.state.folder.image && console.log(this.state.folder.image.length);
+    return (
+      <div className="container">
+        <h2>{this.state.folder.name}</h2>
+        {
+          this.state.folder && this.state.folder.image && this.state.folder.image.length > 1 &&
+          <Masonry
+            comp={(data) => this.renderData(data)}
+            items={this.state.folder.image}
+            // loadItems={this.loadItems}
+            minCols={1}
+          />
+        }
+      </div>
+    )
+      //  if(this.state.folder.image === undefined){
+      //   return(
+      //    <p>TESTE</p>
+      //   )
+      //  } else {
+      //    return (
+      //     <div>
+      //      <p> {this.state.folder.name}</p>
+      //     { 
+      //       this.state.folder.image.map((img, index) => {
+      //       return <FolderImage key={index} image={img}/>
+      //       })
+      //     }
+      //    </div>
+      //  )
+      //  }
    
   }
 }

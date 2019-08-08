@@ -20,7 +20,7 @@ class SearchPage extends Component {
       filteredResults: [],
       clicked: false,
       searchByTatto: false,
-      artistsSearch: false,
+      artistsSearch: this.props.searchFlag,
       openedImageSave: false,
       imageToSaveId: '',
       shownTattoo: '',
@@ -203,10 +203,11 @@ class SearchPage extends Component {
 
  
   render() {
+    console.log('AS', this.state)
     return(
       <Fragment>
         <div className="container">
-          <ArtistsTattoosToggle artistsSearch={this.state.artistsSearch} toggleHandler={() => this.toggleHandler()} />
+          {/* <ArtistsTattoosToggle artistsSearch={this.state.artistsSearch} toggleHandler={() => this.toggleHandler()} /> */}
           <SearchBar state={this.state} searchHandler={(event) => this.searchHandler(event)} />
           <Categories categories={this.state.categories} chooseCategories={(e) => this.chooseCategories(e)} />
           {

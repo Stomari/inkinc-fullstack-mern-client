@@ -59,10 +59,11 @@ class Navbar extends Component {
                 <Link to={`/artists/${this.state.loggedInUser._id}`} className="nav-link text-uppercase"> Artist </Link>
               </li>
               <li className="nav-item nav-item-custom">
-                <Link to={`/search`} className="nav-link text-uppercase"> Search </Link>
+                <Link to={'/search/artists'} className="nav-link text-uppercase">Find Artists</Link>
               </li>
-              {/* responsive hidden li's */}
-
+              <li className="nav-item nav-item-custom">
+                <Link to={'/search/tattoos'} className="nav-link text-uppercase">Get inspiration</Link>
+              </li>
               <li className="nav-responsive-log nav-item nav-item-custom">
                 <Link to='/profile' className="nav-link text-uppercase">Profile</Link>
               </li>

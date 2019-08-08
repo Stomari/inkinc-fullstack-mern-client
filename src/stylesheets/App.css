@@ -108,7 +108,6 @@ html{
 }
 
 .search-grid-image-wrapper {
-  /* padding: 5px; */
   background: #e1e1e1;
   transition: .2s ease;
   cursor: pointer;
@@ -235,17 +234,6 @@ html{
 .search-toggle label:hover {
   background:#FF4D4E;
 }
-/* 
-footer {
-  height: 10rem;
-  background: #1d1d1d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 5rem;
-  color: #e1e1e1
-} */
 
 .artist-search-container {
   display: flex;
@@ -274,4 +262,16 @@ footer {
 .artist-search-info {
   display: flex;
   flex-direction: row;
+}
+
+#upload-image {
+  display: none;
+}
+
+.upload-image-container, .upload-image-container label {
+  cursor: pointer;
+}
+
+.profile-image {
+  object-fit: cover;
 }
