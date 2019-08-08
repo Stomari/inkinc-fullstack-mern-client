@@ -151,7 +151,7 @@ class SearchPage extends Component {
 
   openedImageSaveHandler(event, id, modal) {
     event.preventDefault();
-    axios.get(`http://localhost:8000/api/tattoo/${id}`, {withCredentials: true})
+    axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo/${id}`, {withCredentials: true})
     .then(response => {
       const tattoo = response.data;
       const idx = !this.state.openedImageSave ? id : ''
@@ -207,7 +207,7 @@ class SearchPage extends Component {
   addToFolder(id) {
     const tattooId = this.state.shownTattoo;
     const folderId = id;
-    axios.post('http://localhost:8000/api/add-tattoo-folder', { tattooId, folderId }, {withCredentials: true})
+    axios.post(`${process.env.REACT_APP_API_URL}/api/add-tattoo-folder`, { tattooId, folderId }, {withCredentials: true})
       .then(() =>  {
         this.handleCloseModal();
       })
