@@ -1,7 +1,6 @@
   import React, { Component, Fragment } from 'react';
 
   //Import React Scrit Libraray to load Google object
-  import Script from 'react-load-script';
 
   class ByPlaceSearch extends Component {
     // Define Constructor
@@ -91,10 +90,6 @@
     render() {
       return (
         <Fragment>
-          <Script
-            url={`https://maps.googleapis.com/maps/api/js?key=AIzaSyC5lG_0f00dNMOelO1DPnp8ZwFMuPEnQTU&libraries=places`}
-            onLoad={this.handleScriptLoad}
-          />
           <div className="form-group"> 
             <input placeholder="Workplace name"  className="form-control" name="studioName"  value={this.state.studioName} onChange={(event) => this.handleUpdate(event)}/>
           </div>
