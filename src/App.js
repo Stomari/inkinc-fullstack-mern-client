@@ -5,6 +5,7 @@ import './stylesheets/mainPage.css';
 import './stylesheets/navbar.css';
 import './stylesheets/auth.css';
 import './stylesheets/profile.css';
+import './stylesheets/chat.css';
 import AuthService from './components/auth/auth-service';
 import { Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './components/auth/protected-routes'
@@ -59,7 +60,7 @@ class App extends Component {
     if(this.state.loggedInUser){
       return (
           <div className="App">
-            <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
+            <Navbar userInSession={this.state.loggedInUser} getUser={(obj) => this.getTheUser(obj)} />
             <Switch>
               <Route exact path='/' render={() => <Home/>} />
               <Route exact path="/home" render={() => <Home user={this.state.loggedInUser}/>}/> 
@@ -68,7 +69,7 @@ class App extends Component {
               <Route exact path='/search/tattoos' key="search-tattoos" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={false} />} />
 
               {/* Profile Pages */}
-              <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} component={Profile} /> 
+              <ProtectedRoute exact path='/profile' user={this.state.loggedInUser} component={Profile} getUser={(obj) => this.getTheUser(obj)} /> 
               <ProtectedRoute exact path='/profile/folder/:id' user={this.state.loggedInUser} component={FolderDetail} getUser={(obj) => this.getTheUser(obj)} /> 
             
             </Switch>
@@ -77,14 +78,14 @@ class App extends Component {
       } else {
       return (
         <div className="App">
-          <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>
+          <Navbar userInSession={this.state.loggedInUser} getUser={(obj) => this.getTheUser(obj)}/>
 
           <Switch>
             <Route exact path='/signup' render={() => <Signup getUser={(obj) => this.getTheUser(obj)}/>} />
             <Route exact path='/login' render={() => <Login getUser={(obj) => this.getTheUser(obj)}/>} />
             <Route exact path='/' render={() => <Home/>} />
             <Route exact path='/search' render={() => <SearchPage/>} />
-            <Route path='/artists/:id' render={(props) => <ArtistPage getUser={(e) => this.getTheUser(e)} {...props} />} />
+            <Route path='/artists/:id' render={(props) => <ArtistPage getUser={(obj) => this.getTheUser(obj)} {...props} />} />
             {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
           </Switch>
         </div>
