@@ -1,9 +1,9 @@
 .profile-custom{
   color: white;
   padding-top: 5%;
-  background-image: url("/images/img-back.png");
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/images/img-back.png");
   background-repeat: no-repeat;
-  background-size: 100% 400px;
+  background-size: 100% 550px;
 }
 
 .folder-header{
@@ -13,6 +13,7 @@
 
 .trash-ico{
   height: 1.7rem;
+  cursor: pointer;
 }
 .fav-custom h6{
   border-bottom: 1px solid white;

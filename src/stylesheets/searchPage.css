@@ -1,3 +1,25 @@
 .modal-image{
   width: 100%;
 }
+
+.search-page{
+  color: white;
+  padding-top: 4%;
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/images/img-back.png");
+  background-repeat: no-repeat;
+  background-size: 100% 550px;
+  height: 100vh;
+}
+
+#category-btn{
+  background-color: #131212;
+  font-size: 1rem;
+}
+
+.loupe{
+  height: 2rem;
+  padding-left: 10px;
+  padding-right: 10px;
+
+
+}

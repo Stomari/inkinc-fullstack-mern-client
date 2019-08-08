@@ -205,7 +205,8 @@ class SearchPage extends Component {
     console.log('AS', this.props)
     return(
       <Fragment>
-        <div className="container">
+        <div className="container-fluid search-page">
+        <div className="container ">
           {/* <ArtistsTattoosToggle artistsSearch={this.state.artistsSearch} toggleHandler={() => this.toggleHandler()} /> */}
           <SearchBar state={this.state} searchHandler={(event) => this.searchHandler(event)} />
           <Categories categories={this.state.categories} chooseCategories={(e) => this.chooseCategories(e)} />
@@ -245,6 +246,7 @@ class SearchPage extends Component {
           <ModalImage user={this.props.user} shownTattoo={this.state.shownTattoo} handleCloseModal={() => this.handleCloseModal()} openedImageSaveHandler={(e, i, modal) => this.openedImageSaveHandler(e, i, modal)}/>
           : null
         }
+        </div>
         <Footer />
       </Fragment>
     );
