@@ -87,8 +87,8 @@ class App extends Component {
           <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>
 
           <Switch>
-            <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>} />
-            <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>} />
+            <Route exact path='/signup' render={() => <Signup getUser={(obj) => this.getTheUser(obj)}/>} />
+            <Route exact path='/login' render={() => <Login getUser={(obj) => this.getTheUser(obj)}/>} />
             <Route exact path='/' render={() => <Home/>} />
             <Route exact path='/search' render={() => <SearchPage/>} />
             <Route path='/artists/:id' render={(props) => <ArtistPage getUser={(e) => this.getTheUser(e)} {...props} />} />

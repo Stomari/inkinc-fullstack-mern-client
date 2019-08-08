@@ -3,15 +3,15 @@
   padding-top: 5%;
   background-image: url("/images/img-back.png");
   background-repeat: no-repeat;
-  background-size: 100% 70%;
+  background-size: 100% 80%;
 }
 .folder-header{
-  width: 40%;
+  width: 50%;
   border-bottom: 1px solid white;
 }
 
 .card-prof-custom{
-  background-color: #666 !important;
+  background-color: #d5d1d5 !important;
   padding: 5px;
   transition: all 0.3s ease-in;
 }
@@ -23,7 +23,8 @@
 
 .link-custom{
 text-decoration: none;
-color: white
+color: black;
+font-weight: 600;
 }
 .link-custom:hover{
   text-decoration: none;
@@ -31,8 +32,12 @@ color: white
   }
 
 .fav-custom{
-  background-color: #666;
-  height: 30vh;
+  background-color: #d5d1d5;
+}
+
+.btn-create{
+  width: 25px;
+  cursor: pointer
 }
 
 .container-custom2 {
@@ -49,11 +54,10 @@ color: white
   height: 15%;
   opacity: 0;
   transition: .5s ease;
-  background-color:  #666;
+  background-color: #d5d1d5;
   transform: translateY(-100%);
 
 }
-
 
 .container-custom2:hover .overlay2 {
   opacity: 0.9;
@@ -72,6 +76,7 @@ color: white
 
 .trash-ico{
   width: 70%;
+  cursor: pointer;
 }
 
 .add-ico{

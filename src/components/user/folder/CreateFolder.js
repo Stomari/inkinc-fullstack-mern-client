@@ -32,10 +32,7 @@ class CreateFolder extends Component {
   render() {
     return (
       <div>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-          Add Folder
-        </button>
-
+          <img src="/images/plus-circle-solid.svg" className="btn-create" data-toggle="modal" data-target="#exampleModal"/>
         <div className="modal fade modal-color" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">

@@ -32,7 +32,8 @@ class FolderCard extends Component {
           <div className="overlay2">
             <p className="text2 text-uppercase">
               <p onClick={(folder) => this.deleteFolder(this.props.state._id)}> 
-              <img src="/images/trash-2-64.png" className="trash-ico" alt="trash-icon"/>
+              <img src="/images/trash-solid.svg" className="trash-ico"/>
+
               </p>
             </p>
           </div>
