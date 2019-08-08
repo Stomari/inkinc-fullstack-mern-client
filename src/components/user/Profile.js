@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 
 //Components
@@ -10,7 +10,6 @@ import FavoriteArtists from './favoriteArtist/FavoriteArtists';
 class Profile extends Component {
   constructor(props){
     super(props)
-
     this.state = {
       folders: [],
       favoriteArtists: []
@@ -21,7 +20,6 @@ class Profile extends Component {
     axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
     .then((response) => {
       let data = response.data;
-      console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', this.props)
       this.setState({
         folders: data.folder,
         favoriteArtists: data.favoriteArtist
@@ -31,29 +29,29 @@ class Profile extends Component {
     .catch(err => console.log(err));
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getInfo();
-   }
- 
-  render(){
-    return(
+  }
+
+  render() {
+    return (
       <Fragment>
         <div className="container-fluid profile-custom">
           <div className="row m-5">
-            
+
             <div className="col-lg-3 text-center profile-side-header mb-5">
-              <Header user={this.props.user}/>
-              <FavoriteArtists id="artists" artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists}/>
+              <Header user={this.props.user} />
+              <FavoriteArtists id="artists" artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists} />
             </div>
 
             <div className="col-lg-9 p-0 profile-side-main pr-5">
               <div className="d-flex justify-content-center">
-                <p className="row text-uppercase folder-header d-flex justify-content-center mb-5">
-                 <h4>Tattoos you liked</h4>
-                  <CreateFolder foldersInfo={() => this.getInfo()}/>
-                </p>
+                <div className="row text-uppercase folder-header d-flex justify-content-center mb-5">
+                  <h4>Tattoos you liked</h4>
+                  <CreateFolder foldersInfo={() => this.getInfo()} />
+                </div>
               </div>
-              <Folder id="folder" foldersInfo={() => this.getInfo()} folders={this.state.folders}/>
+              <Folder id="folder" foldersInfo={() => this.getInfo()} folders={this.state.folders} />
             </div>
 
           </div>

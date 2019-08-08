@@ -5,6 +5,7 @@ import './stylesheets/mainPage.css';
 import './stylesheets/navbar.css';
 import './stylesheets/auth.css';
 import './stylesheets/profile.css';
+import './stylesheets/chat.css';
 import './stylesheets/searchPage.css';
 import AuthService from './components/auth/auth-service';
 import { Switch, Route } from 'react-router-dom';
@@ -64,6 +65,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' render={() => <Home/>} />
               <Route exact path="/home" render={() => <Home user={this.state.loggedInUser}/>}/> 
+
               <Route exact path='/search' render={() => <SearchPage user={this.state.loggedInUser}/>} />
 
               {/* Profile Pages */}

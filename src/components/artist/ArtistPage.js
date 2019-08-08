@@ -1,4 +1,3 @@
-import Header from '../user/Header';
 import React, {Component} from 'react';
 import HeaderArt from './HeaderArt';
 import Categories from './Categories';
@@ -12,13 +11,7 @@ import EditArtist from './EditArtist';
 import AuthService from '../auth/auth-service';
 import CreateTattooForm from './CreateTattooForm';
 import CreateFlashForm from './CreateFlashForm';
-
 import Chat from '../chat/Chat';
-import Chat1 from '../chat/Chat1';
-import io from "socket.io-client";
-
-const socket = io.connect(process.env.REACT_APP_API_URL);
-
 
 class ArtistPage extends Component {
   constructor(props) {
@@ -277,8 +270,7 @@ handleShowFollow(id){
           <Categories showAllCategories={false} user={this.props.user} categories={this.state.categories} artist={this.state.artist} />
         }
 
-        <button onClick={this.showChat}>CHAT</button>
-        {/* <Chat1 user={this.props.user} artistId={this.props.match.params.id} /> */}
+        <Chat user={this.props.user} artistId={this.props.match.params.id} getUser={this.props.getUser} />
 
         </div>
         : null
