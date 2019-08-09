@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Masonry } from 'gestalt';
 import ShowMansory from './ShowMasonry';
 import 'gestalt/dist/gestalt.css';

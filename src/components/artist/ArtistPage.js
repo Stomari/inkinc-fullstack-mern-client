@@ -252,9 +252,9 @@ handleShowFollow(id){
                    this.props.user && (this.props.user._id !== this.state.artist._id) ?
                    
                       this.state.showFollow ?
-                      <img className="heart" src="/images/heart-regular.svg" onClick={(id) => this.favArtist(this.state.artist._id)}/>
+                      <img className="heart" src="/images/heart-regular.svg" onClick={(id) => this.favArtist(this.state.artist._id)} alt="favorite icon" />
                     :
-                      <img className="heart" src="/images/heart-solid.svg"/>
+                      <img className="heart" src="/images/heart-solid.svg" alt="favorite icon" />
 
                   : null
                 }
@@ -282,7 +282,6 @@ handleShowFollow(id){
             <div className="col-lg-9">
 
                 <h5 className="text-uppercase text-center" style={{margin: '100px 0 50px 0'}}>Flashes</h5>
-              {/* <div className="row"> */}
               <div className="col-lg-12 d-flex flashes-container-out">
 
                 <Flashes
@@ -295,7 +294,6 @@ handleShowFollow(id){
                   getArtist={() => this.getArtist()}
                 />
               </div>
-              {/* </div> */}
 
               <div className="col-lg-12">
                 <h5 className="text-uppercase text-center" style={{margin: '100px 0 50px 0'}}>Portfolio</h5>
