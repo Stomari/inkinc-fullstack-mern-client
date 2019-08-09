@@ -33,8 +33,7 @@ class Home extends Component {
 
       return(
         <Fragment>
-          <section className='jumbotron jumbotron-fluid main-custom'>
-            <div className='container'>
+          <section className='jumbotron jumbotron-fluid main-custom teste'>
             {/* <h1 class="cd-headline rotate-1">
               <span>My favourite food is</span>
               <span class="cd-words-wrapper">
@@ -44,9 +43,8 @@ class Home extends Component {
               </span>
           </h1> */}
           <div className="cover-content">
-            <h1 className="cover-title">Get Inspired.<br/>Get Tattooed</h1>
+            <h1 className="cover-title">Get inspired<br/>Get tattooed</h1>            
           </div>
-            </div>
           </section>
 
           <section className='about-custom d-flex justify-content-center'>
@@ -95,7 +93,7 @@ class Home extends Component {
                 <img src="images/facebook-brands.svg"/>
                 <img src="images/twitter-brands.svg"/>
               </div>
-              <img className="cover-logo" alt="ink inc logo" width='20%' src='/images/inktopus.svg' />
+              <img className="footer-logo" alt="ink inc logo" width='20%' src='/images/inktopus.svg' />
 
               <div className="col-lg-6 d-flex justify-content-end">
                 <p className="text-footer"> © 2019 Ink.inc</p>

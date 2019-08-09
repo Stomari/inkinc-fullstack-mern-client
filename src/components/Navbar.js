@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import AuthService from './auth/auth-service';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -45,7 +45,7 @@ class Navbar extends Component {
       return (
         <nav className="navbar navbar-expand-lg navbar-dark nav-custom p-3">
           <Link className="navbar-brand" to='/'>
-            <img className="cover-logo" alt="ink inc logo" width='40%' src='/images/inktopus.svg' />
+            <img className="cover-logo" alt="ink inc logo" src='/images/inktopus-solo.svg' />
           </Link>
 
           <button onClick={this.toggleNavbar} className={`${classTwo} button-hamb`} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,10 +56,10 @@ class Navbar extends Component {
             {/* center of page */}
             <ul className="navbar-nav col-lg-10 d-flex justify-content-center navbar-res">
               <li className="nav-item nav-item-custom">
-                <Link to={'/search/artists'} className="nav-link text-uppercase">Find Artists</Link>
+                <NavLink activeStyle={{borderBottom: '1px solid red'}} to={'/search/artists'} className="nav-link text-uppercase">Find Artists</NavLink>
               </li>
               <li className="nav-item nav-item-custom">
-                <Link to={'/search/tattoos'} className="nav-link text-uppercase">Get inspiration</Link>
+                <NavLink activeStyle={{borderBottom: '1px solid red'}} to={'/search/tattoos'} className="nav-link text-uppercase">Get inspiration</NavLink>
               </li>
               <li className="nav-responsive-log nav-item nav-item-custom">
                 {
@@ -113,7 +113,7 @@ class Navbar extends Component {
       return (
         <nav className="navbar navbar-expand-lg nav-custom p-3">
              <Link className="navbar-brand" to='/'>
-            <img className="cover-logo" alt="ink inc logo" width='40%' src='/images/inktopus.svg' />
+            <img className="cover-logo" alt="ink inc logo" src='/images/inktopus-solo.svg' />
           </Link>
 
 
@@ -125,7 +125,7 @@ class Navbar extends Component {
               <ul className="navbar-nav col-lg-10 navbar-res justify-content-center">
 
               <li className="nav-item nav-item-custom">
-                <Link to={'/search/tattoos'} className="nav-link text-uppercase">Get inspiration</Link>
+                <NavLink activeStyle={{borderBottom: '1px solid red'}} to={'/search/tattoos'} className="nav-link text-uppercase">Get inspiration</NavLink>
               </li>
                 <li className="nav-responsive-log nav-item nav-item-custom">
                   <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>

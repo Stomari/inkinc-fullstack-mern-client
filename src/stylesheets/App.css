@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Blinker&display=swap');
 
+@font-face {
+  font-family: 'Gobold';
+  src: url('/fonts/Gobold\ Regular.otf')
+}
+
+@font-face {
+  font-family: 'Gobold-bold';
+  src: url('/fonts/Gobold\ Regular\ Italic.otf')
+}
+
 .home-box {
   font-family: 'Blinker', sans-serif;
   font-size: 1.3em;
@@ -292,12 +302,20 @@ html{
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  border: 1px solid #fff;
-  border-radius: .2rem;
+  /* border: 1px solid #fff; */
+  border-radius: 10px;
   width: 45%;
+  min-width: 400px;
   padding: 1rem; 
   margin: 1rem 0;
   position: relative;
+  background: #5a5a5a;
+  transition: .3s ease;
+}
+
+.artist-search-card:hover {
+  transform: scale(1.1);
+  transition: .3s ease;
 }
 
 .search-artist-tattoos-preview {
@@ -305,7 +323,7 @@ html{
   flex-direction: row;
 }
 
-.search-artist-tattoos-preview img {
+.artist-search-latest img {
   width: 50px;
   margin: 1rem .5rem .5rem;
   height: 50px;
@@ -325,13 +343,15 @@ html{
   margin: 0;
   color: #fff;
   font-weight: bold;
+  padding: 5px 0;
 }
 
 .artist-search-fav-btn {
   position: absolute;
-  bottom: 5px;
-  right: 5px;
-  background: red;
+  bottom: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
 }
 
 .artist-search-profile-text {
