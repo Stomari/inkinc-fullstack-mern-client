@@ -20,7 +20,7 @@ const Form = (props) => {
             </div>
             <div className="form-group"> 
               <label for="name">Name:</label>
-              <input type="text" className="form-control" name="name" placeholder="Jon Snow" value={props.state.name} onChange={ e => props.handleChange(e)}/>
+              <input type="text" className="form-control" name="name" placeholder="Your name" value={props.state.name} onChange={ e => props.handleChange(e)}/>
             </div>
          
           {
