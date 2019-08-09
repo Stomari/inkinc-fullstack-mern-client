@@ -12,16 +12,6 @@ class TattoosSearch extends Component {
     }
   }
 
-  componentDidMount() {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo`, {withCredentials: true})
-      .then(response => {
-        const responseTattoos = response.data;
-        this.setState({
-          itemsToRender: responseTattoos,
-        })
-      })
-  }
-
   renderData(data) {
     return <ShowMansory
       user={this.props.user}
@@ -46,7 +36,7 @@ class TattoosSearch extends Component {
       <Masonry
         // comp={ShowMansory}
         comp={(data) => this.renderData(data)}
-        items={(this.state.itemsToRender)}
+        items={(this.props.filteredResults)}
         loadItems={() => this.loadMore()}
         scrollContainer={() => window}
         // columnWidth={260}
