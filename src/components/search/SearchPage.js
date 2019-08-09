@@ -237,7 +237,7 @@ class SearchPage extends Component {
           <Categories categories={this.state.categories} chooseCategories={(e) => this.chooseCategories(e)} />
           {
             this.state.artistsSearch && 
-            <ArtistsSearch filteredResults={this.state.filteredResults} user={this.props.user} getInfo={() => this.getInfo()}/>
+            <ArtistsSearch filteredResults={this.state.filteredResults} user={this.props.user} getInfo={() => this.getInfo()} categories={this.state.categories}/>
           }
           {
             !this.state.artistsSearch &&

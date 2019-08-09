@@ -70,6 +70,7 @@ class ArtistPage extends Component {
       .then(response => {
         this.setState({
           artist: response.data,
+          image: response.data.profileImg,
         })
       })
       .catch(err => console.log(err));

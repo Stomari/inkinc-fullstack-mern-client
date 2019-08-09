@@ -128,9 +128,9 @@ class Navbar extends Component {
             <div className={`${classOne} justify-content-center`} id="navbarSupportedContent">
 
               <ul className="navbar-nav col-lg-10">
-                <li className="nav-item nav-item-custom">
-                  <Link to='/search' className="nav-link text-uppercase" >Search</Link>
-                </li>
+              <li className="nav-item nav-item-custom">
+                <Link to={'/search/tattoos'} className="nav-link text-uppercase">Get inspiration</Link>
+              </li>
                 <li className="nav-responsive-log nav-item nav-item-custom">
                   <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
                 </li>
