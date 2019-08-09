@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CreateFolder from '../user/folder/CreateFolder';
 
 const ModalImage = (props) => {
-  console.log('MODAL IMAGE', props)
   return(
     <div className="modal-wrapper">
       <span className="close-modal-btn" onClick={() => props.handleCloseModal()}></span>
@@ -28,11 +26,16 @@ const ModalImage = (props) => {
               </div>
             </div>
             <div className="text-center link-artist">
-              <Link to={`/artists/${ props.shownTattoo.artist._id}`}>
-              See more of this artist!
-              </Link>
-              {/* <CreateFolder/> */}
-
+              {
+                props.user ?
+                <Link to={`/artists/${ props.shownTattoo.artist._id}`}>
+                See more of this artist!
+                </Link>
+                :
+                <Link to={'/signup'}>
+                Sign up to see more!
+                </Link>
+              }
             </div>
           </div>
           </div>

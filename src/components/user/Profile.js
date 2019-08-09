@@ -46,11 +46,9 @@ class Profile extends Component {
     axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData, {withCredentials: true})
       .then(response => {
           this.setState({ image: response.data.secure_url });
-          console.log('RESPONSE DATA', response.data);
           axios.put(`${process.env.REACT_APP_API_URL}/api/profile-pic`, {image: response.data.secure_url}, {withCredentials: true})
             .then(() => {
               this.getInfo();
-              console.log('testeeeeeeee')
             })
             .catch(err => console.log(err));
         })

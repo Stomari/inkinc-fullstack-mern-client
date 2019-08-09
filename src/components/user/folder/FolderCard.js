@@ -15,7 +15,6 @@ class FolderCard extends Component {
   }
 
   render(){
-    // console.log(this.props.user.folder[this.props.idx].image.length)
     return(
       <div className="card card-prof-custom" style={{width: "20rem"}}>
 
