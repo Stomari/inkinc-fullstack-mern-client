@@ -43,7 +43,9 @@ class Home extends Component {
                 <b>steak</b>
               </span>
           </h1> */}
-          <h1>Get Tattooed</h1>
+          <div className="cover-content">
+            <h1 className="cover-title">Get Inspired.<br/>Get Tattooed</h1>
+          </div>
             </div>
           </section>
 
@@ -93,6 +95,7 @@ class Home extends Component {
                 <img src="images/facebook-brands.svg"/>
                 <img src="images/twitter-brands.svg"/>
               </div>
+              <img className="cover-logo" alt="ink inc logo" width='20%' src='/images/inktopus.svg' />
 
               <div className="col-lg-6 d-flex justify-content-end">
                 <p className="text-footer"> © 2019 Ink.inc</p>

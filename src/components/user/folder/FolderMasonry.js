@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios'
 
 const FolderMasonry = (props) => {
-  console.log('FM: ', props);
   const deleteFolder = (folder) => {
     axios.put(`${process.env.REACT_APP_API_URL}/api/folder/${props.detailsProps.match.params.id}/remove/${props.data._id}`, {}, { withCredentials: true })
       .then(() => {

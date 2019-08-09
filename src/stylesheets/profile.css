@@ -320,23 +320,13 @@ a.card-art:hover{
   }
 }
 
-
-.flashes-container-out {
-  overflow-x: hidden;
-}
-
 .flashes-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   width: 100%;
   left: 0px;
-}
-
-.slider-overflow-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 0 50px;
 }
 
 .card-flash{
@@ -350,13 +340,13 @@ a.card-art:hover{
   justify-content: space-between;
   align-items: center;
   margin: 10px;
+  background: red
 }
 
-.card-flash img {
+.card-flash-img {
   object-fit: cover;
   height: 12rem;
-  flex-shrink: 0
-
+  flex-shrink: 0;
 }
 
 .card-flash p {

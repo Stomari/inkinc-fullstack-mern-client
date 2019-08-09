@@ -39,13 +39,16 @@ class ArtistGallery extends Component {
     .catch(err => console.log(err));
   }
 
-  renderData(data) {
+  renderData(data, key) {
     return <ShowMansory
       user={this.props.user}
       openedImageSave={this.props.openedImageSave}
       openedImageSaveHandler={(event, i, modal) => this.openedImageSave(event, i, modal)}
       handleShowModal={this.state.showModal}
+      handleDeleteTattoo={(e, id) => this.props.handleDeleteTattoo(e, id)}
+      artist={this.props.artist}
       {...data}
+      artistGallery={true}
     />
   }
 
@@ -73,7 +76,7 @@ class ArtistGallery extends Component {
       //           el.category.includes(cat._id) ? <p key={idx}>{cat.tag}</p> : null
       //         )
       //       })}
-      //       {this.props.user && (this.props.user._id === this.props.artist._id) && <button onClick={(e) => this.props.handleDeleteTattoo(e, el._id)}>Delete</button>}
+            // {this.props.user && (this.props.user._id === this.props.artist._id) && <button onClick={(e) => this.props.handleDeleteTattoo(e, el._id)}>Delete</button>}
       //     </div>
       //   )
       // })
