@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Masonry } from 'gestalt';
 import ShowMansory from './ShowMasonry';
 import 'gestalt/dist/gestalt.css';
+import axios from 'axios';
 
 class TattoosSearch extends Component {
   constructor(props){
@@ -9,6 +10,16 @@ class TattoosSearch extends Component {
     this.state = {
       itemsToRender: [],
     }
+  }
+
+  componentDidMount() {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo`, {withCredentials: true})
+      .then(response => {
+        const responseTattoos = response.data;
+        this.setState({
+          itemsToRender: responseTattoos,
+        })
+      })
   }
 
   renderData(data) {
@@ -22,8 +33,10 @@ class TattoosSearch extends Component {
   }
 
   loadMore() {
-    this.state.itemsToRender.push(this.props.filteredResults);
-    return this.state.itemsToRender;
+    const newArr = [...this.props.filteredResults];
+    this.setState({
+      itemsToRender:  newArr
+    });
   }
 
   render() {
@@ -33,7 +46,7 @@ class TattoosSearch extends Component {
       <Masonry
         // comp={ShowMansory}
         comp={(data) => this.renderData(data)}
-        items={(this.props.filteredResults)}
+        items={(this.state.itemsToRender)}
         loadItems={() => this.loadMore()}
         scrollContainer={() => window}
         // columnWidth={260}
