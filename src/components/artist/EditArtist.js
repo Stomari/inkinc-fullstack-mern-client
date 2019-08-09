@@ -57,7 +57,7 @@ const EditArtist = (props) => {
           </div>
           
           } else {
-            props.state.workplace &&
+            return props.state.workplace &&
             props.state.workplace.map((el, idx) => {
              return <p key={idx}><strong>{el.name}</strong> - {el.address}</p>
             })
