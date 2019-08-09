@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MediaQuery from 'react-responsive';
 import axios from 'axios';
 
 class CreateFlashForm extends Component {
@@ -78,7 +79,29 @@ class CreateFlashForm extends Component {
           <input type="text" name="tag" value={this.state.tag} placeholder="Separate tags by comma (ex.: skull, rose, triangle)" onChange={(event) => this.handleChange(event)} />
           <label className="text-uppercase label-cat">Category:</label>
           <div className="categories-container">
-          {this.props.categories.map((el, idx) => {
+          <MediaQuery maxWidth={500}>
+        {(matches) => {
+          if (matches) {
+            return <div className="dropdown text-center">
+                      <button className="dropdown-toggle dropdown-modal" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                      </button>
+                      <div className="dropdown-menu container-dropdown text-center" aria-labelledby="dropdownMenu2">
+                      {
+                        this.props.categories.map((el, idx) => {
+                        return (
+                          <div key={idx} className="category-container">
+                            <input type="checkbox" id={el._id} value={el.id} onChange={(event) =>this.handleChangeCheckbox(event)} />
+                            <label htmlFor={el._id}>{el.tag}</label>
+                          </div>
+                          );
+                        })
+                      }
+                      </div>
+                    </div>
+
+          } else {
+          return this.props.categories.map((el, idx) => {
             const check = (this.state.category.includes(el._id)) ? true : false
             return (
               <div key={idx} className="category-container">
@@ -86,7 +109,11 @@ class CreateFlashForm extends Component {
                 <label htmlFor={"flash-" + el.tag}>{el.tag}</label>
               </div>
             )
-          })}
+          })
+        }
+      }}
+
+        </MediaQuery>
           </div>
 
           <label className="text-uppercase label-cat">Image:</label>
@@ -95,7 +122,7 @@ class CreateFlashForm extends Component {
           <label className="text-uppercase label-cat">Price:</label>
           <input className="w-50" type="text" name="price" value={this.state.price} placeholder="Ex.: 300.00" onChange={(event) => this.handleChange(event)} />
 
-          <input className="btn-submit align-self-center mt-4"type="submit" value="Submit"/>
+          <input className="btn-submit align-self-center mt-4 " type="submit" value="Add Flash"/>
 
         </form>
         <div className="modal-bg" onClick={() => this.handleCloseModal()}></div>

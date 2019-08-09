@@ -53,32 +53,32 @@ class Home extends Component {
 
             <div className="card-deck home-custom">
               
-              <div className="card d-flex align-items-center card-custom">
+              <div className="card d-flex align-items-center card-custom home-box">
                    <img src="/images/heart.svg" className="card-img-top home-img" alt="..."/>
                   <div className="card-body mt-4 d-flex align-items-end text-center">
                     <div className="col">
-                    <h5 className="card-title text-uppercase">Find artists</h5>
-                    <p className="card-text">This is a longer card with supporting text below as a natural </p>
+                    <h3 className="card-title text-uppercase">Find artists</h3>
+                    <p className="card-text">Discover and follow your favorite artists to keep track of their work.</p>
                     </div>
                 </div>
               </div>
 
-              <div className="card d-flex align-items-center card-custom">
+              <div className="card d-flex align-items-center card-custom home-box">
                   <img src="/images/chat.svg" className="card-img-top home-img" alt="..."/>
                   <div className="card-body d-flex align-items-end text-center">
                   <div className="col">
-                    <h5 className="card-title text-uppercase">Get inspired</h5>
-                    <p className="card-text">This is a longer card with supporting text below as a natural.</p>
+                    <h3 className="card-title text-uppercase">Book Now?</h3>
+                    <p className="card-text">Chat with your favorite artist to book a session or tell your ideas.</p>
                     </div>
                   </div>
                 </div>
 
-              <div className="card d-flex align-items-center card-custom">
+              <div className="card d-flex align-items-center card-custom home-box">
                   <img src="/images/tattoo-machine.svg" className="card-img-top home-img" alt="..."/>
                   <div className="card-body mt-4 d-flex align-items-end text-center">
                     <div className="col">
-                    <h5 className="card-title text-uppercase">Book Now?</h5>
-                    <p className="card-text">This is a longer card with supporting text below as a natural </p>
+                    <h3 className="card-title text-uppercase">Get inspired</h3>
+                    <p className="card-text">Don't really know what to ink? Browse trough our search to find some inspiration!</p>
                   </div>
                 </div>
                 </div> 
