@@ -45,7 +45,7 @@ class Navbar extends Component {
       return (
         <nav className="navbar navbar-expand-lg navbar-dark nav-custom p-3">
           <Link className="navbar-brand" to='/'>
-            Ink.inc
+            <img className="cover-logo" alt="ink inc logo" width='40%' src='/images/inktopus.svg' />
           </Link>
 
           <button onClick={this.toggleNavbar} className={`${classTwo}`} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

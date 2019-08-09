@@ -13,7 +13,7 @@
 
 .main-custom h1{
   font-family: inkinc;
-  font-size: 10rem;
+  font-size: 8rem;
 }
 
 
@@ -64,4 +64,16 @@
 
 .text-footer{
   font-size: 18px;
+}
+
+.cover-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.cover-content img {
+  margin-right: 50px;
 }
