@@ -261,9 +261,18 @@ class SearchPage extends Component {
           <div className="modal-wrapper">
             <span className="close-modal-btn" onClick={() => this.handleCloseModal()}></span>
             <div className="form-modal">
-              {this.state.shownTattoo !== '' && <img src={this.state.shownTattoo.image} width="300" alt={this.state.shownTattoo.tag.join(', ')} />}
-              {this.props.user && this.props.user.folder && this.props.user.folder.map((el, idx) => <button key={idx} onClick={(id) => this.addToFolder(el._id)} >{el.name}</button>)}
+              <div className="row">
+              <div className="col-lg-8">
+              {this.state.shownTattoo !== '' && <img src={this.state.shownTattoo.image} width="80%" alt={this.state.shownTattoo.tag.join(', ')} />}
+              </div>
+              <div className="col-lg-4 mt-3">
+              <h6 className="text-uppercase text-center pb-3"> Select folder</h6>
+                <div className="scroll">
+              {this.props.user && this.props.user.folder && this.props.user.folder.map((el, idx) => <div className="list-folder" key={idx} onClick={(id) => this.addToFolder(el._id)} >{el.name}</div>)}
+              </div>
+              </div>
             </div>
+              </div>
             <div className="modal-bg" onClick={() => this.handleCloseModal()}></div>
           </div>
         }

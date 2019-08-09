@@ -83,7 +83,7 @@ class CreateFlashForm extends Component {
         {(matches) => {
           if (matches) {
             return <div className="dropdown text-center">
-                      <button className=" dropdown-toggle dropdown-modal" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button className="dropdown-toggle dropdown-modal" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Categories
                       </button>
                       <div className="dropdown-menu container-dropdown text-center" aria-labelledby="dropdownMenu2">

@@ -38,9 +38,9 @@ const ArtistsSearch = (props) => {
                   </div>
                   {el.category.map((cat, idx) => <p key={idx}>{cat.tag}</p>)}
                 </div>
-                <div className="search-artst-tattoos-preview">
+                {/* <div className="search-artst-tattoos-preview">
                   {el.artistTattoo.filter((el, i) => i < 5).map((e, idx) => <img key={idx} src={e.image} className="artist-search-tattoo-preview" alt={e.tag} />)}
-                </div>
+                </div> */}
               </Link>
                 {
                   !props.user.favoriteArtist.some(fav => fav._id === el._id) ?

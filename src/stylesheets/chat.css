@@ -19,6 +19,10 @@
   padding-top: 20px !important;
 }
 
+.close-chat:focus {
+ outline: 0px !important;
+}
+
 .start-chat {
   position: fixed;
   bottom: 20px;
@@ -65,6 +69,10 @@
 .inputs-chat button {
   background-color: black;
   border-color: black;
+}
+.inputs-chat button:hover {
+  background-color: red;
+  border-color: red;
 }
 
 .users-container-chat {
