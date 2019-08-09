@@ -31,7 +31,7 @@ const EditArtist = (props) => {
           <label className="text-uppercase label-cat">Name:</label>
           <input type="text" name="name" value={props.state.name} onChange={ (event) => props.handleChange(event)}/>
           <label  className="text-uppercase label-cat">About:</label>
-          <textarea type="text" name="about" value={props.state.about} onChange={ (event) => props.handleChange(event)}/>
+          <textarea type="text" name="about" rows={6} value={props.state.about} onChange={ (event) => props.handleChange(event)}/>
           <label  className="text-uppercase label-cat">Category:</label>
           <div className="categories-container">
           <MediaQuery maxWidth={500}>

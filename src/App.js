@@ -89,6 +89,8 @@ class App extends Component {
             <Route exact path='/search/artists' key="search-artists" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={true} getUser={(obj) => this.getTheUser(obj)} />} />
             <Route exact path='/search/tattoos' key="search-tattoos" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={false} />} />
             <Route path='/artists/:id' render={(props) => <ArtistPage getUser={(obj) => this.getTheUser(obj)} {...props} />} />
+            <Route exact path='/search/artists' key="search-artists" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={true} getUser={(obj) => this.getTheUser(obj)} />} />
+            <Route exact path='/search/tattoos' key="search-tattoos" render={() => <SearchPage user={this.state.loggedInUser} searchFlag={false} />} />
             {/* <ProtectedRoute path='/home' user={this.state.loggedInUser} component={Home} /> */}
           </Switch>
         </div>

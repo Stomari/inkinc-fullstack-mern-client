@@ -122,10 +122,8 @@ class Navbar extends Component {
             </button>
 
             <div className={`${classOne} justify-content-center`} id="navbarSupportedContent">
+
               <ul className="navbar-nav col-lg-10 navbar-res justify-content-center">
-              <li className="nav-item nav-item-custom">
-                {/* <Link to={'/search/artists'} className="nav-link text-uppercase">Find Artists</Link> */}
-              </li>
               <li className="nav-item nav-item-custom">
                 <Link to={'/search/tattoos'} className="nav-link text-uppercase">Get inspiration</Link>
               </li>
