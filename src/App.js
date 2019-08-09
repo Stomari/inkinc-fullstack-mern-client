@@ -21,12 +21,6 @@ import FolderDetail from './components/user/folder/FolderDetail';
 import ArtistPage from './components/artist/ArtistPage';
 
 
-
-//Victor
-// import ByPlaceSearch from './components/places/ByPlaceSearch';
-// import ByAddressSearch from './components/places/ByAddressSearch';
-
-
 class App extends Component {
   constructor(props) {
     super(props)
