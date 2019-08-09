@@ -54,7 +54,7 @@ class Login extends Component {
                 <input type="password" className="form-control" name="password" placeholder="Password" value={this.state.password} onChange={e => this.handleChange(e)} />
               </div>
 
-              <input className="btn btn-custom text-uppercase" type="submit" value="Login" />
+              <input className="btn btn-custom text-uppercase" type="submit" value="LOGIN" />
 
             </form>
             {
@@ -65,7 +65,7 @@ class Login extends Component {
             }
             <small className="form-text text-muted">
               Don't have account?
-            <Link to={"/signup"}> Signup</Link>
+            <Link to={"/signup"}> SignUp</Link>
             </small>
           </div>
         </div>
