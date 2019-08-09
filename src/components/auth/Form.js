@@ -48,7 +48,7 @@ const Form = (props) => {
             </div>
             : null
           }
-              <input className="btn btn-custom" type="submit" value="SignUp" />
+              <input className="btn btn-custom" type="submit" value="SIGN UP" />
       </form>
       {
         props.state.message ?

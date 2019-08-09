@@ -111,7 +111,7 @@ class Navbar extends Component {
           </nav>
           )} else {
       return (
-        <nav className="navbar navbar-expand-lg nav-custom p-3">
+        <nav className="navbar navbar-expand-lg navbar-dark nav-custom p-3">
              <Link className="navbar-brand" to='/'>
             <img className="cover-logo" alt="ink inc logo" src='/images/inktopus-solo.svg' />
           </Link>
@@ -122,10 +122,13 @@ class Navbar extends Component {
             </button>
 
             <div className={`${classOne} justify-content-center`} id="navbarSupportedContent">
+
               <ul className="navbar-nav col-lg-10 navbar-res justify-content-center">
 
               <li className="nav-item nav-item-custom">
+
                 <NavLink activeStyle={{borderBottom: '1px solid red'}} to={'/search/tattoos'} className="nav-link text-uppercase">Get inspiration</NavLink>
+
               </li>
                 <li className="nav-responsive-log nav-item nav-item-custom">
                   <Link to='/signup' className="nav-link text-uppercase">Sign Up</Link>
