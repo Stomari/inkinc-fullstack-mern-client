@@ -24,6 +24,11 @@ const ArtistsSearch = (props) => {
       })
   }
 
+  const findCategory = (id) => {
+    return props.categories.filter(cat => cat._id === id)
+  }
+
+
   return(
     <div className="artist-search-container">
       {
@@ -33,20 +38,31 @@ const ArtistsSearch = (props) => {
               <Link to={`/artists/${el._id}`}>
                 <div className="artist-search-info">
                   <div className="artist-search-profile">
-                    <img className="artist-search-profile-picture" src={el.profileImg} width={60} alt={el.name + ' photo'}/>
-                    <h4>{el.name}</h4>
+                    <img className="artist-search-profile-picture" src={el.profileImg} alt={el.name + ' photo'}/>
+                    <div className="artist-search-profile-text">
+                      <h4>{el.name}</h4>
+                      <p className="search-artist-category">
+                        {el.category.map((cat, idx) => {
+                          const res = findCategory(cat);
+                          return res[0].tag + ' / '
+                        })}
+                      </p>
+                    </div>
                   </div>
-                  {el.category.map((cat, idx) => <p key={idx}>{cat.tag}</p>)}
                 </div>
-                {/* <div className="search-artst-tattoos-preview">
-                  {el.artistTattoo.filter((el, i) => i < 5).map((e, idx) => <img key={idx} src={e.image} className="artist-search-tattoo-preview" alt={e.tag} />)}
-                </div> */}
               </Link>
-                {
-                  !props.user.favoriteArtist.some(fav => fav._id === el._id) ?
-                  <p style={{cursor: 'pointer'}} onClick={(id) => favArtist(el._id)}>Imagem de ícone pra favoritar</p>
-                  : <p style={{cursor: 'pointer'}} onClick={(id) => deleteArtist(el._id)}>Imagem de ícone favoritado</p>
-                }
+                <div className="search-artist-tattoos-preview">
+                  <div class="artist-search-latest">
+                    {el.artistTattoo.filter((el, i) => i < 5).map((e, idx) => <img key={idx} src={e.image} className="artist-search-tattoo-preview" alt={e.tag} />)}
+                  </div>
+                  <div class="artist-search-fav-btn">
+                  {
+                    !props.user.favoriteArtist.some(fav => fav._id === el._id) ?
+                    <p style={{cursor: 'pointer'}} onClick={(id) => favArtist(el._id)}>s2</p>
+                    : <p style={{cursor: 'pointer'}} onClick={(id) => deleteArtist(el._id)}>s2</p>
+                  }
+                  </div>
+               </div>
             </div>
           )
         })

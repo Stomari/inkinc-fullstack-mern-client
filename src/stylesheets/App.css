@@ -1,3 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Blinker&display=swap');
+
+.home-box {
+  font-family: 'Blinker', sans-serif;
+  font-size: 1.3em;
+}
+
+.foot {
+  background-color: #212121;
+}
+
+.footer-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.footer-logo {
+  width: 80%;
+  margin-right: 100px;
+  padding: 50px 0  50px 0;
+}
+
+.footer-text {
+  color: white;
+}
+
 * {
   outline: 0;
 }
@@ -207,10 +237,12 @@ html{
   display: inline-block;
   font-size: .8rem;
   border: 1px solid rgb(236, 50, 59);
+  background-color: #131212;
   border-radius: .3rem;
   padding: .5rem 1.5rem;
   cursor: pointer;
   margin-top: -1rem;
+  font-size: 1rem;
   transition: .2s ease;
 }
 
@@ -281,24 +313,83 @@ html{
 .artist-search-card {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   border: 1px solid #fff;
   border-radius: .2rem;
   width: 45%;
   padding: 1rem; 
   margin: 1rem 0;
+  position: relative;
 }
 
-.artist-search-tattoo-preview {
+.search-artist-tattoos-preview {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-artist-tattoos-preview img {
   width: 50px;
+  margin: 1rem .5rem .5rem;
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
-  margin: .5rem .5rem;
 }
 
 .artist-search-info {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+
+
+.artist-search-card h4 {
+  display: inline;
+  margin: 0;
+  color: #fff;
+  font-weight: bold;
+}
+
+.artist-search-fav-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: red;
+}
+
+.artist-search-profile-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.artist-search-profile-text p {
+  margin: 0;
+}
+
+.search-artist-category {
+  color: #fff;
+  font-size: .9rem;
+}
+
+.artist-search-card a:hover {
+  border: none;
+  text-decoration: none;
+}
+
+.artist-search-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.artist-search-profile-picture {
+  margin-right: 15px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 #upload-image {
