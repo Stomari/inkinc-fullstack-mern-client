@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import MediaQuery from 'react-responsive';
 
 const EditArtist = (props) => {
 
@@ -33,6 +34,14 @@ const EditArtist = (props) => {
           <textarea type="text" name="about" value={props.state.about} onChange={ (event) => props.handleChange(event)}/>
           <label  className="text-uppercase label-cat">Category:</label>
           <div className="categories-container">
+          <MediaQuery maxWidth={500}>
+        {(matches) => {
+          if (matches) {
+            return <div className="dropdown text-center">
+                      <button className=" dropdown-toggle dropdown-modal" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                      </button>
+                      <div className="dropdown-menu container-dropdown text-center" aria-labelledby="dropdownMenu2">
             {props.categories.map((el, idx) => {
               let check = false;
               if (props.state.category.some(cat => cat === el._id)) check = true;
@@ -42,14 +51,21 @@ const EditArtist = (props) => {
                   <label htmlFor={el.tag}>{el.tag}</label>
                 </div>
               );
-            })}
+            })
+            }
           </div>
-          {
+          </div>
+          
+          } else {
             props.state.workplace &&
             props.state.workplace.map((el, idx) => {
              return <p key={idx}><strong>{el.name}</strong> - {el.address}</p>
             })
           }
+        }}
+          </MediaQuery>
+          </div>
+
           <input className="btn-submit align-self-center"type="submit" value="Submit"/>
         </form>
         <div className="modal-bg" onClick={(e) => handleCloseModal(e)}></div>

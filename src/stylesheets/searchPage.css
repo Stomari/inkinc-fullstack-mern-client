@@ -1,33 +1,34 @@
-.modal-image{
+.modal-image {
   width: 100%;
 }
 
-.search-page{
+.search-page {
   color: white;
   padding-top: 4%;
-  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/images/img-back.png");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("/images/img-back.png");
   background-repeat: no-repeat;
   background-size: 100% 550px;
   height: 100vh;
 }
 
-#category-btn{
+#category-btn {
   background-color: #131212;
   font-size: 1rem;
 }
 
-.loupe{
+.loupe {
   height: 2rem;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.artist-modal-info h6{
+.artist-modal-info h6 {
   border-bottom: 1px solid white;
   padding-bottom: 1rem;
 }
 
-.modal-content-info{
+.modal-content-info {
   padding-top: 1rem;
   padding-left: 10px;
 }
@@ -37,32 +38,85 @@
   height: 4rem;
 }
 
-.link-artist a{
+.link-artist a {
   text-decoration: none;
   color: white;
 }
-.link-artist a:hover{
+.link-artist a:hover {
   text-decoration: none;
   color: red;
 }
 
+.scroll {
+  height:80%;
+  background-color: #212121;
+  padding: 0.5rem;
+  overflow-y: scroll;
+}
+
+.list-folder{
+  color: white;
+  font-weight: 500;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
+  padding-right: 5px;
+  padding-top: 5px;
+  cursor: pointer;
+}
+.list-folder:hover{
+  color: white;
+  background-color: #33313181;
+  font-weight: 500;
+  padding-bottom: 5px;
+  border-bottom: 1px solid white;
+}
 
 @media only screen and (max-width: 481px) {
-  .search-page{
+  .search-page {
     color: white;
     padding-top: 5%;
-    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/images/img-back.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url("/images/img-back.png");
     background-repeat: no-repeat;
     background-size: 100% 200px;
   }
 }
 @media only screen and (min-width: 481px) and (max-width: 1400px) {
-  .search-page{
+  .search-page {
     color: white;
     padding-top: 5%;
-    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/images/img-back.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url("/images/img-back.png");
     background-repeat: no-repeat;
     background-size: 100% 350px;
   }
 }
 
+@media only screen and (max-width: 481px) {
+  .form-modal {
+    padding-top: 20px;
+  }
+  .scroll{
+    margin-top: 1rem;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: black; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #555; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
