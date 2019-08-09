@@ -137,18 +137,6 @@ class SearchPage extends Component {
     });
   }
 
-  // getResults() {
-  //   const showResults = this.state.filteredResults;
-    
-  //   return showResults.map((el, idx) => {
-  //     if (!this.state.artistsSearch) {
-  //       return <Link to={`/tattoos/${el._id}`} key={idx} className="search-autocomplete-item"><img src={el.image} alt={el.tag} /></Link>
-  //     } else {
-  //       return <Link to={`/artists/${el._id}`} key={idx} className="search-autocomplete-item">{el.name}</Link>
-  //     }
-  //   });
-  // }
-
   openedImageSaveHandler(event, id, modal) {
     event.preventDefault();
     axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo/${id}`, {withCredentials: true})

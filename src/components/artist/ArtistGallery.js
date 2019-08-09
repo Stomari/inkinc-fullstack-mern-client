@@ -16,14 +16,6 @@ class ArtistGallery extends Component {
     console.log('props', this.props)
   }
 
-  // showModalHandle(event) {
-  //   event.preventDefault();
-  //   const currentState = !this.state.showModal;
-  //   this.setState({
-  //     showModal: currentState,
-  //   })
-  // }
-
   openedImageSave(event, id, modal) {
     event.preventDefault();
     axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo/${id}`, {withCredentials: true})
