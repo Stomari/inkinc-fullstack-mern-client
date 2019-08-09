@@ -50,6 +50,7 @@ const ArtistsSearch = (props) => {
                     </div>
                   </div>
                 </div>
+
               </Link>
                 <div className="search-artist-tattoos-preview">
                   <div class="artist-search-latest">

@@ -1,25 +1,25 @@
-.nav-custom{
+.nav-custom {
   position: absolute;
   top: 0;
   width: 100%;
 }
-.nav-item-custom a{
+.nav-item-custom a {
   color: white !important;
   font-weight: 900;
-  transition: all .5s ease-in;
+  transition: all 0.5s ease-in;
 }
 
 .nav-item-custom a {
   position: relative;
 }
-.nav-item-custom a:after{
+.nav-item-custom a:after {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
   width: 0%;
-  content: '.';
+  content: ".";
   color: transparent;
   background: red;
   height: 1px;
@@ -27,68 +27,97 @@
 .nav-item-custom a:hover:after {
   width: 100%;
 }
-.dropdown-custom{
+.dropdown-custom {
   background-color: black !important;
 }
 
-.dropdown-custom a:hover{
+.dropdown-custom a:hover {
   background-color: red !important;
 }
 
-.btn-prof{
+.btn-prof {
   border-bottom: 1px solid red !important;
   color: white !important;
   font-weight: 900;
-
 }
-.btn-prof a{
+.btn-prof a {
   color: white !important;
   text-decoration: none;
 }
 
-.btn-prof:hover{
+.btn-prof:hover {
   color: white !important;
   background-color: red;
 }
 
-.btn-prof a:hover{
+.btn-prof a:hover {
   color: white !important;
   text-decoration: none;
 }
 
-.btn-log{
+.btn-log {
   border: 1px solid red;
   border-radius: 5px;
   background-color: black;
 }
 
-.btn-log a{
+.btn-log a {
   color: white !important;
   text-decoration: none;
 }
 
-.btn-log a:hover{
+.btn-log a:hover {
   color: white !important;
   text-decoration: none;
 }
 
-.btn-log:hover{
+.btn-log:focus {
+  outline: 0px !important;
+}
+
+.btn-log:hover {
   color: white !important;
   background-color: red;
 }
-.nav-responsive-log{
+.nav-responsive-log {
   display: none;
+}
+.button-hamb:focus {
+  border: 0px;
+  outline: 0px !important;
+}
+
+.button-hamb {
+  border: 0px;
+  outline: 0px !important;
+}
+
+.cover-logo {
+  left: 60px;
+  top: 15px;
+  width: 75px;
+  position: absolute;
 }
 
 @media only screen and (max-width: 1024px) {
-  .nav-custom{
+  .nav-custom {
     background-color: black;
     position: relative;
   }
   .nav-responsive button {
     display: none;
   }
-  .nav-responsive-log{
-   display: contents;
+  .nav-responsive-log {
+    display: contents;
+  }
+  .navbar-res {
+    margin-top: 22px;
+  }
+
+  .cover-logo {
+    left: 25px;
+    top: 8px;
+    width: 75px;
+    position: absolute;
   }
 }

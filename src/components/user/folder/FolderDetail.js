@@ -1,22 +1,41 @@
-import React, {Component} from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import {Masonry} from 'gestalt';
 import FolderMasonry from './FolderMasonry';
 
 //Components
-import FolderImage from './FolderImage';
+import Header from '../Header';
+import FavoriteArtists from '../favoriteArtist/FavoriteArtists';
 
 class FolderDetail extends Component {
   constructor(props){
     super(props);
     this.state = {
-      folder: []     
+      folder: [],
+      favoriteArtists: [],
+
     }
     
   }
   
   componentWillMount(){
     this.updateFolderInfo();
+    this.getInfo();
+
+  }
+
+
+  getInfo(){
+    axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
+    .then((response) => {
+      let data = response.data;
+      this.setState({
+        favoriteArtists: data.favoriteArtist,
+        image: data.profileImg,
+      })
+      this.props.getUser(data)
+    })
+    .catch(err => console.log(err));
   }
 
 
@@ -41,8 +60,19 @@ class FolderDetail extends Component {
 
   render(){
     return (  
-      <div className="container">
-        <h2>{this.state.folder.name}</h2>
+      <Fragment>
+        <div className="container-fluid profile-custom">
+          <div className="row m-5">
+
+            <div className="col-lg-3 d-flex justify-content-center text-center profile-side-header align-items-start">
+              <div className="d-flex row justify-content-center align-items-start">
+                <Header user={this.props.user} image={this.state.image} handleFileUpload={(e) => this.handleFileUpload(e)} />
+                <FavoriteArtists id="artists" artistInfo={() => this.getInfo()} artists={this.state.favoriteArtists}/>
+              </div>
+            </div>
+
+      <div className="col-lg-9">
+        <h2 className="text-center text-uppercase">{this.state.folder.name}</h2>
         {
           this.state.folder && this.state.folder.image && this.state.folder.image.length > 0 &&
           <Masonry
@@ -53,6 +83,10 @@ class FolderDetail extends Component {
           />
         }
       </div>
+          </div>
+          </div>
+
+      </Fragment>
     )
       //  if(this.state.folder.image === undefined){
       //   return(

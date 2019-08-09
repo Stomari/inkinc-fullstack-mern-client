@@ -248,6 +248,16 @@ handleShowFollow(id){
                     handleChangeCheckbox={(e) => this.handleChangeCheckbox(e)}
                   />
                 }
+                {
+                   this.props.user && (this.props.user._id !== this.state.artist._id) ?
+                   
+                      this.state.showFollow ?
+                      <img src="/images/heart-regular.svg" onClick={(id) => this.favArtist(this.state.artist._id)}/>
+                    :
+                      <img src="/images/heart-solid.svg"/>
+
+                  : null
+                }
               </div>
               </div>
               
