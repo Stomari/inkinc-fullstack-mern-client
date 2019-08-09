@@ -5,26 +5,25 @@ class Home extends Component {
     super(props);
   }
 
-  render(){
-      return(
-        <Fragment>
-          <section className='jumbotron jumbotron-fluid main-custom teste'>
+  render() {
+    return (
+      <Fragment>
+        <section className='jumbotron jumbotron-fluid main-custom teste'>
           <div className="cover-content">
-            <h1 className="cover-title">Get inspired<br/>Get tattooed</h1>            
+            <h1 className="cover-title pl-4">Get inspired<br />Get tattooed</h1>
           </div>
-          </section>
+        </section>
 
-          <section className='about-custom d-flex justify-content-center'>
+        <section className='about-custom d-flex justify-content-center'>
 
-            <div className="card-deck home-custom">
-              
-              <div className="card d-flex align-items-center card-custom home-box">
-                   <img src="/images/heart.svg" className="card-img-top home-img" alt="..."/>
-                  <div className="card-body mt-4 d-flex align-items-end text-center">
-                    <div className="col">
-                    <h3 className="card-title text-uppercase">Find artists</h3>
-                    <p className="card-text">Discover and follow your favorite artists to keep track of their work.</p>
-                    </div>
+          <div className="card-deck home-custom">
+
+            <div className="card d-flex align-items-center card-custom home-box">
+              <img src="/images/heart.svg" className="card-img-top home-img" alt="..." />
+              <div className="card-body mt-4 d-flex align-items-end text-center">
+                <div className="col">
+                  <h3 className="card-title text-uppercase">Find artists</h3>
+                  <p className="card-text">Discover and follow your favorite artists to keep track of their work.</p>
                 </div>
               </div>
             </div>
@@ -48,7 +47,6 @@ class Home extends Component {
                 </div>
               </div>
             </div>
-
           </div>
 
         </section>

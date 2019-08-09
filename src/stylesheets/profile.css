@@ -314,6 +314,10 @@ a.card-art:hover {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
+
+  .heart {
+    width: 50px;
+  }
 }
 
 .flashes-container {

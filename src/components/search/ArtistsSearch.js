@@ -57,10 +57,15 @@ const ArtistsSearch = (props) => {
                   </div>
                   <div class="artist-search-fav-btn">
                   {
+                    props.user && props.user.role !== 'Artist' ?
+
                     !props.user.favoriteArtist.some(fav => fav._id === el._id) ?
                     <img src="/images/heart-regular.svg" style={{cursor: 'pointer'}} onClick={(id) => favArtist(el._id)} alt="favorite artist icon"/>
                   : <img src="/images/heart-solid.svg" style={{cursor: 'pointer'}} onClick={(id) => deleteArtist(el._id)} alt="remove from favorite artist icon"/>
 
+                    :
+
+                    null  
                   }
                   </div>
                </div>

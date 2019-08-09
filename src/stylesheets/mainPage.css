@@ -12,9 +12,11 @@
 }
 
 .main-custom h1{
-  font-family: 'Gobold';
+  font-family: 'Gobold-italic';
   /* font-family: inkinc; */
-  font-size: 7rem;
+  font-size: 8rem;
+  letter-spacing: 8px;
+  line-height: 10rem;
 }
 
 .home-custom{
@@ -91,6 +93,12 @@
 
 @media only screen and (max-width: 600px) {
   .main-custom h1{
-    font-size: 4rem;
+    font-size: 3rem;
+    line-height: 5rem;
+    letter-spacing: 2px;
+  }
+
+  .cover-content{
+    padding: 2rem;
   }
 }
