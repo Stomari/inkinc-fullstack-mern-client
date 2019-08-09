@@ -6,13 +6,36 @@
 }
 
 @font-face {
-  font-family: 'Gobold-bold';
+  font-family: 'Gobold-italic';
   src: url('/fonts/Gobold\ Regular\ Italic.otf')
 }
 
 .home-box {
   font-family: 'Blinker', sans-serif;
   font-size: 1.3em;
+}
+
+.foot {
+  background-color: #212121;
+}
+
+.footer-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.footer-logo {
+  width: 80%;
+  margin-right: 100px;
+  padding: 50px 0  50px 0;
+}
+
+.footer-text {
+  color: white;
 }
 
 * {
@@ -302,7 +325,6 @@ html{
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  /* border: 1px solid #fff; */
   border-radius: 10px;
   width: 45%;
   min-width: 400px;

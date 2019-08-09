@@ -3,69 +3,68 @@
   src: url(ink.otf);
 }
 
-.main-custom{
-  background-image: url('/images/tattoo-arm.jpeg');
+.main-custom {
+  background-image: url("/images/tattoo-arm.jpeg");
   background-size: cover;
-  color:white;
+  color: white;
   height: 100vh;
   margin-bottom: 0 !important;
 }
 
 .main-custom h1{
-  font-family: 'Gobold';
+  font-family: 'Gobold-italic';
   /* font-family: inkinc; */
-  font-size: 7rem;
+  font-size: 8rem;
+  letter-spacing: 8px;
+  line-height: 10rem;
 }
-
-
-
 
 .home-custom{
   width: 80% !important;
   color: white;
+  padding-top: 1rem;
 }
 
-.home-img{
+.home-img {
   width: 60% !important;
 }
 
-.about-custom{
-  background-color:black;
+.about-custom {
+  background-color: black;
   padding-left: 5%;
   padding-right: 5%;
 }
 
-.card-height{
+.card-height {
   height: 100%;
 }
 
-.card-custom{
+.card-custom {
   background-color: black !important;
   padding: 3%;
   border: 0px !important;
 }
 
-.card-body-custom{
+.card-body-custom {
   padding-top: 30%;
 }
-.footer{
+.footer {
   background-color: black;
   color: grey;
   width: 100%;
   padding: 15px;
 }
 
-.footer-content{
-  padding-left:5%;
-  padding-right:5%;
-
+.footer-content {
+  padding-left: 5%;
+  padding-right: 5%;
 }
-.icons img{
-  width:55px;
+.icons img {
+  width: 55px;
   padding-left: 30px;
 }
 
-.text-footer{
+.text-footer {
   font-size: 18px;
 }
 
@@ -94,6 +93,12 @@
 
 @media only screen and (max-width: 600px) {
   .main-custom h1{
-    font-size: 4rem;
+    font-size: 3rem;
+    line-height: 5rem;
+    letter-spacing: 2px;
+  }
+
+  .cover-content{
+    padding: 2rem;
   }
 }
