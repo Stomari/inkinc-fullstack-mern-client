@@ -111,7 +111,7 @@ class Navbar extends Component {
           </nav>
           )} else {
       return (
-        <nav className="navbar navbar-expand-lg nav-custom p-3">
+        <nav className="navbar navbar-expand-lg navbar-dark nav-custom p-3">
              <Link className="navbar-brand" to='/'>
             <img className="cover-logo" alt="ink inc logo" width='40%' src='/images/inktopus.svg' />
           </Link>

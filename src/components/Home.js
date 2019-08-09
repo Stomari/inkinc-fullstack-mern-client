@@ -5,47 +5,15 @@ class Home extends Component {
     super(props);
   }
 
-//   animateHeadline($headlines) {
-//     $headlines.each(function(){
-//        var headline = $(this);
-//        //trigger animation
-//        setTimeout(function(){ this.hideWord( headline.find('.is-visible') ) }, 2500);
-//        //other checks here ...
-//     });
-//  }
-
-//  hideWord($word) {
-//   var nextWord = takeNext($word);
-//   this.switchWord($word, nextWord);
-//   setTimeout(function(){ this.hideWord(nextWord) }, animationDelay);
-// }
-
-// takeNext($word) {
-//   return (!$word.is(':last-child')) ? $word.next() : $word.parent().children().eq(0);
-// }
-
-// switchWord($oldWord, $newWord) {
-//   $oldWord.removeClass('is-visible').addClass('is-hidden');
-//   $newWord.removeClass('is-hidden').addClass('is-visible');
-// }
   render(){
-//  this.animateHeadline($('.cd-headline'));
-
       return(
         <Fragment>
           <section className='jumbotron jumbotron-fluid main-custom'>
             <div className='container'>
-            {/* <h1 class="cd-headline rotate-1">
-              <span>My favourite food is</span>
-              <span class="cd-words-wrapper">
-                <b class="is-visible">pizza</b>
-                <b>sushi</b>
-                <b>steak</b>
-              </span>
-          </h1> */}
           <div className="cover-content">
-            <h1 className="cover-title">Get Inspired.<br/>Get Tattooed</h1>
-          </div>
+            <img className="logo-main col-lg-8" alt="ink inc logo" width='20%' src='/images/inktopus.svg' />
+            </div>
+
             </div>
           </section>
 
