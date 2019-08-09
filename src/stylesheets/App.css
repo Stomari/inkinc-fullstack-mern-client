@@ -5,6 +5,29 @@
   font-size: 1.3em;
 }
 
+.foot {
+  background-color: #212121;
+}
+
+.footer-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.footer-logo {
+  width: 80%;
+  margin-right: 100px;
+  padding: 50px 0  50px 0;
+}
+
+.footer-text {
+  color: white;
+}
+
 * {
   outline: 0;
 }
