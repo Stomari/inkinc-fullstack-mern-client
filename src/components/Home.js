@@ -5,27 +5,26 @@ class Home extends Component {
     super(props);
   }
 
-  render() {
-    return (
-      <Fragment>
-        <section className='jumbotron jumbotron-fluid main-custom'>
-          <div className='container'>
-            <div className="cover-content">
-              <h1 className="cover-title">Get Inspired.<br />Get Tattooed</h1>
-            </div>
+  render(){
+      return(
+        <Fragment>
+          <section className='jumbotron jumbotron-fluid main-custom teste'>
+          <div className="cover-content">
+            <h1 className="cover-title">Get inspired<br/>Get tattooed</h1>            
           </div>
-        </section>
+          </section>
 
-        <section className='about-custom d-flex justify-content-center'>
+          <section className='about-custom d-flex justify-content-center'>
 
-          <div className="card-deck home-custom">
-
-            <div className="card d-flex align-items-center card-custom home-box">
-              <img src="/images/heart.svg" className="card-img-top home-img" alt="..." />
-              <div className="card-body mt-4 d-flex align-items-end text-center">
-                <div className="col">
-                  <h3 className="card-title text-uppercase">Find artists</h3>
-                  <p className="card-text">Discover and follow your favorite artists to keep track of their work.</p>
+            <div className="card-deck home-custom">
+              
+              <div className="card d-flex align-items-center card-custom home-box">
+                   <img src="/images/heart.svg" className="card-img-top home-img" alt="..."/>
+                  <div className="card-body mt-4 d-flex align-items-end text-center">
+                    <div className="col">
+                    <h3 className="card-title text-uppercase">Find artists</h3>
+                    <p className="card-text">Discover and follow your favorite artists to keep track of their work.</p>
+                    </div>
                 </div>
               </div>
             </div>
@@ -71,29 +70,7 @@ class Home extends Component {
             <div className="footer-text">
               <p className="footer-text"> © 2019 Ink.inc</p>
             </div>
-
           </div>
-
-
-        {/* <footer className="footer">
-          <div className="row footer-content">
-
-
-            <div className="icons socials col-lg-6">
-              <img src="images/instagram-brands.svg" />
-              <img src="images/facebook-brands.svg" />
-              <img src="images/twitter-brands.svg" />
-            </div>
-
-            <div>
-              <img className="footer-logo" alt="ink inc logo" width='20%' src='/images/inktopus.svg' />
-            </div>
-
-            <div className="col-lg-6 d-flex justify-content-end">
-              <p className="text-footer"> © 2019 Ink.inc</p>
-            </div>
-
-          </div> */}
         </footer>
       </Fragment>
     )

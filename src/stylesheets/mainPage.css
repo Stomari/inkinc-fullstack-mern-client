@@ -11,12 +11,13 @@
   margin-bottom: 0 !important;
 }
 
-.main-custom h1 {
-  font-family: inkinc;
-  font-size: 8rem;
+.main-custom h1{
+  font-family: 'Gobold';
+  /* font-family: inkinc; */
+  font-size: 7rem;
 }
 
-.home-custom {
+.home-custom{
   width: 80% !important;
   color: white;
   padding-top: 1rem;
@@ -71,12 +72,25 @@
   justify-content: flex-start;
   align-items: center;
   margin-top: 10%;
+  /* width: 100%; */
+  padding: 0 100px;
 }
+
+.cover-title {
+  margin-right: 50px;
+}
+
+/* .teste {
+  width: 100% !important;
+  margin: 0 !important;
+} */
 
 .cover-content img {
   margin-right: 50px;
 }
 
-.logo-main {
-  width: 70%;
+@media only screen and (max-width: 600px) {
+  .main-custom h1{
+    font-size: 4rem;
+  }
 }
