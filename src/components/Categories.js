@@ -12,7 +12,7 @@ const Tags = (props) => {
                       <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Categories
                       </button>
-                      <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <div className="dropdown-menu container-dropdown" aria-labelledby="dropdownMenu2">
                       {
                         props.categories.map((el, idx) => {
                         return (
@@ -25,6 +25,7 @@ const Tags = (props) => {
                       }
                       </div>
                     </div>
+
           } else {
             return props.categories.map((el, idx) => {
               return (
