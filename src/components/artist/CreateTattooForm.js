@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MediaQuery from 'react-responsive';
 import axios from 'axios';
 
 class CreateTattooForm extends Component {
@@ -81,7 +82,29 @@ class CreateTattooForm extends Component {
           <input type="text" name="tag" value={this.state.tag} placeholder="Separate tags by comma (ex.: skull, rose, triangle)" onChange={(event) => this.handleChange(event)} />
           <label className="text-uppercase label-cat">Category:</label>
           <div className="categories-container">
-          {this.props.categories.map((el, idx) => {
+          <MediaQuery maxWidth={500}>
+        {(matches) => {
+          if (matches) {
+            return <div className="dropdown">
+                      <button className="btn btn-secondary dropdown-toggle dropdown-modal" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                      </button>
+                      <div className="dropdown-menu container-dropdown text-center" aria-labelledby="dropdownMenu2">
+                      {
+                        this.props.categories.map((el, idx) => {
+                        return (
+                          <div key={idx} className="category-container">
+                            <input type="checkbox" id={el._id} value={el.id} onChange={(event) =>this.handleChangeCheckbox(event)} />
+                            <label htmlFor={el._id}>{el.tag}</label>
+                          </div>
+                          );
+                        })
+                      }
+                      </div>
+                    </div>
+
+          } else {
+          return  this.props.categories.map((el, idx) => {
             // const check = (this.state.category.includes(el._id)) ? true : false
             return (
               <div key={idx} className="category-container">
@@ -89,13 +112,17 @@ class CreateTattooForm extends Component {
                 <label htmlFor={"tattoo-" + el.tag}>{el.tag}</label>
               </div>
             )
-          })}
+          })
+        }}
+    }
+
+        </MediaQuery>
           </div>
           <label className="text-uppercase label-cat">Image:</label>
           <input type="file" name="image" onChange={(e) => this.handleFileUpload(e)} ref={ref => this.fileInput = ref} />
           {this.state.image !== '' && <img src={this.state.image} alt='upload' width="200" />}
 
-          <input className="btn-submit align-self-center mt-4"type="submit" value="Submit"/>
+          <input className="btn-submit align-self-center mt-4"type="submit" value="Add tattoo"/>
 
         </form>
         <div className="modal-bg" onClick={() => this.handleCloseModal()}></div>
