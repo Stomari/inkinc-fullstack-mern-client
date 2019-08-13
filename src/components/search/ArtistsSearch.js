@@ -24,11 +24,6 @@ const ArtistsSearch = (props) => {
       })
   }
 
-  const findCategory = (id) => {
-    return props.categories.filter(cat => cat._id === id)
-  }
-
-
   return(
     <div className="artist-search-container">
       {
@@ -43,8 +38,7 @@ const ArtistsSearch = (props) => {
                       <h4>{el.name}</h4>
                       <p className="search-artist-category">
                         {el.category.map((cat, idx) => {
-                          const res = findCategory(cat);
-                          return res[0].tag + ' / '
+                          return cat.tag + ' / '
                         })}
                       </p>
                     </div>

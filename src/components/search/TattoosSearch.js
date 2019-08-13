@@ -3,7 +3,6 @@ import { Masonry } from 'gestalt';
 import ShowMansory from './ShowMasonry';
 import axios from 'axios';
 import 'gestalt/dist/gestalt.css';
-import axios from 'axios';
 
 class TattoosSearch extends Component {
   constructor(props){
@@ -43,8 +42,6 @@ class TattoosSearch extends Component {
   }
 
   render() {
-    console.log('STATE', this.state.itemsToRender)
-    console.log('PROPS', this.props.filteredResults)
     return(
       <div className="search-tattoos-grid-container">
         <Masonry
