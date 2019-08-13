@@ -1,15 +1,14 @@
 import React from 'react';
 
 const ShowMansory = (props) => {
-  let teste = false;
-  const lodeia = () => {
-    teste = true;
-    console.log(teste)
+  let showLoad = false;
+  const load = () => {
+    showLoad = true;
   }
   return(
     <div className="search-grid-image-wrapper">
        
-      <img width="100%" style={teste ? {display: 'none'} : {}} onLoad={lodeia()}  src={props.data.image} alt={props.data.tag} className="search-grid-image" onClick={(event, i, modal) => props.openedImageSaveHandler(event, props.data._id, 'image')}/>
+      <img width="100%" style={showLoad ? {display: 'none'} : {}} onLoad={load()}  src={props.data.image} alt={props.data.tag} className="search-grid-image" onClick={(event, i, modal) => props.openedImageSaveHandler(event, props.data._id, 'image')}/>
 
       {props.user && props.user.role === 'User' && <div className="search-grid-overlay" onClick={(event, i, modal) => props.openedImageSaveHandler(event, props.data._id, 'folder')}>+</div>}
 
