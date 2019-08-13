@@ -13,16 +13,6 @@ class TattoosSearch extends Component {
     }  
   }
 
-  componentDidMount() {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo`, {withCredentials: true})
-      .then(response => {
-        const responseTattoos = response.data;
-        this.setState({
-          itemsToRender: responseTattoos,
-        })
-      })
-  }
-
   renderData(data) {
     return  (
       <ShowMansory
