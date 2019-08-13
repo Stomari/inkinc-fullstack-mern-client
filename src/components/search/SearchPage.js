@@ -232,8 +232,8 @@ class SearchPage extends Component {
               tattoos={this.state.resultsTattoos}
               searchQuery={this.state.searchQuery}
               user={this.props.user}
-              modal={() => this.handleShowModal()
-            }
+              modal={() => this.handleShowModal()}
+              key={this.state.filteredResults.length}
             />
           }
   

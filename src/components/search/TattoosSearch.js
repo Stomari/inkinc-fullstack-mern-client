@@ -5,21 +5,27 @@ import axios from 'axios';
 import 'gestalt/dist/gestalt.css';
 
 class TattoosSearch extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       itemsToRender: [],
-    }  
+    }
   }
-  
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.filteredResults !== prevState.itemsToRender) {
-      return {itemsToRender: nextProps.filteredResults}
+
+  componentDidMount() {
+    if (this.props.searchQuery.length === 0) {
+      axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo`, { withCredentials: true })
+        .then(response => {
+          const responseTattoos = response.data;
+          this.setState({
+            itemsToRender: responseTattoos,
+          })
+        })
     }
   }
 
   renderData(data) {
-    return  (
+    return (
       <ShowMansory
         user={this.props.user}
         openedImageSave={this.props.openedImageSave}
@@ -33,12 +39,12 @@ class TattoosSearch extends Component {
   loadMore() {
     const newArr = [...this.props.filteredResults];
     this.setState({
-      itemsToRender:  newArr
+      itemsToRender: newArr
     });
   }
 
   render() {
-    return(
+    return (
       <div className="search-tattoos-grid-container">
         <Masonry
           key={this.props.filteredResults.length}
