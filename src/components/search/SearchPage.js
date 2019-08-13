@@ -1,10 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import SearchBar from './SearchBar';
 import Categories from '../Categories';
-import ArtistsTattoosToggle from './ArtistsTattoosToggle';
 import ArtistsSearch from './ArtistsSearch';
 import TattoosSearch from './TattoosSearch';
-import Footer from '../Footer';
 import ModalImage from './ModalImage';
 import axios from 'axios';
 
@@ -67,9 +65,6 @@ class SearchPage extends Component {
 
     })
     .catch(err => console.log(err));
-      
-
-      // this.getResults();
   }
 
   getInfo(){
@@ -220,7 +215,6 @@ class SearchPage extends Component {
 
           }
 
-          {/* <ArtistsTattoosToggle artistsSearch={this.state.artistsSearch} toggleHandler={() => this.toggleHandler()} /> */}
           <SearchBar state={this.state} searchHandler={(event) => this.searchHandler(event)} />
           <Categories categories={this.state.categories} chooseCategories={(e) => this.chooseCategories(e)} />
           {
@@ -238,8 +232,8 @@ class SearchPage extends Component {
               tattoos={this.state.resultsTattoos}
               searchQuery={this.state.searchQuery}
               user={this.props.user}
-              modal={() => this.handleShowModal()
-            }
+              modal={() => this.handleShowModal()}
+              key={this.state.filteredResults.length}
             />
           }
   
@@ -276,6 +270,5 @@ class SearchPage extends Component {
   }
 }
 
-// searchHandler={(event) => this.searchHandler(event)}
 
 export default SearchPage;
