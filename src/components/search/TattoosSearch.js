@@ -3,18 +3,27 @@ import { Masonry } from 'gestalt';
 import ShowMansory from './ShowMasonry';
 import axios from 'axios';
 import 'gestalt/dist/gestalt.css';
-import axios from 'axios';
 
 class TattoosSearch extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       itemsToRender: [],
-    }  
+    }
+  }
+
+  componentDidMount() {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo`, { withCredentials: true })
+      .then(response => {
+        const responseTattoos = response.data;
+        this.setState({
+          itemsToRender: responseTattoos,
+        })
+      })
   }
 
   renderData(data) {
-    return  (
+    return (
       <ShowMansory
         user={this.props.user}
         openedImageSave={this.props.openedImageSave}
@@ -28,14 +37,12 @@ class TattoosSearch extends Component {
   loadMore() {
     const newArr = [...this.props.filteredResults];
     this.setState({
-      itemsToRender:  newArr
+      itemsToRender: newArr
     });
   }
 
   render() {
-    console.log('STATE', this.state.itemsToRender)
-    console.log('PROPS', this.props.filteredResults)
-    return(
+    return (
       <div className="search-tattoos-grid-container">
         <Masonry
           key={this.props.filteredResults.length}

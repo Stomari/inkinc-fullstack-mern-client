@@ -230,7 +230,6 @@ class SearchPage extends Component {
           {
             !this.state.artistsSearch &&
             <TattoosSearch
-              // key={this.state.filteredResults.length}
               openedImageSaveHandler={(e, i, modal) => this.openedImageSaveHandler(e, i,modal)}
               openedImageSave={this.state.openedImageSave}
               filterHandler={() => this.filterHandler(this.state.searchQuery)}
