@@ -39,34 +39,34 @@ class SearchPage extends Component {
       })
       .catch(err => console.log(err));
 
-      let responseTattoos = '';
-      let responseArtists = '';
+    let responseTattoos = '';
+    let responseArtists = '';
 
-      axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo`, {withCredentials: true})
+    axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo`, {withCredentials: true})
+    .then(response => {
+      responseTattoos = response.data;
+      this.setState({
+        resultsTattoos: responseTattoos,
+      })
+
+
+      axios.get(`${process.env.REACT_APP_API_URL}/api/artists`, {withCredentials: true})
       .then(response => {
-        responseTattoos = response.data;
+        responseArtists = response.data;
         this.setState({
-          resultsTattoos: responseTattoos,
+          resultsArtists: responseArtists,
         })
 
-
-        axios.get(`${process.env.REACT_APP_API_URL}/api/artists`, {withCredentials: true})
-        .then(response => {
-          responseArtists = response.data;
-          this.setState({
-            resultsArtists: responseArtists,
-          })
-
-          const filtered = this.state.artistsSearch ? responseArtists : responseTattoos;
-          this.setState({
-            filteredResults: filtered,
-          })
-
+        const filtered = this.state.artistsSearch ? responseArtists : responseTattoos;
+        this.setState({
+          filteredResults: filtered,
         })
-        .catch(err => console.log(err));
 
       })
       .catch(err => console.log(err));
+
+    })
+    .catch(err => console.log(err));
       
 
       // this.getResults();
@@ -230,12 +230,14 @@ class SearchPage extends Component {
           {
             !this.state.artistsSearch &&
             <TattoosSearch
+              // key={this.state.filteredResults.length}
               openedImageSaveHandler={(e, i, modal) => this.openedImageSaveHandler(e, i,modal)}
               openedImageSave={this.state.openedImageSave}
               filterHandler={() => this.filterHandler(this.state.searchQuery)}
               categories={this.state.categories}
               filteredResults={this.state.filteredResults}
               tattoos={this.state.resultsTattoos}
+              searchQuery={this.state.searchQuery}
               user={this.props.user}
               modal={() => this.handleShowModal()
             }
@@ -270,7 +272,6 @@ class SearchPage extends Component {
           : null
         }
         </div>
-        <Footer />
       </Fragment>
     );
   }
