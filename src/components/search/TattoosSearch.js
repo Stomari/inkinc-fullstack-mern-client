@@ -11,6 +11,12 @@ class TattoosSearch extends Component {
       itemsToRender: [],
     }  
   }
+  
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.filteredResults !== prevState.itemsToRender) {
+      return {itemsToRender: nextProps.filteredResults}
+    }
+  }
 
   renderData(data) {
     return  (
