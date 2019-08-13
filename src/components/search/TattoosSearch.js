@@ -3,6 +3,7 @@ import { Masonry } from 'gestalt';
 import ShowMansory from './ShowMasonry';
 import axios from 'axios';
 import 'gestalt/dist/gestalt.css';
+import axios from 'axios';
 
 class TattoosSearch extends Component {
   constructor(props){
@@ -22,7 +23,6 @@ class TattoosSearch extends Component {
       })
   }
 
-
   renderData(data) {
     return  (
       <ShowMansory
@@ -36,10 +36,10 @@ class TattoosSearch extends Component {
   }
 
   loadMore() {
-      const newArr = [...this.props.filteredResults];
-      this.setState({
-        itemsToRender: newArr
-      });
+    const newArr = [...this.props.filteredResults];
+    this.setState({
+      itemsToRender:  newArr
+    });
   }
 
   render() {

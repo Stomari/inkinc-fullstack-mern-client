@@ -13,8 +13,7 @@ const ShowMansory = (props) => {
 
       {props.user && props.user.role === 'User' && <div className="search-grid-overlay" onClick={(event, i, modal) => props.openedImageSaveHandler(event, props.data._id, 'folder')}>+</div>}
 
-
-      {props.artistGallery && props.user && (props.user._id === props.artist._id) && <div className="search-grid-overlay" onClick={(e) => props.handleDeleteTattoo(e, props.data._id)}><img src="/images/trash-solid.svg" className="trash-ico" alt="trash icon - delete"/></div>}
+      {props.artistGallery && props.user && (props.user._id === props.artist._id) && <div className="search-grid-overlay" onClick={(e) => props.handleDeleteTattoo(e, props.data._id)}><img src="/images/trash-solid.svg" className="trash-ico" alt="delete icon" /></div>}
     </div>
   );
 }
