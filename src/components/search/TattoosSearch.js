@@ -13,7 +13,7 @@ class TattoosSearch extends Component {
   }
 
   componentDidMount() {
-    if (this.props.searchQuery.length === 0) {
+    if (this.props.searchQuery.length === 0 && this.props.chosenCategories.length === 0) {
       axios.get(`${process.env.REACT_APP_API_URL}/api/tattoo`, { withCredentials: true })
         .then(response => {
           const responseTattoos = response.data;
@@ -21,9 +21,14 @@ class TattoosSearch extends Component {
             itemsToRender: responseTattoos,
           })
         })
+    } else {
+      const newArr = [...this.props.filteredResults]
+      this.setState({
+        itemsToRender: newArr
+      })
     }
   }
-
+  
   renderData(data) {
     return (
       <ShowMansory
@@ -36,24 +41,14 @@ class TattoosSearch extends Component {
     )
   }
 
-  loadMore() {
-    const newArr = [...this.props.filteredResults];
-    this.setState({
-      itemsToRender: newArr
-    });
-  }
-
   render() {
     return (
       <div className="search-tattoos-grid-container">
         <Masonry
-          key={this.props.filteredResults.length}
+          key={this.state.itemsToRender}
           comp={(data) => this.renderData(data)}
           items={(this.state.itemsToRender)}
-          loadItems={() => this.loadMore()}
-          scrollContainer={() => window}
           minCols={1}
-          virtualize
         />
       </div>
     )
