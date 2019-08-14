@@ -233,7 +233,8 @@ class SearchPage extends Component {
               searchQuery={this.state.searchQuery}
               user={this.props.user}
               modal={() => this.handleShowModal()}
-              key={this.state.filteredResults.length}
+              chosenCategories={this.state.chosenCategories}
+              key={this.state.filteredResults.length + this.state.chosenCategories.length}
             />
           }
   
